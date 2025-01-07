@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.12.35527.113
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bakalauras.API", "Bakalauras.API\Bakalauras.API.csproj", "{52EEAF05-53FE-4FED-A1F4-15C8997A6404}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bakalauras.App", "Bakalauras.App\Bakalauras.App.csproj", "{A2A6E8B8-C66F-493C-A458-80082D4D5E24}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bakalauras.Domain", "Bakalauras.Domain\Bakalauras.Domain.csproj", "{D6BE0BD4-7B58-46CB-B49B-87D1F4437DCB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bakalauras.Persistence", "Bakalauras.Persistence\Bakalauras.Persistence.csproj", "{9E6322AF-8A16-4A05-BCEE-E524FDB38EDF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{52EEAF05-53FE-4FED-A1F4-15C8997A6404}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{52EEAF05-53FE-4FED-A1F4-15C8997A6404}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{52EEAF05-53FE-4FED-A1F4-15C8997A6404}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{52EEAF05-53FE-4FED-A1F4-15C8997A6404}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A2A6E8B8-C66F-493C-A458-80082D4D5E24}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A2A6E8B8-C66F-493C-A458-80082D4D5E24}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A2A6E8B8-C66F-493C-A458-80082D4D5E24}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A2A6E8B8-C66F-493C-A458-80082D4D5E24}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D6BE0BD4-7B58-46CB-B49B-87D1F4437DCB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D6BE0BD4-7B58-46CB-B49B-87D1F4437DCB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D6BE0BD4-7B58-46CB-B49B-87D1F4437DCB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D6BE0BD4-7B58-46CB-B49B-87D1F4437DCB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9E6322AF-8A16-4A05-BCEE-E524FDB38EDF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9E6322AF-8A16-4A05-BCEE-E524FDB38EDF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9E6322AF-8A16-4A05-BCEE-E524FDB38EDF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9E6322AF-8A16-4A05-BCEE-E524FDB38EDF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

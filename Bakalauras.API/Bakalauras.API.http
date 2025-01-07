@@ -1,0 +1,6 @@
+@Bakalauras.API_HostAddress = http://localhost:5016
+
+GET {{Bakalauras.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
