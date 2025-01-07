@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "0wYraV9k9q4=",
+  "dgSpecHash": "aq6x3Rr1Pz8=",
   "success": true,
-  "projectFilePath": "C:\\Users\\picom\\Documents\\BAKALAURAS\\Bakalauras.API\\Bakalauras.API\\Bakalauras.API\\Bakalauras.API\\Bakalauras.API.csproj",
+  "projectFilePath": "C:\\Users\\picom\\Documents\\BAKALAURAS\\Bakalauras.API\\Bakalauras.API\\Bakalauras.API\\Bakalauras\\Bakalauras.API\\Bakalauras.API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\picom\\.nuget\\packages\\azure.core\\1.38.0\\azure.core.1.38.0.nupkg.sha512",
     "C:\\Users\\picom\\.nuget\\packages\\azure.identity\\1.11.4\\azure.identity.1.11.4.nupkg.sha512",

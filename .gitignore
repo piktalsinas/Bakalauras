@@ -1,0 +1,10 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs/Bakalauras/v17/.wsuo
+/.vs/Bakalauras/v17/DocumentLayout.json
+/.vs/Bakalauras.API/FileContentIndex/79a7a709-557e-44e6-bf31-618191e81154.vsidx
+/.vs/Bakalauras.API/FileContentIndex/8ef5ac54-a332-453f-b053-75e39b1260d0.vsidx
+/.vs/Bakalauras.API/FileContentIndex/985aff88-34ae-49f3-9647-c1c91d4a410a.vsidx
+/.vs/Bakalauras.API/FileContentIndex/e37a075f-11a2-4a23-b828-9a16ef964f84.vsidx
