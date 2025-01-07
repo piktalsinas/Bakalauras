@@ -3,6 +3,7 @@ using Bakalauras.Persistence.Repositories;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
 
 namespace Bakalauras.App.Services
 {
@@ -10,17 +11,19 @@ namespace Bakalauras.App.Services
     {
         private readonly INodeRepository _nodeRepository;
         private readonly string _baseImageFolder;
-        private readonly string _answerPicFolder;
+        private readonly string _PathFolder;
+        private readonly ILogger<NodeService> _logger;  
 
-        public NodeService(INodeRepository nodeRepository)
+        public NodeService(INodeRepository nodeRepository, ILogger<NodeService> logger)
         {
             _nodeRepository = nodeRepository;
-            // Define the paths for the base image folder and AnswerPic folder
+            _logger = logger;  // Initialize logger
+           
             _baseImageFolder = Path.Combine(Directory.GetCurrentDirectory(), "C:\\Users\\picom\\Documents\\BAKALAURAS\\photos");
-            _answerPicFolder = Path.Combine(Directory.GetCurrentDirectory(), "C:\\Users\\picom\\Documents\\BAKALAURAS\\AnswerPic");
+            _PathFolder = Path.Combine(Directory.GetCurrentDirectory(), "C:\\Users\\picom\\Documents\\BAKALAURAS\\Path");
         }
 
-        // Method to add nodes from images in a folder
+       
         public async Task AddNodesFromImagesAsync(string folderPath)
         {
             if (!Directory.Exists(folderPath))
@@ -33,20 +36,26 @@ namespace Bakalauras.App.Services
 
             foreach (var file in files)
             {
-                var nodeName = Path.GetFileNameWithoutExtension(file); // Get the image name without extension
+                var nodeName = Path.GetFileNameWithoutExtension(file); 
 
-                // Check if the node already exists by name
+                
                 var existingNode = await _nodeRepository.GetByNameAsync(nodeName);
                 if (existingNode == null)
                 {
                     Node node = new Node { Name = nodeName };
-                    await _nodeRepository.AddAsync(node);
+                    var addedNode = await _nodeRepository.AddAsync(node);
+
+                    
+                    if (addedNode != null)
+                    {
+                        _logger.LogInformation("Added Node - Id: {NodeId}, Name: {NodeName}", addedNode.Id, addedNode.Name);
+                    }
                 }
             }
         }
 
-        // Method to move image to the AnswerPic folder
-        public async Task<bool> MoveImageToAnswerPicFolderAsync(Guid nodeId)
+       
+        public async Task<bool> MoveImageToPathFolderAsync(Guid nodeId)
         {
             var node = await _nodeRepository.GetByIdAsync(nodeId);
             if (node == null)
@@ -56,30 +65,30 @@ namespace Bakalauras.App.Services
 
             try
             {
-                // Ensure the AnswerPic folder exists
-                if (!Directory.Exists(_answerPicFolder))
+                
+                if (!Directory.Exists(_PathFolder))
                 {
-                    Directory.CreateDirectory(_answerPicFolder);
+                    Directory.CreateDirectory(_PathFolder);
                 }
 
-                // Construct the source and destination paths
+               
                 var sourceImagePath = Path.Combine(_baseImageFolder, node.Name);
-                var destinationImagePath = Path.Combine(_answerPicFolder, node.Name);
+                var destinationImagePath = Path.Combine(_PathFolder, node.Name);
 
-                // Check if the file exists
+                
                 if (File.Exists(sourceImagePath))
                 {
-                    // Move the file to the AnswerPic folder
+                    
                     File.Move(sourceImagePath, destinationImagePath);
                     return true;
                 }
 
-                return false; // Image not found
+                return false; 
             }
             catch (Exception ex)
             {
-                // Log exception if needed
-                return false; // Failure to move image
+                
+                return false; 
             }
         }
     }

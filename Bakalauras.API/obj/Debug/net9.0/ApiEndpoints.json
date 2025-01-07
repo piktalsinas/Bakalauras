@@ -127,7 +127,7 @@
     "ContainingType": "Bakalauras.API.Controllers.NodeController",
     "Method": "AddNodesFromImages",
     "RelativePath": "Node/add-nodes-from-images",
-    "HttpMethod": "GET",
+    "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [],
@@ -135,7 +135,7 @@
   },
   {
     "ContainingType": "Bakalauras.API.Controllers.NodeController",
-    "Method": "MoveImageToAnswerPic",
+    "Method": "MoveImageToPathFolderAsync",
     "RelativePath": "Node/MoveImage/{id}",
     "HttpMethod": "POST",
     "IsController": true,

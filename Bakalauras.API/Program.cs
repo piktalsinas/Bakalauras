@@ -3,8 +3,11 @@ using Bakalauras.Persistence.Repositories;
 using Bakalauras.Persistence.Repositories.EF;
 using Bakalauras.App.Services;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddLogging();  // Ensure logging is added
 
 builder.Services.AddControllers();
 builder.Services.AddOpenApi();
