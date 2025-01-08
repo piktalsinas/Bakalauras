@@ -11,7 +11,7 @@ namespace Bakalauras.Persistence.Migrations
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.CreateTable(
+          /*  migrationBuilder.CreateTable(
                 name: "NodeConnections",
                 columns: table => new
                 {
@@ -45,14 +45,14 @@ namespace Bakalauras.Persistence.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_NodeConnections_ToNodeId",
                 table: "NodeConnections",
-                column: "ToNodeId");
+                column: "ToNodeId");*/
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
-                name: "NodeConnections");
+          /*  migrationBuilder.DropTable(
+                name: "NodeConnections");*/
         }
     }
 }

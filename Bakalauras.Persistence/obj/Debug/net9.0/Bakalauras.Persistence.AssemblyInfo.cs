@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Bakalauras.Persistence")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f2a6e3b8a9599b921162a859d6252ef0db939d69")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+38ea89ac768c4d2a27c2568beb7b5c1b5ce2a4b0")]
 [assembly: System.Reflection.AssemblyProductAttribute("Bakalauras.Persistence")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Bakalauras.Persistence")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

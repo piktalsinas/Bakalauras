@@ -27,6 +27,8 @@ builder.Services.AddSwaggerGen(c =>
 builder.Services.AddScoped<INodeRepository, NodeRepository>();
 builder.Services.AddScoped<INodeConnectionRepository, NodeConnectionRepository>();
 builder.Services.AddScoped<NodeService>();
+builder.Services.AddScoped<NodeConnectionService>();
+
 
 var app = builder.Build();
 

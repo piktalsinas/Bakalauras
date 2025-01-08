@@ -13,10 +13,15 @@ public class AppDbContext : DbContext
 		Database.EnsureCreated();
 	}
 
-	protected override void OnModelCreating(ModelBuilder modelBuilder)
-	{
-		base.OnModelCreating(modelBuilder);
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        base.OnModelCreating(modelBuilder);
 
-		modelBuilder.ApplyConfigurationsFromAssembly(typeof(AppDbContext).Assembly);
-	}
+        // If you want to configure Name column or any other custom behavior
+        modelBuilder.Entity<NodeConnection>()
+            .Property(nc => nc.Name)
+            .HasMaxLength(100); // Example: limit the length of the Name
+
+        modelBuilder.ApplyConfigurationsFromAssembly(typeof(AppDbContext).Assembly);
+    }
 }
