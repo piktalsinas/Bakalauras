@@ -135,8 +135,8 @@
   },
   {
     "ContainingType": "Bakalauras.API.Controllers.NodeController",
-    "Method": "MoveImageToPathFolderAsync",
-    "RelativePath": "Node/MoveImage/{id}",
+    "Method": "CopyImageToPathFolderAsync",
+    "RelativePath": "Node/CopyImage/{id}",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,

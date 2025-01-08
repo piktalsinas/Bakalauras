@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Threading.Tasks;
 
 namespace Bakalauras.API.Controllers
@@ -94,12 +95,11 @@ namespace Bakalauras.API.Controllers
             }
         }
 
-        [HttpPost("MoveImage/{id}")]
-        public async Task<IActionResult> MoveImageToPathFolderAsync(Guid id)
+        [HttpPost("CopyImage/{id}")]
+        public async Task<IActionResult> CopyImageToPathFolderAsync(Guid id)
         {
             try
             {
-                // Retrieve the node from the database
                 Node? node = await _nodeRepository.GetByIdAsync(id);
                 if (node == null || string.IsNullOrEmpty(node.Name))
                 {
@@ -107,34 +107,30 @@ namespace Bakalauras.API.Controllers
                     return NotFound("Node not found or has no associated name.");
                 }
 
-                // Define the source and destination paths
-                string sourceFolder = @"C:\Users\picom\Documents\BAKALAURAS\photos"; // Update this if necessary
+                string sourceFolder = @"C:\Users\picom\Documents\BAKALAURAS\photos";
                 string destinationFolder = @"C:\Users\picom\Documents\BAKALAURAS\Path";
                 string sourceFilePath = Path.Combine(sourceFolder, $"{node.Name}.jpg");
                 string destinationFilePath = Path.Combine(destinationFolder, $"{node.Name}.jpg");
 
-                // Check if the source file exists
                 if (!System.IO.File.Exists(sourceFilePath))
                 {
                     _logger.LogError("Image file {SourceFilePath} not found for node {NodeName}.", sourceFilePath, node.Name);
                     return NotFound("Image file not found.");
                 }
 
-                // Ensure the destination folder exists
                 if (!Directory.Exists(destinationFolder))
                 {
                     Directory.CreateDirectory(destinationFolder);
                 }
 
-                // Move the file
-                System.IO.File.Move(sourceFilePath, destinationFilePath);
+                System.IO.File.Copy(sourceFilePath, destinationFilePath, overwrite: true);
 
-                _logger.LogInformation("Image file moved successfully from {Source} to {Destination}.", sourceFilePath, destinationFilePath);
-                return Ok("Image successfully moved to Path folder.");
+                _logger.LogInformation("Image file copied successfully from {Source} to {Destination}.", sourceFilePath, destinationFilePath);
+                return Ok("Image successfully copied to Path folder.");
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Error occurred while moving image file for node {NodeId}.", id);
+                _logger.LogError(ex, "Error occurred while copying image file for node {NodeId}.", id);
                 return StatusCode(500, "An error occurred while processing your request.");
             }
         }

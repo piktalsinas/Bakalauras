@@ -12,18 +12,17 @@ namespace Bakalauras.App.Services
         private readonly INodeRepository _nodeRepository;
         private readonly string _baseImageFolder;
         private readonly string _PathFolder;
-        private readonly ILogger<NodeService> _logger;  
+        private readonly ILogger<NodeService> _logger;
 
         public NodeService(INodeRepository nodeRepository, ILogger<NodeService> logger)
         {
             _nodeRepository = nodeRepository;
-            _logger = logger;  // Initialize logger
-           
+            _logger = logger;
+
             _baseImageFolder = Path.Combine(Directory.GetCurrentDirectory(), "C:\\Users\\picom\\Documents\\BAKALAURAS\\photos");
             _PathFolder = Path.Combine(Directory.GetCurrentDirectory(), "C:\\Users\\picom\\Documents\\BAKALAURAS\\Path");
         }
 
-       
         public async Task AddNodesFromImagesAsync(string folderPath)
         {
             if (!Directory.Exists(folderPath))
@@ -36,16 +35,14 @@ namespace Bakalauras.App.Services
 
             foreach (var file in files)
             {
-                var nodeName = Path.GetFileNameWithoutExtension(file); 
+                var nodeName = Path.GetFileNameWithoutExtension(file);
 
-                
                 var existingNode = await _nodeRepository.GetByNameAsync(nodeName);
                 if (existingNode == null)
                 {
                     Node node = new Node { Name = nodeName };
                     var addedNode = await _nodeRepository.AddAsync(node);
 
-                    
                     if (addedNode != null)
                     {
                         _logger.LogInformation("Added Node - Id: {NodeId}, Name: {NodeName}", addedNode.Id, addedNode.Name);
@@ -54,8 +51,7 @@ namespace Bakalauras.App.Services
             }
         }
 
-       
-        public async Task<bool> MoveImageToPathFolderAsync(Guid nodeId)
+        public async Task<bool> CopyImageToPathFolderAsync(Guid nodeId)
         {
             var node = await _nodeRepository.GetByIdAsync(nodeId);
             if (node == null)
@@ -65,30 +61,26 @@ namespace Bakalauras.App.Services
 
             try
             {
-                
                 if (!Directory.Exists(_PathFolder))
                 {
                     Directory.CreateDirectory(_PathFolder);
                 }
 
-               
-                var sourceImagePath = Path.Combine(_baseImageFolder, node.Name);
-                var destinationImagePath = Path.Combine(_PathFolder, node.Name);
+                var sourceImagePath = Path.Combine(_baseImageFolder, $"{node.Name}.jpg");
+                var destinationImagePath = Path.Combine(_PathFolder, $"{node.Name}.jpg");
 
-                
                 if (File.Exists(sourceImagePath))
                 {
-                    
-                    File.Move(sourceImagePath, destinationImagePath);
+                    File.Copy(sourceImagePath, destinationImagePath, overwrite: true);
                     return true;
                 }
 
-                return false; 
+                return false;
             }
             catch (Exception ex)
             {
-                
-                return false; 
+                _logger.LogError(ex, "Error occurred while copying image file for node {NodeId}.", nodeId);
+                return false;
             }
         }
     }

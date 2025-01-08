@@ -11,4 +11,5 @@ public class NodeConnection
 	public virtual Node ToNode { get; set; } = default!;
 
 	public float Weight { get; set; }
+
 }
