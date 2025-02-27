@@ -7,7 +7,7 @@ using Microsoft.Extensions.Logging;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddLogging();  // Ensure logging is added
+builder.Services.AddLogging(); 
 
 builder.Services.AddControllers();
 builder.Services.AddOpenApi();
@@ -26,8 +26,10 @@ builder.Services.AddSwaggerGen(c =>
 // Register repositories and services
 builder.Services.AddScoped<INodeRepository, NodeRepository>();
 builder.Services.AddScoped<INodeConnectionRepository, NodeConnectionRepository>();
+builder.Services.AddScoped<IBaseNodeRepository, BaseNodeRepository>();
 builder.Services.AddScoped<NodeService>();
 builder.Services.AddScoped<NodeConnectionService>();
+builder.Services.AddScoped<BaseNodeService>();
 
 
 var app = builder.Build();

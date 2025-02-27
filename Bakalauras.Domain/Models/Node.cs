@@ -7,4 +7,6 @@ public class Node
 	
     public virtual List<NodeConnection> OutgoingConnections { get; set; } = new();
 	public virtual List<NodeConnection> IncomingConnections { get; set; } = new();
+    public Guid? ParentId { get; set; }
+    public BaseNode? Parent { get; set; }
 }

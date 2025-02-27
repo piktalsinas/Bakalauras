@@ -17,12 +17,12 @@ namespace Bakalauras.Persistence.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "9.0.0")
+                .HasAnnotation("ProductVersion", "9.0.2")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Bakalauras.Domain.Models.Node", b =>
+            modelBuilder.Entity("Bakalauras.Domain.Models.BaseNode", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -37,6 +37,27 @@ namespace Bakalauras.Persistence.Migrations
 
                     b.HasIndex("Name")
                         .IsUnique();
+
+                    b.ToTable("BaseNodes");
+                });
+
+            modelBuilder.Entity("Bakalauras.Domain.Models.Node", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<Guid?>("ParentId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ParentId");
 
                     b.ToTable("Nodes");
                 });
@@ -68,6 +89,15 @@ namespace Bakalauras.Persistence.Migrations
                     b.HasIndex("ToNodeId");
 
                     b.ToTable("NodeConnections");
+                });
+
+            modelBuilder.Entity("Bakalauras.Domain.Models.Node", b =>
+                {
+                    b.HasOne("Bakalauras.Domain.Models.BaseNode", "Parent")
+                        .WithMany()
+                        .HasForeignKey("ParentId");
+
+                    b.Navigation("Parent");
                 });
 
             modelBuilder.Entity("Bakalauras.Domain.Models.NodeConnection", b =>

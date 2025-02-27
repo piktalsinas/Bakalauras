@@ -12,6 +12,6 @@ class NodeConfiguration : IEntityTypeConfiguration<Node>
 
 		builder.Property(x => x.Name).IsRequired();
 		builder.Property(x => x.Name).HasMaxLength(100);
-		builder.HasIndex(x => x.Name).IsUnique();
+		//builder.HasIndex(x => x.Name).IsUnique();
 	}
 }

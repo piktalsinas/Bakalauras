@@ -1,5 +1,32 @@
 [
   {
+    "ContainingType": "Bakalauras.API.Controllers.BaseNodeController",
+    "Method": "Post",
+    "RelativePath": "BaseNode",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "name",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Bakalauras.Domain.Models.BaseNode",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ],
+    "EndpointName": "PostBaseNode"
+  },
+  {
     "ContainingType": "Bakalauras.API.Controllers.NodeController",
     "Method": "GetAll",
     "RelativePath": "Node",

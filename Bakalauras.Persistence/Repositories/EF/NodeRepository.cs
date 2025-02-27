@@ -19,11 +19,12 @@ namespace Bakalauras.Persistence.Repositories
             return await _context.Nodes.FindAsync(id);
         }
 
-        public async Task<Node?> GetByNameAsync(string name)
+        // Modify this method to return all nodes with the same name
+        public async Task<IEnumerable<Node>> GetByNameAsync(string name)
         {
             return await _context.Nodes
                 .Where(n => n.Name == name)
-                .FirstOrDefaultAsync();
+                .ToListAsync(); // Now returns all nodes with that name
         }
 
         public async Task<Node> AddAsync(Node node)

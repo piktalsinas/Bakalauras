@@ -23,3 +23,5 @@ class NodeConnectionConfiguration : IEntityTypeConfiguration<NodeConnection>
 		builder.Property(x => x.Weight).IsRequired();
 	}
 }
+
+

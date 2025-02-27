@@ -493,3 +493,14 @@ C:\Users\picom\Documents\BAKALAURAS\Bakalauras.API\Bakalauras.API\Bakalauras.API
 C:\Users\picom\Documents\BAKALAURAS\Bakalauras.API\Bakalauras.API\Bakalauras.API\Bakalauras\Bakalauras.API\obj\Debug\net9.0\Bakalauras.API.pdb
 C:\Users\picom\Documents\BAKALAURAS\Bakalauras.API\Bakalauras.API\Bakalauras.API\Bakalauras\Bakalauras.API\obj\Debug\net9.0\Bakalauras.API.genruntimeconfig.cache
 C:\Users\picom\Documents\BAKALAURAS\Bakalauras.API\Bakalauras.API\Bakalauras.API\Bakalauras\Bakalauras.API\obj\Debug\net9.0\ref\Bakalauras.API.dll
+C:\Users\picom\Documents\BAKALAURAS\Bakalauras.API\Bakalauras.API\Bakalauras.API\Bakalauras\Bakalauras.API\bin\Debug\net9.0\Microsoft.Extensions.Caching.Abstractions.dll
+C:\Users\picom\Documents\BAKALAURAS\Bakalauras.API\Bakalauras.API\Bakalauras.API\Bakalauras\Bakalauras.API\bin\Debug\net9.0\Microsoft.Extensions.Caching.Memory.dll
+C:\Users\picom\Documents\BAKALAURAS\Bakalauras.API\Bakalauras.API\Bakalauras.API\Bakalauras\Bakalauras.API\bin\Debug\net9.0\Microsoft.Extensions.Configuration.Abstractions.dll
+C:\Users\picom\Documents\BAKALAURAS\Bakalauras.API\Bakalauras.API\Bakalauras.API\Bakalauras\Bakalauras.API\bin\Debug\net9.0\Microsoft.Extensions.DependencyInjection.dll
+C:\Users\picom\Documents\BAKALAURAS\Bakalauras.API\Bakalauras.API\Bakalauras.API\Bakalauras\Bakalauras.API\bin\Debug\net9.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\picom\Documents\BAKALAURAS\Bakalauras.API\Bakalauras.API\Bakalauras.API\Bakalauras\Bakalauras.API\bin\Debug\net9.0\Microsoft.Extensions.Logging.dll
+C:\Users\picom\Documents\BAKALAURAS\Bakalauras.API\Bakalauras.API\Bakalauras.API\Bakalauras\Bakalauras.API\bin\Debug\net9.0\Microsoft.Extensions.Logging.Abstractions.dll
+C:\Users\picom\Documents\BAKALAURAS\Bakalauras.API\Bakalauras.API\Bakalauras.API\Bakalauras\Bakalauras.API\bin\Debug\net9.0\Microsoft.Extensions.Options.dll
+C:\Users\picom\Documents\BAKALAURAS\Bakalauras.API\Bakalauras.API\Bakalauras.API\Bakalauras\Bakalauras.API\bin\Debug\net9.0\Microsoft.Extensions.Primitives.dll
+C:\Users\picom\Documents\BAKALAURAS\Bakalauras.API\Bakalauras.API\Bakalauras.API\Bakalauras\Bakalauras.API\bin\Debug\net9.0\System.Formats.Asn1.dll
+C:\Users\picom\Documents\BAKALAURAS\Bakalauras.API\Bakalauras.API\Bakalauras.API\Bakalauras\Bakalauras.API\bin\Debug\net9.0\System.Text.Json.dll

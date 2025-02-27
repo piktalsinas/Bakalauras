@@ -4,10 +4,10 @@ namespace Bakalauras.Persistence.Repositories;
 
 public interface INodeRepository
 {
-	Task<IEnumerable<Node>> GetAllAsync();
-	Task<Node?> GetByIdAsync(Guid id);
-    Task<Node?> GetByNameAsync(string name);
-    Task<Node?> AddAsync(Node node);
-	Task<Node?> UpdateAsync(Node node);
-	Task DeleteAsync(Guid id);
+    Task<Node?> GetByIdAsync(Guid id);
+    Task<IEnumerable<Node>> GetByNameAsync(string name);  // Updated to return IEnumerable<Node>
+    Task<Node> AddAsync(Node node);
+    Task<Node> UpdateAsync(Node node);
+    Task DeleteAsync(Guid id);
+    Task<IEnumerable<Node>> GetAllAsync();
 }
