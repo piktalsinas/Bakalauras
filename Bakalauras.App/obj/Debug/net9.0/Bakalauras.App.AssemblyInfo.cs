@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Bakalauras.App")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+71c259700562ba3d2b68c3c98213d939fb593187")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+eeb11174dc25e156d1c558dabf566b4c0f399c32")]
 [assembly: System.Reflection.AssemblyProductAttribute("Bakalauras.App")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Bakalauras.App")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

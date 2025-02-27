@@ -134,5 +134,56 @@ namespace Bakalauras.API.Controllers
                 return StatusCode(500, "An error occurred while processing your request.");
             }
         }
+
+        [HttpPut("UpdateNodeParent/{id}")]
+        public async Task<ActionResult<Node>> UpdateNodeParent(Guid id, [FromQuery] Guid? parentId)
+        {
+            try
+            {
+                // Fetch the node by its ID
+                Node? node = await _nodeRepository.GetByIdAsync(id);
+                if (node == null)
+                {
+                    return NotFound($"Node with ID {id} not found.");
+                }
+
+                // If ParentId is provided, fetch the Parent Node and assign ParentId and ParentName
+                if (parentId.HasValue)
+                {
+                    // Fetch the parent node by ParentId (which is referencing BaseNode.Id)
+                    var parentNode = await _nodeRepository.GetParentByIdAsync(parentId.Value);
+                    if (parentNode == null)
+                    {
+                        return NotFound($"Parent with ID {parentId.Value} not found.");
+                    }
+
+                    // Now we set the ParentId and ParentName of the Node
+                    node.ParentId = parentNode.Id;  // ParentId references BaseNode's Id
+                    node.ParentName = parentNode.Name;  // ParentName is fetched from BaseNode
+                }
+                else
+                {
+                    // If no ParentId is provided, you can choose to clear the Parent relationship (optional)
+                    node.ParentId = null;
+                    node.ParentName = null;
+                }
+
+                // Update the node in the repository
+                Node? updatedNode = await _nodeRepository.UpdateAsync(node);
+                if (updatedNode == null)
+                {
+                    return BadRequest("Failed to update the node.");
+                }
+
+                return Ok(updatedNode);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"An error occurred while updating the node: {ex.Message}");
+                return StatusCode(500, "An error occurred while processing your request.");
+            }
+        }
+
     }
-}
+
+    }

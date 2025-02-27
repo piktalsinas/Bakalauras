@@ -10,4 +10,5 @@ public interface INodeRepository
     Task<Node> UpdateAsync(Node node);
     Task DeleteAsync(Guid id);
     Task<IEnumerable<Node>> GetAllAsync();
+    Task<BaseNode?> GetParentByIdAsync(Guid parentId);
 }

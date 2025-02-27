@@ -34,12 +34,24 @@ namespace Bakalauras.Persistence.Repositories
             return node;
         }
 
-        public async Task<Node> UpdateAsync(Node node)
+        public async Task<Node?> UpdateAsync(Node node)
         {
+            if (node.ParentId.HasValue)
+            {
+                // Fetch the parent node by ParentId
+                var parentNode = await _context.BaseNodes.FirstOrDefaultAsync(bn => bn.Id == node.ParentId.Value);
+                if (parentNode != null)
+                {
+                    node.ParentName = parentNode.Name;
+                }
+            }
+
             _context.Nodes.Update(node);
             await _context.SaveChangesAsync();
+
             return node;
         }
+
 
         public async Task DeleteAsync(Guid id)
         {
@@ -55,5 +67,12 @@ namespace Bakalauras.Persistence.Repositories
         {
             return await _context.Nodes.ToListAsync();
         }
+    
+    public async Task<BaseNode?> GetParentByIdAsync(Guid parentId)
+        {
+            // Fetch the parent node from the BaseNode table by its Id
+            return await _context.BaseNodes.FirstOrDefaultAsync(bn => bn.Id == parentId);
+        }
+
     }
 }
