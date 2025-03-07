@@ -30,15 +30,17 @@ namespace Bakalauras.App.Services
             var nodeConnection = await _nodeConnectionRepository.GetByIdAsync(nodeConnectionId);
             if (nodeConnection == null)
             {
+                _logger.LogWarning("NodeConnection with ID {NodeConnectionId} not found.", nodeConnectionId);
                 return false; // NodeConnection not found
             }
 
-            // Get the names of the nodes connected by this connection
             var fromNode = await _nodeRepository.GetByIdAsync(nodeConnection.FromNodeId);
             var toNode = await _nodeRepository.GetByIdAsync(nodeConnection.ToNodeId);
 
             if (fromNode == null || toNode == null)
             {
+                _logger.LogWarning("One or both nodes not found for NodeConnection {NodeConnectionId}. FromNodeId: {FromNodeId}, ToNodeId: {ToNodeId}",
+                                    nodeConnectionId, nodeConnection.FromNodeId, nodeConnection.ToNodeId);
                 return false; // One of the connected nodes is not found
             }
 
@@ -47,12 +49,18 @@ namespace Bakalauras.App.Services
                 if (!Directory.Exists(_pathFolder))
                 {
                     Directory.CreateDirectory(_pathFolder);
+                    _logger.LogInformation("Created directory: {PathFolder}", _pathFolder);
                 }
 
-                // Create the image name from the node connection
-                var connectionName = $"{fromNode.Name}_{toNode.Name}";
+                // Modify the logic to use ParentName and Node.Name for the connectionName
+                var fromParentName = fromNode.ParentName ?? "NoParent";
+                var toParentName = toNode.ParentName ?? "NoParent";
+                var connectionName = $"{fromParentName}_{fromNode.Name}_{toParentName}_{toNode.Name}";
+
                 var sourceImagePath = Path.Combine(_baseImageFolder, $"{connectionName}.jpg");
                 var destinationImagePath = Path.Combine(_pathFolder, $"{connectionName}.jpg");
+
+                _logger.LogInformation("Source image path: {SourceImagePath}, Destination path: {DestinationImagePath}", sourceImagePath, destinationImagePath);
 
                 if (File.Exists(sourceImagePath))
                 {
@@ -61,6 +69,7 @@ namespace Bakalauras.App.Services
                     return true;
                 }
 
+                _logger.LogWarning("Source image file does not exist: {SourceImagePath}", sourceImagePath);
                 return false; // Source file does not exist
             }
             catch (Exception ex)
@@ -69,5 +78,6 @@ namespace Bakalauras.App.Services
                 return false; // An error occurred
             }
         }
+
     }
 }
