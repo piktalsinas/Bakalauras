@@ -21,13 +21,17 @@ namespace Bakalauras.Persistence.Repositories.EF
             }
 
             // Fetch the FromNode and ToNode to generate the Name
-            var fromNode = await _context.Nodes.FirstOrDefaultAsync(n => n.Id == nodeConnection.FromNodeId);
-            var toNode = await _context.Nodes.FirstOrDefaultAsync(n => n.Id == nodeConnection.ToNodeId);
+            var fromNode = await _context.Nodes.Include(n => n.Parent).FirstOrDefaultAsync(n => n.Id == nodeConnection.FromNodeId);
+            var toNode = await _context.Nodes.Include(n => n.Parent).FirstOrDefaultAsync(n => n.Id == nodeConnection.ToNodeId);
 
             if (fromNode != null && toNode != null)
             {
-                // Generate the Name based on the nodes' names
-                nodeConnection.Name = $"{fromNode.Name}_{toNode.Name}";
+                // Ensure you handle the case where Parent is null
+                var fromParentName = fromNode.ParentName ?? "NoParent";
+                var toParentName = toNode.ParentName ?? "NoParent";
+
+                // Generate the Name using ParentName1_Name1_ParentName2_Name2
+                nodeConnection.Name = $"{fromParentName}_{fromNode.Name}_{toParentName}_{toNode.Name}";
             }
             else
             {
@@ -39,7 +43,6 @@ namespace Bakalauras.Persistence.Repositories.EF
             await _context.SaveChangesAsync();
             return nodeConnection;
         }
-
         public async Task DeleteAsync(Guid id)
         {
             NodeConnection? nodeConnection = await _context.NodeConnections.FindAsync(id);
