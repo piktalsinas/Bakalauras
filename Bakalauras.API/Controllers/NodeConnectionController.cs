@@ -16,12 +16,14 @@ namespace Bakalauras.API.Controllers
         private readonly ILogger<NodeConnectionController> _logger;
         private readonly INodeConnectionRepository _nodeConnectionRepository;
         private readonly NodeConnectionService _nodeConnectionService;
+        private readonly DijkstraService _dijkstraService;
 
-        public NodeConnectionController(ILogger<NodeConnectionController> logger, INodeConnectionRepository nodeConnectionRepository, NodeConnectionService nodeConnectionService)
+        public NodeConnectionController(ILogger<NodeConnectionController> logger, INodeConnectionRepository nodeConnectionRepository, NodeConnectionService nodeConnectionService, DijkstraService dijkstraService)
         {
             _logger = logger;
             _nodeConnectionRepository = nodeConnectionRepository;
             _nodeConnectionService = nodeConnectionService;
+            _dijkstraService = dijkstraService;
         }
 
         [HttpGet(Name = "GetAllNodeConnections")]
@@ -69,5 +71,25 @@ namespace Bakalauras.API.Controllers
                 return StatusCode(500, "An error occurred while processing your request.");
             }
         }
+
+        [HttpGet("shortest-path")]
+        public async Task<ActionResult<List<Node>>> GetShortestPath([FromQuery] Guid startNodeId, [FromQuery] Guid endNodeId)
+        {
+            var path = await _dijkstraService.FindShortestPathAsync(startNodeId, endNodeId);
+            if (path == null || path.Count == 0)
+            {
+                return NotFound("No path found between the specified nodes.");
+            }
+
+            bool copied = await _nodeConnectionService.CopyPathImagesAsync(path);
+            if (!copied)
+            {
+                return StatusCode(500, "Path images could not be copied.");
+            }
+
+            
+            return Ok(path);
+        }
+
     }
 }

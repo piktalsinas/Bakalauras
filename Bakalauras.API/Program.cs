@@ -30,6 +30,8 @@ builder.Services.AddScoped<IBaseNodeRepository, BaseNodeRepository>();
 builder.Services.AddScoped<NodeService>();
 builder.Services.AddScoped<NodeConnectionService>();
 builder.Services.AddScoped<BaseNodeService>();
+builder.Services.AddScoped<DijkstraService>();
+
 
 
 var app = builder.Build();

@@ -280,5 +280,36 @@
       }
     ],
     "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Bakalauras.API.Controllers.NodeConnectionController",
+    "Method": "GetShortestPath",
+    "RelativePath": "NodeConnection/shortest-path",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "startNodeId",
+        "Type": "System.Guid",
+        "IsRequired": false
+      },
+      {
+        "Name": "endNodeId",
+        "Type": "System.Guid",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[Bakalauras.Domain.Models.Node, Bakalauras.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   }
 ]

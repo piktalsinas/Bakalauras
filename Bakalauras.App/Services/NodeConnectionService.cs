@@ -79,5 +79,54 @@ namespace Bakalauras.App.Services
             }
         }
 
+        public async Task<bool> CopyPathImagesAsync(List<Node> path)
+        {
+            if (path == null || path.Count < 2)
+            {
+                _logger.LogWarning("Path must contain at least two nodes to copy images.");
+                return false;
+            }
+
+            try
+            {
+                if (!Directory.Exists(_pathFolder))
+                {
+                    Directory.CreateDirectory(_pathFolder);
+                    _logger.LogInformation("Created path directory: {PathFolder}", _pathFolder);
+                }
+
+                for (int i = 0; i < path.Count - 1; i++) // Ensure first connection is included
+                {
+                    var fromNode = path[i];
+                    var toNode = path[i + 1];
+
+                    var fromParentName = fromNode.ParentName ?? "NoParent";
+                    var toParentName = toNode.ParentName ?? "NoParent";
+                    var connectionName = $"{fromParentName}_{fromNode.Name}_{toParentName}_{toNode.Name}";
+
+                    var sourceImagePath = Path.Combine(_baseImageFolder, $"{connectionName}.jpg");
+                    var destinationImagePath = Path.Combine(_pathFolder, $"{connectionName}.jpg");
+
+                    if (File.Exists(sourceImagePath))
+                    {
+                        File.Copy(sourceImagePath, destinationImagePath, overwrite: true);
+                        _logger.LogInformation("Copied image from {Source} to {Destination}.", sourceImagePath, destinationImagePath);
+                    }
+                    else
+                    {
+                        _logger.LogWarning("Image not found for connection: {ConnectionName}", connectionName);
+                    }
+                }
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error while copying shortest path images.");
+                return false;
+            }
+        }
+
+
     }
 }
