@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bakalauras.Domain", "Bakala
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bakalauras.Persistence", "Bakalauras.Persistence\Bakalauras.Persistence.csproj", "{9E6322AF-8A16-4A05-BCEE-E524FDB38EDF}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{238C4CFC-CA3E-4CC0-8FD0-050B4E255DF3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
