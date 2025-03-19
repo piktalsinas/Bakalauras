@@ -3,6 +3,14 @@
   "WorkspaceRootPath": "C:\\Users\\picom\\Documents\\BAKALAURAS\\Bakalauras.API\\Bakalauras.API\\Bakalauras.API\\Bakalauras\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{52EEAF05-53FE-4FED-A1F4-15C8997A6404}|Bakalauras.API\\Bakalauras.API.csproj|c:\\users\\picom\\documents\\bakalauras\\bakalauras.api\\bakalauras.api\\bakalauras.api\\bakalauras\\bakalauras.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{52EEAF05-53FE-4FED-A1F4-15C8997A6404}|Bakalauras.API\\Bakalauras.API.csproj|solutionrelative:bakalauras.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{52EEAF05-53FE-4FED-A1F4-15C8997A6404}|Bakalauras.API\\Bakalauras.API.csproj|c:\\users\\picom\\documents\\bakalauras\\bakalauras.api\\bakalauras.api\\bakalauras.api\\bakalauras\\bakalauras.api\\bakalauras.api.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}",
+      "RelativeMoniker": "D:0:0:{52EEAF05-53FE-4FED-A1F4-15C8997A6404}|Bakalauras.API\\Bakalauras.API.csproj|solutionrelative:bakalauras.api\\bakalauras.api.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{A2A6E8B8-C66F-493C-A458-80082D4D5E24}|Bakalauras.App\\Bakalauras.App.csproj|c:\\users\\picom\\documents\\bakalauras\\bakalauras.api\\bakalauras.api\\bakalauras.api\\bakalauras\\bakalauras.app\\bakalauras.app.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
       "RelativeMoniker": "D:0:0:{A2A6E8B8-C66F-493C-A458-80082D4D5E24}|Bakalauras.App\\Bakalauras.App.csproj|solutionrelative:bakalauras.app\\bakalauras.app.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     },
@@ -21,10 +29,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{9E6322AF-8A16-4A05-BCEE-E524FDB38EDF}|Bakalauras.Persistence\\Bakalauras.Persistence.csproj|c:\\users\\picom\\documents\\bakalauras\\bakalauras.api\\bakalauras.api\\bakalauras.api\\bakalauras\\bakalauras.persistence\\repositories\\ef\\nodeconnectionrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{9E6322AF-8A16-4A05-BCEE-E524FDB38EDF}|Bakalauras.Persistence\\Bakalauras.Persistence.csproj|solutionrelative:bakalauras.persistence\\repositories\\ef\\nodeconnectionrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{52EEAF05-53FE-4FED-A1F4-15C8997A6404}|Bakalauras.API\\Bakalauras.API.csproj|c:\\users\\picom\\documents\\bakalauras\\bakalauras.api\\bakalauras.api\\bakalauras.api\\bakalauras\\bakalauras.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{52EEAF05-53FE-4FED-A1F4-15C8997A6404}|Bakalauras.API\\Bakalauras.API.csproj|solutionrelative:bakalauras.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{D6BE0BD4-7B58-46CB-B49B-87D1F4437DCB}|Bakalauras.Domain\\Bakalauras.Domain.csproj|c:\\users\\picom\\documents\\bakalauras\\bakalauras.api\\bakalauras.api\\bakalauras.api\\bakalauras\\bakalauras.domain\\models\\basenode.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -119,10 +123,6 @@
       "RelativeMoniker": "D:0:0:{D6BE0BD4-7B58-46CB-B49B-87D1F4437DCB}|Bakalauras.Domain\\Bakalauras.Domain.csproj|solutionrelative:bakalauras.domain\\bakalauras.domain.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{52EEAF05-53FE-4FED-A1F4-15C8997A6404}|Bakalauras.API\\Bakalauras.API.csproj|c:\\users\\picom\\documents\\bakalauras\\bakalauras.api\\bakalauras.api\\bakalauras.api\\bakalauras\\bakalauras.api\\bakalauras.api.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}",
-      "RelativeMoniker": "D:0:0:{52EEAF05-53FE-4FED-A1F4-15C8997A6404}|Bakalauras.API\\Bakalauras.API.csproj|solutionrelative:bakalauras.api\\bakalauras.api.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{9E6322AF-8A16-4A05-BCEE-E524FDB38EDF}|Bakalauras.Persistence\\Bakalauras.Persistence.csproj|c:\\users\\picom\\documents\\bakalauras\\bakalauras.api\\bakalauras.api\\bakalauras.api\\bakalauras\\bakalauras.persistence\\migrations\\appdbcontextmodelsnapshot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{9E6322AF-8A16-4A05-BCEE-E524FDB38EDF}|Bakalauras.Persistence\\Bakalauras.Persistence.csproj|solutionrelative:bakalauras.persistence\\migrations\\appdbcontextmodelsnapshot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -158,7 +158,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 6,
           "Children": [
             {
               "$type": "Bookmark",
@@ -174,7 +174,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "Bakalauras.App.csproj",
               "DocumentMoniker": "C:\\Users\\picom\\Documents\\BAKALAURAS\\Bakalauras.API\\Bakalauras.API\\Bakalauras.API\\Bakalauras\\Bakalauras.App\\Bakalauras.App.csproj",
               "RelativeDocumentMoniker": "Bakalauras.App\\Bakalauras.App.csproj",
@@ -187,19 +187,57 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "DijkstraService.cs",
-              "DocumentMoniker": "C:\\Users\\picom\\Documents\\BAKALAURAS\\Bakalauras.API\\Bakalauras.API\\Bakalauras.API\\Bakalauras\\Bakalauras.App\\Services\\DijkstraService.cs",
-              "RelativeDocumentMoniker": "Bakalauras.App\\Services\\DijkstraService.cs",
-              "ToolTip": "C:\\Users\\picom\\Documents\\BAKALAURAS\\Bakalauras.API\\Bakalauras.API\\Bakalauras.API\\Bakalauras\\Bakalauras.App\\Services\\DijkstraService.cs",
-              "RelativeToolTip": "Bakalauras.App\\Services\\DijkstraService.cs",
-              "ViewState": "AgIAABEAAAAAAAAAAADwv18AAAAAAAAAAAAAAA==",
+              "DocumentIndex": 5,
+              "Title": "NodeConnectionController.cs",
+              "DocumentMoniker": "C:\\Users\\picom\\Documents\\BAKALAURAS\\Bakalauras.API\\Bakalauras.API\\Bakalauras.API\\Bakalauras\\Bakalauras.API\\Controllers\\NodeConnectionController.cs",
+              "RelativeDocumentMoniker": "Bakalauras.API\\Controllers\\NodeConnectionController.cs",
+              "ToolTip": "C:\\Users\\picom\\Documents\\BAKALAURAS\\Bakalauras.API\\Bakalauras.API\\Bakalauras.API\\Bakalauras\\Bakalauras.API\\Controllers\\NodeConnectionController.cs",
+              "RelativeToolTip": "Bakalauras.API\\Controllers\\NodeConnectionController.cs",
+              "ViewState": "AgIAAEMAAAAAAAAAAAAowF4AAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-16T13:26:50.277Z"
+              "WhenOpened": "2025-01-07T16:59:41.901Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 6,
+              "Title": "NodeConnectionRepository.cs",
+              "DocumentMoniker": "C:\\Users\\picom\\Documents\\BAKALAURAS\\Bakalauras.API\\Bakalauras.API\\Bakalauras.API\\Bakalauras\\Bakalauras.Persistence\\Repositories\\EF\\NodeConnectionRepository.cs",
+              "RelativeDocumentMoniker": "Bakalauras.Persistence\\Repositories\\EF\\NodeConnectionRepository.cs",
+              "ToolTip": "C:\\Users\\picom\\Documents\\BAKALAURAS\\Bakalauras.API\\Bakalauras.API\\Bakalauras.API\\Bakalauras\\Bakalauras.Persistence\\Repositories\\EF\\NodeConnectionRepository.cs",
+              "RelativeToolTip": "Bakalauras.Persistence\\Repositories\\EF\\NodeConnectionRepository.cs",
+              "ViewState": "AgIAADIAAAAAAAAAAAAYwE4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-08T16:53:39.086Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\picom\\Documents\\BAKALAURAS\\Bakalauras.API\\Bakalauras.API\\Bakalauras.API\\Bakalauras\\Bakalauras.API\\Program.cs",
+              "RelativeDocumentMoniker": "Bakalauras.API\\Program.cs",
+              "ToolTip": "C:\\Users\\picom\\Documents\\BAKALAURAS\\Bakalauras.API\\Bakalauras.API\\Bakalauras.API\\Bakalauras\\Bakalauras.API\\Program.cs*",
+              "RelativeToolTip": "Bakalauras.API\\Program.cs*",
+              "ViewState": "AgIAACYAAAAAAAAAAAAIwDUAAAACAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-07T16:59:57.006Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Bakalauras.API.http",
+              "DocumentMoniker": "C:\\Users\\picom\\Documents\\BAKALAURAS\\Bakalauras.API\\Bakalauras.API\\Bakalauras.API\\Bakalauras\\Bakalauras.API\\Bakalauras.API.http",
+              "RelativeDocumentMoniker": "Bakalauras.API\\Bakalauras.API.http",
+              "ToolTip": "C:\\Users\\picom\\Documents\\BAKALAURAS\\Bakalauras.API\\Bakalauras.API\\Bakalauras.API\\Bakalauras\\Bakalauras.API\\Bakalauras.API.http",
+              "RelativeToolTip": "Bakalauras.API\\Bakalauras.API.http",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003502|",
+              "WhenOpened": "2025-01-07T17:10:52.858Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "NodeConnectionService.cs",
               "DocumentMoniker": "C:\\Users\\picom\\Documents\\BAKALAURAS\\Bakalauras.API\\Bakalauras.API\\Bakalauras.API\\Bakalauras\\Bakalauras.App\\Services\\NodeConnectionService.cs",
               "RelativeDocumentMoniker": "Bakalauras.App\\Services\\NodeConnectionService.cs",
@@ -212,42 +250,18 @@
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "NodeConnectionController.cs",
-              "DocumentMoniker": "C:\\Users\\picom\\Documents\\BAKALAURAS\\Bakalauras.API\\Bakalauras.API\\Bakalauras.API\\Bakalauras\\Bakalauras.API\\Controllers\\NodeConnectionController.cs",
-              "RelativeDocumentMoniker": "Bakalauras.API\\Controllers\\NodeConnectionController.cs",
-              "ToolTip": "C:\\Users\\picom\\Documents\\BAKALAURAS\\Bakalauras.API\\Bakalauras.API\\Bakalauras.API\\Bakalauras\\Bakalauras.API\\Controllers\\NodeConnectionController.cs",
-              "RelativeToolTip": "Bakalauras.API\\Controllers\\NodeConnectionController.cs",
-              "ViewState": "AgIAAEMAAAAAAAAAAAAowF4AAAABAAAAAAAAAA==",
+              "Title": "DijkstraService.cs",
+              "DocumentMoniker": "C:\\Users\\picom\\Documents\\BAKALAURAS\\Bakalauras.API\\Bakalauras.API\\Bakalauras.API\\Bakalauras\\Bakalauras.App\\Services\\DijkstraService.cs",
+              "RelativeDocumentMoniker": "Bakalauras.App\\Services\\DijkstraService.cs",
+              "ToolTip": "C:\\Users\\picom\\Documents\\BAKALAURAS\\Bakalauras.API\\Bakalauras.API\\Bakalauras.API\\Bakalauras\\Bakalauras.App\\Services\\DijkstraService.cs",
+              "RelativeToolTip": "Bakalauras.App\\Services\\DijkstraService.cs",
+              "ViewState": "AgIAABEAAAAAAAAAAADwv18AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-07T16:59:41.901Z"
+              "WhenOpened": "2025-03-16T13:26:50.277Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "NodeConnectionRepository.cs",
-              "DocumentMoniker": "C:\\Users\\picom\\Documents\\BAKALAURAS\\Bakalauras.API\\Bakalauras.API\\Bakalauras.API\\Bakalauras\\Bakalauras.Persistence\\Repositories\\EF\\NodeConnectionRepository.cs",
-              "RelativeDocumentMoniker": "Bakalauras.Persistence\\Repositories\\EF\\NodeConnectionRepository.cs",
-              "ToolTip": "C:\\Users\\picom\\Documents\\BAKALAURAS\\Bakalauras.API\\Bakalauras.API\\Bakalauras.API\\Bakalauras\\Bakalauras.Persistence\\Repositories\\EF\\NodeConnectionRepository.cs",
-              "RelativeToolTip": "Bakalauras.Persistence\\Repositories\\EF\\NodeConnectionRepository.cs",
-              "ViewState": "AgIAADIAAAAAAAAAAAAYwE4AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-08T16:53:39.086Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\picom\\Documents\\BAKALAURAS\\Bakalauras.API\\Bakalauras.API\\Bakalauras.API\\Bakalauras\\Bakalauras.API\\Program.cs",
-              "RelativeDocumentMoniker": "Bakalauras.API\\Program.cs",
-              "ToolTip": "C:\\Users\\picom\\Documents\\BAKALAURAS\\Bakalauras.API\\Bakalauras.API\\Bakalauras.API\\Bakalauras\\Bakalauras.API\\Program.cs",
-              "RelativeToolTip": "Bakalauras.API\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-07T16:59:57.006Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "BaseNode.cs",
               "DocumentMoniker": "C:\\Users\\picom\\Documents\\BAKALAURAS\\Bakalauras.API\\Bakalauras.API\\Bakalauras.API\\Bakalauras\\Bakalauras.Domain\\Models\\BaseNode.cs",
               "RelativeDocumentMoniker": "Bakalauras.Domain\\Models\\BaseNode.cs",
@@ -259,7 +273,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 12,
               "Title": "NodeConnectionConfiguration.cs",
               "DocumentMoniker": "C:\\Users\\picom\\Documents\\BAKALAURAS\\Bakalauras.API\\Bakalauras.API\\Bakalauras.API\\Bakalauras\\Bakalauras.Persistence\\Configurations\\NodeConnectionConfiguration.cs",
               "RelativeDocumentMoniker": "Bakalauras.Persistence\\Configurations\\NodeConnectionConfiguration.cs",
@@ -271,7 +285,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 11,
               "Title": "BaseNodeService.cs",
               "DocumentMoniker": "C:\\Users\\picom\\Documents\\BAKALAURAS\\Bakalauras.API\\Bakalauras.API\\Bakalauras.API\\Bakalauras\\Bakalauras.App\\Services\\BaseNodeService.cs",
               "RelativeDocumentMoniker": "Bakalauras.App\\Services\\BaseNodeService.cs",
@@ -283,7 +297,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 10,
               "Title": "NodeService.cs",
               "DocumentMoniker": "C:\\Users\\picom\\Documents\\BAKALAURAS\\Bakalauras.API\\Bakalauras.API\\Bakalauras.API\\Bakalauras\\Bakalauras.App\\Services\\NodeService.cs",
               "RelativeDocumentMoniker": "Bakalauras.App\\Services\\NodeService.cs",
@@ -295,7 +309,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 9,
               "Title": "Node.cs",
               "DocumentMoniker": "C:\\Users\\picom\\Documents\\BAKALAURAS\\Bakalauras.API\\Bakalauras.API\\Bakalauras.API\\Bakalauras\\Bakalauras.Domain\\Models\\Node.cs",
               "RelativeDocumentMoniker": "Bakalauras.Domain\\Models\\Node.cs",
@@ -307,7 +321,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": "NodeConnection.cs",
               "DocumentMoniker": "C:\\Users\\picom\\Documents\\BAKALAURAS\\Bakalauras.API\\Bakalauras.API\\Bakalauras.API\\Bakalauras\\Bakalauras.Domain\\Models\\NodeConnection.cs",
               "RelativeDocumentMoniker": "Bakalauras.Domain\\Models\\NodeConnection.cs",
@@ -319,7 +333,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 13,
               "Title": "AppDbContext.cs",
               "DocumentMoniker": "C:\\Users\\picom\\Documents\\BAKALAURAS\\Bakalauras.API\\Bakalauras.API\\Bakalauras.API\\Bakalauras\\Bakalauras.Persistence\\AppDbContext.cs",
               "RelativeDocumentMoniker": "Bakalauras.Persistence\\AppDbContext.cs",
@@ -331,7 +345,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 15,
               "Title": "NodeConnectionConfiguration.cs",
               "DocumentMoniker": "C:\\Users\\picom\\Documents\\BAKALAURAS\\Bakalauras.API\\Bakalauras.API\\Bakalauras.API\\Bakalauras\\Bakalauras.Domain\\NodeConnectionConfiguration.cs",
               "RelativeDocumentMoniker": "Bakalauras.Domain\\NodeConnectionConfiguration.cs",
@@ -343,7 +357,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 14,
               "Title": "INodeConnectionRepository.cs",
               "DocumentMoniker": "C:\\Users\\picom\\Documents\\BAKALAURAS\\Bakalauras.API\\Bakalauras.API\\Bakalauras.API\\Bakalauras\\Bakalauras.Persistence\\Repositories\\INodeConnectionRepository.cs",
               "RelativeDocumentMoniker": "Bakalauras.Persistence\\Repositories\\INodeConnectionRepository.cs",
@@ -355,7 +369,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 16,
               "Title": "NodeConfiguration.cs",
               "DocumentMoniker": "C:\\Users\\picom\\Documents\\BAKALAURAS\\Bakalauras.API\\Bakalauras.API\\Bakalauras.API\\Bakalauras\\Bakalauras.Persistence\\Configurations\\NodeConfiguration.cs",
               "RelativeDocumentMoniker": "Bakalauras.Persistence\\Configurations\\NodeConfiguration.cs",
@@ -367,7 +381,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 17,
               "Title": "BaseNodeController.cs",
               "DocumentMoniker": "C:\\Users\\picom\\Documents\\BAKALAURAS\\Bakalauras.API\\Bakalauras.API\\Bakalauras.API\\Bakalauras\\Bakalauras.API\\Controllers\\BaseNodeController.cs",
               "RelativeDocumentMoniker": "Bakalauras.API\\Controllers\\BaseNodeController.cs",
@@ -379,7 +393,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 18,
               "Title": "NodeController.cs",
               "DocumentMoniker": "C:\\Users\\picom\\Documents\\BAKALAURAS\\Bakalauras.API\\Bakalauras.API\\Bakalauras.API\\Bakalauras\\Bakalauras.API\\Controllers\\NodeController.cs",
               "RelativeDocumentMoniker": "Bakalauras.API\\Controllers\\NodeController.cs",
@@ -391,7 +405,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 20,
               "Title": "NodeRepository.cs",
               "DocumentMoniker": "C:\\Users\\picom\\Documents\\BAKALAURAS\\Bakalauras.API\\Bakalauras.API\\Bakalauras.API\\Bakalauras\\Bakalauras.Persistence\\Repositories\\EF\\NodeRepository.cs",
               "RelativeDocumentMoniker": "Bakalauras.Persistence\\Repositories\\EF\\NodeRepository.cs",
@@ -403,7 +417,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 19,
               "Title": "INodeRepository.cs",
               "DocumentMoniker": "C:\\Users\\picom\\Documents\\BAKALAURAS\\Bakalauras.API\\Bakalauras.API\\Bakalauras.API\\Bakalauras\\Bakalauras.Persistence\\Repositories\\INodeRepository.cs",
               "RelativeDocumentMoniker": "Bakalauras.Persistence\\Repositories\\INodeRepository.cs",
@@ -415,7 +429,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 22,
               "Title": "20250227182035_RemoveUniqueConstraintFromName.cs",
               "DocumentMoniker": "C:\\Users\\picom\\Documents\\BAKALAURAS\\Bakalauras.API\\Bakalauras.API\\Bakalauras.API\\Bakalauras\\Bakalauras.Persistence\\Migrations\\20250227182035_RemoveUniqueConstraintFromName.cs",
               "RelativeDocumentMoniker": "Bakalauras.Persistence\\Migrations\\20250227182035_RemoveUniqueConstraintFromName.cs",
@@ -427,7 +441,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 21,
               "Title": "20250227195039_AddParentColumnToNode.cs",
               "DocumentMoniker": "C:\\Users\\picom\\Documents\\BAKALAURAS\\Bakalauras.API\\Bakalauras.API\\Bakalauras.API\\Bakalauras\\Bakalauras.Persistence\\Migrations\\20250227195039_AddParentColumnToNode.cs",
               "RelativeDocumentMoniker": "Bakalauras.Persistence\\Migrations\\20250227195039_AddParentColumnToNode.cs",
@@ -439,7 +453,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 23,
               "Title": "BaseNodeRepository.cs",
               "DocumentMoniker": "C:\\Users\\picom\\Documents\\BAKALAURAS\\Bakalauras.API\\Bakalauras.API\\Bakalauras.API\\Bakalauras\\Bakalauras.Persistence\\Repositories\\EF\\BaseNodeRepository.cs",
               "RelativeDocumentMoniker": "Bakalauras.Persistence\\Repositories\\EF\\BaseNodeRepository.cs",
@@ -451,7 +465,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
+              "DocumentIndex": 24,
               "Title": "20250105191108_AddNode.cs",
               "DocumentMoniker": "C:\\Users\\picom\\Documents\\BAKALAURAS\\Bakalauras.API\\Bakalauras.API\\Bakalauras.API\\Bakalauras\\Bakalauras.Persistence\\Migrations\\20250105191108_AddNode.cs",
               "RelativeDocumentMoniker": "Bakalauras.Persistence\\Migrations\\20250105191108_AddNode.cs",
@@ -463,7 +477,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 25,
+              "DocumentIndex": 26,
               "Title": "BaseNodeConfiguration.cs",
               "DocumentMoniker": "C:\\Users\\picom\\Documents\\BAKALAURAS\\Bakalauras.API\\Bakalauras.API\\Bakalauras.API\\Bakalauras\\Bakalauras.Persistence\\Configurations\\BaseNodeConfiguration.cs",
               "RelativeDocumentMoniker": "Bakalauras.Persistence\\Configurations\\BaseNodeConfiguration.cs",
@@ -475,7 +489,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 24,
+              "DocumentIndex": 25,
               "Title": "IBaseNodeRepository.cs",
               "DocumentMoniker": "C:\\Users\\picom\\Documents\\BAKALAURAS\\Bakalauras.API\\Bakalauras.API\\Bakalauras.API\\Bakalauras\\Bakalauras.Persistence\\Repositories\\IBaseNodeRepository.cs",
               "RelativeDocumentMoniker": "Bakalauras.Persistence\\Repositories\\IBaseNodeRepository.cs",
@@ -487,7 +501,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 27,
+              "DocumentIndex": 28,
               "Title": "Bakalauras.Persistence.csproj",
               "DocumentMoniker": "C:\\Users\\picom\\Documents\\BAKALAURAS\\Bakalauras.API\\Bakalauras.API\\Bakalauras.API\\Bakalauras\\Bakalauras.Persistence\\Bakalauras.Persistence.csproj",
               "RelativeDocumentMoniker": "Bakalauras.Persistence\\Bakalauras.Persistence.csproj",
@@ -500,7 +514,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 26,
+              "DocumentIndex": 27,
               "Title": "Bakalauras.API.csproj",
               "DocumentMoniker": "C:\\Users\\picom\\Documents\\BAKALAURAS\\Bakalauras.API\\Bakalauras.API\\Bakalauras.API\\Bakalauras\\Bakalauras.API\\Bakalauras.API.csproj",
               "RelativeDocumentMoniker": "Bakalauras.API\\Bakalauras.API.csproj",
@@ -513,7 +527,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 28,
+              "DocumentIndex": 29,
               "Title": "Bakalauras.Domain.csproj",
               "DocumentMoniker": "C:\\Users\\picom\\Documents\\BAKALAURAS\\Bakalauras.API\\Bakalauras.API\\Bakalauras.API\\Bakalauras\\Bakalauras.Domain\\Bakalauras.Domain.csproj",
               "RelativeDocumentMoniker": "Bakalauras.Domain\\Bakalauras.Domain.csproj",
@@ -559,18 +573,6 @@
               "ViewState": "AgIAABAAAAAAAAAAAAAQwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-07T17:15:01.778Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 29,
-              "Title": "Bakalauras.API.http",
-              "DocumentMoniker": "C:\\Users\\picom\\Documents\\BAKALAURAS\\Bakalauras.API\\Bakalauras.API\\Bakalauras.API\\Bakalauras\\Bakalauras.API\\Bakalauras.API.http",
-              "RelativeDocumentMoniker": "Bakalauras.API\\Bakalauras.API.http",
-              "ToolTip": "C:\\Users\\picom\\Documents\\BAKALAURAS\\Bakalauras.API\\Bakalauras.API\\Bakalauras.API\\Bakalauras\\Bakalauras.API\\Bakalauras.API.http",
-              "RelativeToolTip": "Bakalauras.API\\Bakalauras.API.http",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003502|",
-              "WhenOpened": "2025-01-07T17:10:52.858Z"
             },
             {
               "$type": "Document",
