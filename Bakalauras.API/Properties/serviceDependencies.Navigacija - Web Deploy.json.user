@@ -1,0 +1,28 @@
+{
+  "dependencies": {
+    "mssql2": {
+      "restored": true,
+      "restoreTime": "2025-03-20T19:26:42.2737099Z"
+    },
+    "apis1": {
+      "restored": true,
+      "restoreTime": "2025-03-20T18:16:05.9391902Z"
+    },
+    "mssql1": {
+      "restored": true,
+      "restoreTime": "2025-03-20T18:19:14.7747093Z"
+    }
+  },
+  "parameters": {
+    "apis1.resourceGroupName": {
+      "Name": "apis1.resourceGroupName",
+      "Type": "resourceGroup",
+      "Value": "Bakalauras"
+    },
+    "apis1.subscriptionId": {
+      "Name": "apis1.subscriptionId",
+      "Type": "subscription",
+      "Value": "72ed5ff7-4c9b-4872-936c-e40e8994dce8"
+    }
+  }
+}
