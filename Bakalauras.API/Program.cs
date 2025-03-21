@@ -7,7 +7,7 @@ using Microsoft.Extensions.Logging;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddLogging(); 
+builder.Services.AddLogging();
 
 builder.Services.AddControllers();
 //builder.Services.AddOpenApi();
@@ -23,6 +23,21 @@ builder.Services.AddSwaggerGen(c =>
     c.SwaggerDoc("v1", new() { Title = "Bakalauras.API", Version = "v1" });
 });
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("CorsPolicy", policy =>
+    {
+        policy.WithOrigins(
+            "https://navigacija-bvcwc2agfshpghdj.westeurope-01.azurewebsites.net"  // production URL
+            //"http://localhost:5016",  // local HTTP URL
+            //"https://localhost:7032"  // local HTTPS URL
+        )
+        .AllowAnyHeader()
+        .AllowAnyMethod()
+        .AllowCredentials();
+    });
+});
+
 // Register repositories and services
 builder.Services.AddScoped<INodeRepository, NodeRepository>();
 builder.Services.AddScoped<INodeConnectionRepository, NodeConnectionRepository>();
@@ -32,25 +47,17 @@ builder.Services.AddScoped<NodeConnectionService>();
 builder.Services.AddScoped<BaseNodeService>();
 builder.Services.AddScoped<DijkstraService>();
 
-
-
 var app = builder.Build();
 
-if (app.Environment.IsDevelopment())
+// app.MapOpenApi();
+app.UseSwagger();
+app.UseSwaggerUI(c =>
 {
-  //  app.MapOpenApi();
-    app.UseSwagger();
-    app.UseSwaggerUI(c =>
-    {
-        c.SwaggerEndpoint("/swagger/v1/swagger.json", "Bakalauras.API v1");
-        c.RoutePrefix = string.Empty;
-    });
-}
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Bakalauras.API v1");
+    c.RoutePrefix = string.Empty;
+});
 
 app.UseHttpsRedirection();
-
 app.UseAuthorization();
-
 app.MapControllers();
-
 app.Run();

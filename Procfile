@@ -1,1 +1,1 @@
-web: dotnet Bakalauras.API.dll
+web: dotnet .dll

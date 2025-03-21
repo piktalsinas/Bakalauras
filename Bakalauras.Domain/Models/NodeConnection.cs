@@ -1,6 +1,8 @@
-﻿namespace Bakalauras.Domain.Models;
+﻿using Microsoft.VisualBasic;
 
-public class NodeConnection
+namespace Bakalauras.Domain.Models;
+
+public class NodeConnection : TrackingEntity
 {
 	public Guid Id { get; set; }
 
