@@ -8,9 +8,9 @@ using Microsoft.Extensions.Logging;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddLogging();
-
 builder.Services.AddControllers();
-//builder.Services.AddOpenApi();
+
+// Configure database connection with fixed connection string
 builder.Services.AddDbContext<AppDbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"), options =>
@@ -18,23 +18,22 @@ builder.Services.AddDbContext<AppDbContext>(options =>
         options.MigrationsAssembly("Bakalauras.Persistence");
     });
 });
+
+// Swagger configuration
 builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new() { Title = "Bakalauras.API", Version = "v1" });
 });
 
+// ? CORS Configuration (Fixed)
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("CorsPolicy", policy =>
     {
-        policy.WithOrigins(
-            "https://navigacija-bvcwc2agfshpghdj.westeurope-01.azurewebsites.net"  // production URL
-            //"http://localhost:5016",  // local HTTP URL
-            //"https://localhost:7032"  // local HTTPS URL
-        )
-        .AllowAnyHeader()
-        .AllowAnyMethod()
-        .AllowCredentials();
+        policy.WithOrigins("https://navigacija-bvcwc2agfshpghdj.westeurope-01.azurewebsites.net") // Production URL
+              .AllowAnyHeader()
+              .AllowAnyMethod()
+              .AllowCredentials();
     });
 });
 
@@ -49,15 +48,16 @@ builder.Services.AddScoped<DijkstraService>();
 
 var app = builder.Build();
 
-// app.MapOpenApi();
+// Apply Middleware in Correct Order
+// app.UseHttpsRedirection();  // Removed to prevent conflicts with Azure
+app.UseCors("CorsPolicy");      //  Applied CORS before Authorization
+app.UseAuthorization();
 app.UseSwagger();
 app.UseSwaggerUI(c =>
 {
     c.SwaggerEndpoint("/swagger/v1/swagger.json", "Bakalauras.API v1");
-    c.RoutePrefix = string.Empty;
+    c.RoutePrefix = string.Empty; // Keeps Swagger UI at root URL
 });
 
-app.UseHttpsRedirection();
-app.UseAuthorization();
 app.MapControllers();
 app.Run();
