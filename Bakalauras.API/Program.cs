@@ -42,6 +42,7 @@ builder.Services.AddScoped<INodeRepository, NodeRepository>();
 builder.Services.AddScoped<INodeConnectionRepository, NodeConnectionRepository>();
 builder.Services.AddScoped<IBaseNodeRepository, BaseNodeRepository>();
 builder.Services.AddScoped<NodeService>();
+builder.Services.AddScoped<INodeNameSevice, NodeNameSevice>();
 builder.Services.AddScoped<NodeConnectionService>();
 builder.Services.AddScoped<BaseNodeService>();
 builder.Services.AddScoped<DijkstraService>();

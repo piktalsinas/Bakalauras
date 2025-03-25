@@ -19,10 +19,9 @@ namespace Bakalauras.App.Services
             _nodeRepository = nodeRepository;
             _logger = logger;  // Initialize logger
 
-            _baseImageFolder = Path.Combine(Directory.GetCurrentDirectory(), "C:\\Users\\picom\\Documents\\BAKALAURAS\\photos");
-            _PathFolder = Path.Combine(Directory.GetCurrentDirectory(), "C:\\Users\\picom\\Documents\\BAKALAURAS\\Path");
+            _baseImageFolder = Path.Combine(Directory.GetCurrentDirectory(), "C:\\home\\Nodes");
+            _PathFolder = Path.Combine(Directory.GetCurrentDirectory(), "C:\\home\\NodesPath");
         }
-
 
         public async Task AddNodesFromImagesAsync(string folderPath)
         {
@@ -38,10 +37,11 @@ namespace Bakalauras.App.Services
             {
                 var nodeName = Path.GetFileNameWithoutExtension(file);
 
-                // Get all nodes with the same name
-                var existingNodes = await _nodeRepository.GetByNameAsync(nodeName);
+                // Get the first existing node with the given name
+               // var existingNode = (await _nodeRepository.GetByNameAsync(nodeName)).FirstOrDefault();
+               var existingNode = (await _nodeRepository.GetByNameAsync(nodeName)).FirstOrDefault();
 
-                if (!existingNodes.Any())
+                if (existingNode == null)
                 {
                     Node node = new Node { Name = nodeName };
                     var addedNode = await _nodeRepository.AddAsync(node);
@@ -82,6 +82,7 @@ namespace Bakalauras.App.Services
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, "Error while moving image for Node ID {NodeId}.", nodeId);
                 return false;
             }
         }

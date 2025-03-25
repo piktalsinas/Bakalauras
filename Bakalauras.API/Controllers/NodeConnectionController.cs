@@ -17,13 +17,15 @@ namespace Bakalauras.API.Controllers
         private readonly INodeConnectionRepository _nodeConnectionRepository;
         private readonly NodeConnectionService _nodeConnectionService;
         private readonly DijkstraService _dijkstraService;
+        private readonly INodeNameSevice _nodeNameService;
 
-        public NodeConnectionController(ILogger<NodeConnectionController> logger, INodeConnectionRepository nodeConnectionRepository, NodeConnectionService nodeConnectionService, DijkstraService dijkstraService)
+        public NodeConnectionController(ILogger<NodeConnectionController> logger, INodeConnectionRepository nodeConnectionRepository, NodeConnectionService nodeConnectionService, DijkstraService dijkstraService, INodeNameSevice nodeNameService)
         {
             _logger = logger;
             _nodeConnectionRepository = nodeConnectionRepository;
             _nodeConnectionService = nodeConnectionService;
             _dijkstraService = dijkstraService;
+            _nodeNameService = nodeNameService;
         }
 
         [HttpGet(Name = "GetAllNodeConnections")]
@@ -73,23 +75,36 @@ namespace Bakalauras.API.Controllers
         }
 
         [HttpGet("shortest-path")]
-        public async Task<ActionResult<List<Node>>> GetShortestPath([FromQuery] Guid startNodeId, [FromQuery] Guid endNodeId)
+        public async Task<ActionResult<List<Node>>> GetShortestPath(
+     [FromQuery] string fullName1, [FromQuery] string fullName2)
         {
-            var path = await _dijkstraService.FindShortestPathAsync(startNodeId, endNodeId);
+            // Fetch node IDs using full names
+            var startNodeId = await _nodeNameService.GetNodeIdByFullName(fullName1);
+            var endNodeId = await _nodeNameService.GetNodeIdByFullName(fullName2);
+
+            if (startNodeId == null || endNodeId == null)
+            {
+                return NotFound("One or both nodes not found.");
+            }
+
+            // Call existing DijkstraService with found node IDs
+            var path = await _dijkstraService.FindShortestPathAsync(startNodeId.Value, endNodeId.Value);
+
             if (path == null || path.Count == 0)
             {
                 return NotFound("No path found between the specified nodes.");
             }
 
+            // Copy path images
             bool copied = await _nodeConnectionService.CopyPathImagesAsync(path);
             if (!copied)
             {
                 return StatusCode(500, "Path images could not be copied.");
             }
 
-            
             return Ok(path);
         }
+
 
     }
 }
