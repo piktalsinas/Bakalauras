@@ -241,19 +241,26 @@
         }
       }
     },
-    "/Node/CopyImage/{id}": {
+    "/Node/CopyImage/{parentNodeName}_{nodeName}": {
       "post": {
         "tags": [
           "Node"
         ],
         "parameters": [
           {
-            "name": "id",
+            "name": "parentNodeName",
             "in": "path",
             "required": true,
             "schema": {
-              "type": "string",
-              "format": "uuid"
+              "type": "string"
+            }
+          },
+          {
+            "name": "nodeName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
             }
           }
         ],
@@ -435,19 +442,17 @@
         ],
         "parameters": [
           {
-            "name": "startNodeId",
+            "name": "fullName1",
             "in": "query",
             "schema": {
-              "type": "string",
-              "format": "uuid"
+              "type": "string"
             }
           },
           {
-            "name": "endNodeId",
+            "name": "fullName2",
             "in": "query",
             "schema": {
-              "type": "string",
-              "format": "uuid"
+              "type": "string"
             }
           }
         ],
@@ -480,6 +485,64 @@
                 }
               }
             }
+          }
+        }
+      }
+    },
+    "/api/Webhook": {
+      "get": {
+        "tags": [
+          "Webhook"
+        ],
+        "parameters": [
+          {
+            "name": "hub.mode",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "hub.verify_token",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "hub.challenge",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Webhook"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": { }
+            },
+            "text/json": {
+              "schema": { }
+            },
+            "application/*+json": {
+              "schema": { }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
           }
         }
       }

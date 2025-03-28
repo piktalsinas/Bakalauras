@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "pgBniK3ryOo=",
+  "dgSpecHash": "0Abv58DnQGw=",
   "success": true,
   "projectFilePath": "C:\\Users\\picom\\Documents\\BAKALAURAS\\Bakalauras.API\\Bakalauras.API\\Bakalauras.API\\Bakalauras\\Bakalauras.API\\Bakalauras.API.csproj",
   "expectedPackageFiles": [
@@ -57,6 +57,7 @@
     "C:\\Users\\picom\\.nuget\\packages\\microsoft.win32.systemevents\\6.0.0\\microsoft.win32.systemevents.6.0.0.nupkg.sha512",
     "C:\\Users\\picom\\.nuget\\packages\\mono.texttemplating\\2.2.1\\mono.texttemplating.2.2.1.nupkg.sha512",
     "C:\\Users\\picom\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512",
+    "C:\\Users\\picom\\.nuget\\packages\\newtonsoft.json.bson\\1.0.3\\newtonsoft.json.bson.1.0.3.nupkg.sha512",
     "C:\\Users\\picom\\.nuget\\packages\\swashbuckle.aspnetcore\\8.0.0\\swashbuckle.aspnetcore.8.0.0.nupkg.sha512",
     "C:\\Users\\picom\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\8.0.0\\swashbuckle.aspnetcore.swagger.8.0.0.nupkg.sha512",
     "C:\\Users\\picom\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\8.0.0\\swashbuckle.aspnetcore.swaggergen.8.0.0.nupkg.sha512",

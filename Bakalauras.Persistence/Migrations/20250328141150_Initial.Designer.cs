@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Bakalauras.Persistence.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250321173500_Initial")]
+    [Migration("20250328141150_Initial")]
     partial class Initial
     {
         /// <inheritdoc />

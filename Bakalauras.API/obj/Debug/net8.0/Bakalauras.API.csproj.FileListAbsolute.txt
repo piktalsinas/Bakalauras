@@ -158,5 +158,6 @@ C:\Users\picom\Documents\BAKALAURAS\Bakalauras.API\Bakalauras.API\Bakalauras.API
 C:\Users\picom\Documents\BAKALAURAS\Bakalauras.API\Bakalauras.API\Bakalauras.API\Bakalauras\Bakalauras.API\obj\Debug\net8.0\Bakalauras.API.genruntimeconfig.cache
 C:\Users\picom\Documents\BAKALAURAS\Bakalauras.API\Bakalauras.API\Bakalauras.API\Bakalauras\Bakalauras.API\obj\Debug\net8.0\ref\Bakalauras.API.dll
 C:\Users\picom\Documents\BAKALAURAS\Bakalauras.API\Bakalauras.API\Bakalauras.API\Bakalauras\Bakalauras.API\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
-C:\Users\picom\Documents\BAKALAURAS\Bakalauras.API\Bakalauras.API\Bakalauras.API\Bakalauras\Bakalauras.API\bin\Debug\net8.0\appsettings.Development.json
 C:\Users\picom\Documents\BAKALAURAS\Bakalauras.API\Bakalauras.API\Bakalauras.API\Bakalauras\Bakalauras.API\bin\Debug\net8.0\Newtonsoft.Json.dll
+C:\Users\picom\Documents\BAKALAURAS\Bakalauras.API\Bakalauras.API\Bakalauras.API\Bakalauras\Bakalauras.API\bin\Debug\net8.0\libman.json
+C:\Users\picom\Documents\BAKALAURAS\Bakalauras.API\Bakalauras.API\Bakalauras.API\Bakalauras\Bakalauras.API\bin\Debug\net8.0\Newtonsoft.Json.Bson.dll

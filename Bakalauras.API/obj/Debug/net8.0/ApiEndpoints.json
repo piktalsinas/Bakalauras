@@ -1,5 +1,47 @@
 [
   {
+    "ContainingType": "Bakalauras.API.Controllers.WebhookController",
+    "Method": "Get",
+    "RelativePath": "api/Webhook",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "hub.mode",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "hub.verify_token",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "hub.challenge",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Bakalauras.API.Controllers.WebhookController",
+    "Method": "Post",
+    "RelativePath": "api/Webhook",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "payload",
+        "Type": "System.Object",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "Bakalauras.API.Controllers.BaseNodeController",
     "Method": "Post",
     "RelativePath": "BaseNode",
@@ -163,14 +205,19 @@
   {
     "ContainingType": "Bakalauras.API.Controllers.NodeController",
     "Method": "CopyImageToPathFolderAsync",
-    "RelativePath": "Node/CopyImage/{id}",
+    "RelativePath": "Node/CopyImage/{parentNodeName}_{nodeName}",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "id",
-        "Type": "System.Guid",
+        "Name": "parentNodeName",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "nodeName",
+        "Type": "System.String",
         "IsRequired": true
       }
     ],
@@ -290,13 +337,13 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "startNodeId",
-        "Type": "System.Guid",
+        "Name": "fullName1",
+        "Type": "System.String",
         "IsRequired": false
       },
       {
-        "Name": "endNodeId",
-        "Type": "System.Guid",
+        "Name": "fullName2",
+        "Type": "System.String",
         "IsRequired": false
       }
     ],

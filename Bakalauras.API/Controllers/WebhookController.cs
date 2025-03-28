@@ -1,85 +1,43 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Threading.Tasks;
-using Newtonsoft.Json.Linq;
 
 namespace Bakalauras.API.Controllers
 {
+    [Route("api/[controller]")]
     [ApiController]
-    [Route("webhook")]
     public class WebhookController : ControllerBase
     {
         private readonly ILogger<WebhookController> _logger;
+        private readonly string _verifyToken = "navigacija123"; // Same token as you put in Meta dashboard
 
         public WebhookController(ILogger<WebhookController> logger)
         {
             _logger = logger;
         }
 
-        private const string VERIFY_TOKEN = "navigacija123"; // Change this to your actual verification token
-
-        // Step 1: Verification Endpoint
         [HttpGet]
-        public IActionResult VerifyWebhook([FromQuery] string hub_mode, [FromQuery] string hub_challenge, [FromQuery] string hub_verify_token)
+        public IActionResult Get(
+            [FromQuery(Name = "hub.mode")] string hubMode,
+            [FromQuery(Name = "hub.verify_token")] string hubVerifyToken,
+            [FromQuery(Name = "hub.challenge")] string hubChallenge)
         {
-            if (hub_mode == "subscribe" && hub_verify_token == VERIFY_TOKEN)
+            _logger.LogInformation($"Verification request: mode={hubMode}, token={hubVerifyToken}, challenge={hubChallenge}");
+
+            if (hubMode == "subscribe" && hubVerifyToken == _verifyToken)
             {
-                return Ok(hub_challenge);
+                return Content(hubChallenge, "text/plain"); // IMPORTANT: must return raw text
             }
+
             return Unauthorized();
         }
 
         [HttpPost]
-        public async Task<IActionResult> ReceiveWebhook([FromBody] JObject requestBody)
+        public IActionResult Post([FromBody] object payload)
         {
-            try
-            {
-                _logger.LogInformation($"Received POST request body: {requestBody.ToString()}");
+            _logger.LogInformation("Received Facebook event:");
+            _logger.LogInformation(payload.ToString());
 
-                var entry = requestBody["entry"]?.First;
-                var messaging = entry?["messaging"]?.First;
-
-                if (messaging != null)
-                {
-                    var senderId = messaging["sender"]?["id"]?.ToString();
-                    var messageText = messaging["message"]?["text"]?.ToString();
-
-                    if (!string.IsNullOrEmpty(senderId) && !string.IsNullOrEmpty(messageText))
-                    {
-                        await HandleMessageAsync(senderId, messageText);
-                    }
-                }
-
-                return Ok();
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError($"Error processing webhook: {ex.Message}");
-                return StatusCode(500, "Internal Server Error");
-            }
-        }
-
-
-        private async Task HandleMessageAsync(string senderId, string messageText)
-        {
-            // Here you can integrate API logic based on the received message
-            _logger.LogInformation($"Received message: {messageText} from {senderId}");
-
-            // Example: Reply with a simple message
-            await SendMessageAsync(senderId, $"You said: {messageText}");
-        }
-
-        private async Task SendMessageAsync(string recipientId, string messageText)
-        {
-            var payload = new
-            {
-                recipient = new { id = recipientId },
-                message = new { text = messageText }
-            };
-
-            // Send request to Facebook Messenger API (replace with your own logic)
-            _logger.LogInformation($"Sending message to {recipientId}: {messageText}");
+            return Ok("EVENT_RECEIVED");
         }
     }
 }

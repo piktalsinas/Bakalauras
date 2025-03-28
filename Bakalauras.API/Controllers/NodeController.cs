@@ -83,7 +83,7 @@ namespace Bakalauras.API.Controllers
         [HttpPost("add-nodes-from-images")]
         public async Task<IActionResult> AddNodesFromImages()
         {
-            string folderPath = @"C:\home\Nodes";
+            string folderPath = @"C:\\Users\\picom\\Documents\\BAKALAURAS\\Nodes";
             try
             {
                 await _nodeService.AddNodesFromImagesAsync(folderPath);
@@ -117,8 +117,8 @@ namespace Bakalauras.API.Controllers
                     return BadRequest("Invalid parent node name.");
                 }
 
-                string sourceFolder = @"C:\\home\\Nodes";
-                string destinationFolder = @"C:\\home\\NodesPath";
+                string sourceFolder = @"C:\\Users\\picom\\Documents\\BAKALAURAS\\Nodes";
+                string destinationFolder = @"C:\\Users\\picom\\Documents\\BAKALAURAS\\NodesPath";
 
                 // Construct the expected file name structure
                 string sourceFileName = $"{parentNodeName}_{node.Name}.jpg";

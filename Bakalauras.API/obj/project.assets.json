@@ -1059,6 +1059,22 @@
           }
         }
       },
+      "Newtonsoft.Json.Bson/1.0.3": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "13.0.1"
+        },
+        "compile": {
+          "lib/netstandard2.0/Newtonsoft.Json.Bson.dll": {
+            "related": ".pdb;.xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/Newtonsoft.Json.Bson.dll": {
+            "related": ".pdb;.xml"
+          }
+        }
+      },
       "Swashbuckle.AspNetCore/8.0.0": {
         "type": "package",
         "dependencies": {
@@ -3595,6 +3611,28 @@
         "packageIcon.png"
       ]
     },
+    "Newtonsoft.Json.Bson/1.0.3": {
+      "sha512": "bCcwagnHfYnhwQfY1criEcn6Hy9PtBuVnZu0pA8hmRhuR3jI/8WxVgoVAdNw9BJ3JHkxmWJzpj/AQy+PMMLqxg==",
+      "type": "package",
+      "path": "newtonsoft.json.bson/1.0.3",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.md",
+        "lib/net45/Newtonsoft.Json.Bson.dll",
+        "lib/net45/Newtonsoft.Json.Bson.pdb",
+        "lib/net45/Newtonsoft.Json.Bson.xml",
+        "lib/netstandard1.3/Newtonsoft.Json.Bson.dll",
+        "lib/netstandard1.3/Newtonsoft.Json.Bson.pdb",
+        "lib/netstandard1.3/Newtonsoft.Json.Bson.xml",
+        "lib/netstandard2.0/Newtonsoft.Json.Bson.dll",
+        "lib/netstandard2.0/Newtonsoft.Json.Bson.pdb",
+        "lib/netstandard2.0/Newtonsoft.Json.Bson.xml",
+        "newtonsoft.json.bson.1.0.3.nupkg.sha512",
+        "newtonsoft.json.bson.nuspec",
+        "packageIcon.png"
+      ]
+    },
     "Swashbuckle.AspNetCore/8.0.0": {
       "sha512": "K9FzGTxmwfD+7sVf/FTq/TZFHBTXcROgdcg7gLFwKwgvXwaqTtjGVdam27j0kYfgZZyWlOKr+abmtyd2nAd5eA==",
       "type": "package",
@@ -4806,6 +4844,7 @@
       "Microsoft.EntityFrameworkCore.SqlServer >= 8.0.14",
       "Microsoft.EntityFrameworkCore.Tools >= 8.0.14",
       "Newtonsoft.Json >= 13.0.3",
+      "Newtonsoft.Json.Bson >= 1.0.3",
       "Swashbuckle.AspNetCore >= 8.0.0",
       "Swashbuckle.AspNetCore.Swagger >= 8.0.0"
     ]
@@ -4905,6 +4944,10 @@
           "Newtonsoft.Json": {
             "target": "Package",
             "version": "[13.0.3, )"
+          },
+          "Newtonsoft.Json.Bson": {
+            "target": "Package",
+            "version": "[1.0.3, )"
           },
           "Swashbuckle.AspNetCore": {
             "target": "Package",

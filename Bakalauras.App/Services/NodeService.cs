@@ -19,8 +19,8 @@ namespace Bakalauras.App.Services
             _nodeRepository = nodeRepository;
             _logger = logger;  // Initialize logger
 
-            _baseImageFolder = Path.Combine(Directory.GetCurrentDirectory(), "C:\\home\\Nodes");
-            _PathFolder = Path.Combine(Directory.GetCurrentDirectory(), "C:\\home\\NodesPath");
+            _baseImageFolder = Path.Combine(Directory.GetCurrentDirectory(), "C:\\Users\\picom\\Documents\\BAKALAURAS\\Nodes");
+            _PathFolder = Path.Combine(Directory.GetCurrentDirectory(), "C:\\Users\\picom\\Documents\\BAKALAURAS\\NodesPath");
         }
 
         public async Task AddNodesFromImagesAsync(string folderPath)

@@ -21,8 +21,8 @@ namespace Bakalauras.App.Services
             _nodeRepository = nodeRepository;
             _logger = logger;
 
-            _baseImageFolder = Path.Combine(Directory.GetCurrentDirectory(), "C:\\home\\ConnectionPhotos");
-            _pathFolder = Path.Combine(Directory.GetCurrentDirectory(), "C:\\home\\ConnectionPath");
+            _baseImageFolder = Path.Combine(Directory.GetCurrentDirectory(), "C:\\Users\\picom\\Documents\\BAKALAURAS\\ConnectionPhotos");
+            _pathFolder = Path.Combine(Directory.GetCurrentDirectory(), "C:\\Users\\picom\\Documents\\BAKALAURAS\\ConnectionPath");
         }
 
         public async Task<bool> MoveImageToPathFolderAsync(Guid nodeConnectionId)

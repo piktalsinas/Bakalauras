@@ -4,13 +4,15 @@ using Bakalauras.Persistence.Repositories.EF;
 using Bakalauras.App.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using Bakalauras.API.Controllers;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Add logging
 builder.Services.AddLogging();
 builder.Services.AddControllers();
 
-// Configure database connection with fixed connection string
+// Database configuration
 builder.Services.AddDbContext<AppDbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"), options =>
@@ -19,18 +21,18 @@ builder.Services.AddDbContext<AppDbContext>(options =>
     });
 });
 
-// Swagger configuration
+// Swagger for API documentation
 builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new() { Title = "Bakalauras.API", Version = "v1" });
 });
 
-// ? CORS Configuration (Fixed)
+// CORS policy
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("CorsPolicy", policy =>
     {
-        policy.WithOrigins("https://navigacija-bvcwc2agfshpghdj.westeurope-01.azurewebsites.net") // Production URL
+        policy.WithOrigins("http://localhost:5000", "http://localhost:3000")
               .AllowAnyHeader()
               .AllowAnyMethod()
               .AllowCredentials();
@@ -47,18 +49,22 @@ builder.Services.AddScoped<NodeConnectionService>();
 builder.Services.AddScoped<BaseNodeService>();
 builder.Services.AddScoped<DijkstraService>();
 
+// Register WebhookController (not needed if using [ApiController])
+builder.Services.AddScoped<WebhookController>();
+
 var app = builder.Build();
 
-// Apply Middleware in Correct Order
-// app.UseHttpsRedirection();  // Removed to prevent conflicts with Azure
-app.UseCors("CorsPolicy");      //  Applied CORS before Authorization
+app.UseCors("CorsPolicy");
 app.UseAuthorization();
+
 app.UseSwagger();
 app.UseSwaggerUI(c =>
 {
     c.SwaggerEndpoint("/swagger/v1/swagger.json", "Bakalauras.API v1");
-    c.RoutePrefix = string.Empty; // Keeps Swagger UI at root URL
+    c.RoutePrefix = string.Empty;
 });
 
+// Map controllers, including WebhookController
 app.MapControllers();
+
 app.Run();
