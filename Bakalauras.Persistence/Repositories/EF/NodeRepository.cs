@@ -81,6 +81,14 @@ namespace Bakalauras.Persistence.Repositories
                 .FirstOrDefaultAsync();
         }
 
+        public async Task<IEnumerable<Node>> GetNodesByBaseNodeAsync(string baseNodeName)
+        {
+            return await _context.Nodes
+                .Where(n => n.ParentName == baseNodeName) 
+                .ToListAsync();
+        }
+
+
 
 
     }

@@ -44,6 +44,28 @@
         }
       }
     },
+    "/api/images/{fileName}": {
+      "get": {
+        "tags": [
+          "Image"
+        ],
+        "parameters": [
+          {
+            "name": "fileName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/Node": {
       "get": {
         "tags": [
@@ -113,6 +135,53 @@
               "text/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Node"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Node/get-nodes-by-base-node": {
+      "get": {
+        "tags": [
+          "Node"
+        ],
+        "parameters": [
+          {
+            "name": "baseNodeName",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Node"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Node"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Node"
+                  }
                 }
               }
             }
@@ -489,7 +558,7 @@
         }
       }
     },
-    "/api/Webhook": {
+    "/api/webhook": {
       "get": {
         "tags": [
           "Webhook"

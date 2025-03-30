@@ -161,3 +161,4 @@ C:\Users\picom\Documents\BAKALAURAS\Bakalauras.API\Bakalauras.API\Bakalauras.API
 C:\Users\picom\Documents\BAKALAURAS\Bakalauras.API\Bakalauras.API\Bakalauras.API\Bakalauras\Bakalauras.API\bin\Debug\net8.0\Newtonsoft.Json.dll
 C:\Users\picom\Documents\BAKALAURAS\Bakalauras.API\Bakalauras.API\Bakalauras.API\Bakalauras\Bakalauras.API\bin\Debug\net8.0\libman.json
 C:\Users\picom\Documents\BAKALAURAS\Bakalauras.API\Bakalauras.API\Bakalauras.API\Bakalauras\Bakalauras.API\bin\Debug\net8.0\Newtonsoft.Json.Bson.dll
+C:\Users\picom\Documents\BAKALAURAS\Bakalauras.API\Bakalauras.API\Bakalauras.API\Bakalauras\Bakalauras.API\bin\Debug\net8.0\CloudinaryDotNet.dll

@@ -1,8 +1,24 @@
 [
   {
+    "ContainingType": "Bakalauras.API.Controllers.ImageController",
+    "Method": "GetImage",
+    "RelativePath": "api/images/{fileName}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "fileName",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "Bakalauras.API.Controllers.WebhookController",
     "Method": "Get",
-    "RelativePath": "api/Webhook",
+    "RelativePath": "api/webhook",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -28,7 +44,7 @@
   {
     "ContainingType": "Bakalauras.API.Controllers.WebhookController",
     "Method": "Post",
-    "RelativePath": "api/Webhook",
+    "RelativePath": "api/webhook",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -222,6 +238,32 @@
       }
     ],
     "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Bakalauras.API.Controllers.NodeController",
+    "Method": "GetNodesByBaseNode",
+    "RelativePath": "Node/get-nodes-by-base-node",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "baseNodeName",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[Bakalauras.Domain.Models.Node, Bakalauras.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
     "ContainingType": "Bakalauras.API.Controllers.NodeController",

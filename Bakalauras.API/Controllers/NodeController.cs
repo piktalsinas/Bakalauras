@@ -30,6 +30,24 @@ namespace Bakalauras.API.Controllers
         {
             return Ok(await _nodeRepository.GetAllAsync());
         }
+        [HttpGet("get-nodes-by-base-node")]
+        public async Task<ActionResult<IEnumerable<Node>>> GetNodesByBaseNode([FromQuery] string baseNodeName)
+        {
+            if (string.IsNullOrEmpty(baseNodeName))
+            {
+                return BadRequest("BaseNode name is required.");
+            }
+
+            // Fetch all nodes that have this BaseNode as their parent
+            var nodes = await _nodeRepository.GetNodesByBaseNodeAsync(baseNodeName);
+
+            if (nodes == null || !nodes.Any())
+            {
+                return NotFound($"No nodes found with BaseNode '{baseNodeName}' as their parent.");
+            }
+
+            return Ok(nodes);
+        }
 
         [HttpPost(Name = "PostNode")]
         public async Task<ActionResult<Node>> Post([FromQuery] string name)
