@@ -24,7 +24,8 @@
       }
     }
   },
-  "$schema": "https://json.schemastore.org/launchsettings.json",
+  "$schema": "
+    ://json.schemastore.org/launchsettings.json",
   "iisSettings": {
     "windowsAuthentication": false,
     "anonymousAuthentication": true,

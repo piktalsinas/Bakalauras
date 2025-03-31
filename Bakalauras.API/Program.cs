@@ -5,6 +5,7 @@ using Bakalauras.App.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Bakalauras.API.Controllers;
+//using static BaseNodeService;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -48,6 +49,10 @@ builder.Services.AddScoped<INodeNameSevice, NodeNameSevice>();
 builder.Services.AddScoped<NodeConnectionService>();
 builder.Services.AddScoped<BaseNodeService>();
 builder.Services.AddScoped<DijkstraService>();
+builder.Services.AddScoped<FacebookPayloadHandler>();
+builder.Services.AddScoped<FacebookMessageService>();
+builder.Services.AddScoped<LanguageService>();
+builder.Services.AddScoped<NavigationService>();
 
 // Register WebhookController (not needed if using [ApiController])
 builder.Services.AddScoped<WebhookController>();

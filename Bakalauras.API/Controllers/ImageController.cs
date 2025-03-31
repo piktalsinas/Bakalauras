@@ -4,7 +4,7 @@ using System.IO;
 namespace Bakalauras.API.Controllers
 {
     [ApiController]
-    [Route("api/images")]
+    [Route("images")]
     public class ImageController : ControllerBase
     {
         private readonly string _nodeImagesDirectory = @"C:\Users\picom\Documents\BAKALAURAS\Nodes";

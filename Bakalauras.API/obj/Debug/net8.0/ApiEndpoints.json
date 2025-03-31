@@ -1,63 +1,5 @@
 [
   {
-    "ContainingType": "Bakalauras.API.Controllers.ImageController",
-    "Method": "GetImage",
-    "RelativePath": "api/images/{fileName}",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "fileName",
-        "Type": "System.String",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "Bakalauras.API.Controllers.WebhookController",
-    "Method": "Get",
-    "RelativePath": "api/webhook",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "hub.mode",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "hub.verify_token",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "hub.challenge",
-        "Type": "System.String",
-        "IsRequired": false
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "Bakalauras.API.Controllers.WebhookController",
-    "Method": "Post",
-    "RelativePath": "api/webhook",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "payload",
-        "Type": "System.Object",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
     "ContainingType": "Bakalauras.API.Controllers.BaseNodeController",
     "Method": "Post",
     "RelativePath": "BaseNode",
@@ -83,6 +25,22 @@
       }
     ],
     "EndpointName": "PostBaseNode"
+  },
+  {
+    "ContainingType": "Bakalauras.API.Controllers.ImageController",
+    "Method": "GetImage",
+    "RelativePath": "images/{fileName}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "fileName",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
   },
   {
     "ContainingType": "Bakalauras.API.Controllers.NodeController",
@@ -400,5 +358,47 @@
         "StatusCode": 200
       }
     ]
+  },
+  {
+    "ContainingType": "Bakalauras.API.Controllers.WebhookController",
+    "Method": "Get",
+    "RelativePath": "webhook",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "hub.mode",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "hub.verify_token",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "hub.challenge",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Bakalauras.API.Controllers.WebhookController",
+    "Method": "Post",
+    "RelativePath": "webhook",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "payload",
+        "Type": "System.Object",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
   }
 ]

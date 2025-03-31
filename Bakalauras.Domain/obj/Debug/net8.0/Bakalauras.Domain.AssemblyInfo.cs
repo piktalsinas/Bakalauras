@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Bakalauras.Domain")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+abdb1fde2da49c3fdd02f578190bf0ba4ed21be6")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+10a57e4bd668e843105d86bbbfe528bea456f7a7")]
 [assembly: System.Reflection.AssemblyProductAttribute("Bakalauras.Domain")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Bakalauras.Domain")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
