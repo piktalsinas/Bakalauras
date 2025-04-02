@@ -53,25 +53,31 @@ namespace Bakalauras.App.Services
                 case "LANGUAGE_EN":
                     _languageService.SetUserLanguage(senderId, "en");
                     await _languageService.SetUserMenuAsync(senderId, "en");
-                    await _messageService.SendTextAsync(senderId, "Language set to English ✅");
+                    await _messageService.SendTextAsync(senderId, "Language set to English ✅", null);
                     break;
                 case "LANGUAGE_LT":
                     _languageService.SetUserLanguage(senderId, "lt");
                     await _languageService.SetUserMenuAsync(senderId, "lt");
-                    await _messageService.SendTextAsync(senderId, "Kalba nustatyta į Lietuvių ✅");
+                    await _messageService.SendTextAsync(senderId, "Kalba nustatyta į Lietuvių ✅", null);
                     break;
-                case "RESTART_BOT":
-                    await _messageService.SendTextAsync(senderId, _languageService.Translate("welcome", senderId));
+                case "INFO":
+                    var infoText = _languageService.Translate("info", senderId).text;
+                    await _messageService.SendTextAsync(senderId, infoText, null);
                     break;
                 case "FIND_PATH":
-                    await _messageService.SendTextAsync(senderId, _languageService.Translate("prompt_path", senderId));
+                    var (promptText, quickReplies) = _languageService.Translate("prompt_path", senderId);
+                    await _messageService.SendTextAsync(senderId, promptText, null); 
                     break;
                 case "GET_ROOMS":
-                    await _messageService.SendTextAsync(senderId, _languageService.Translate("prompt_building", senderId));
+                    var buildingPrompt = _languageService.Translate("prompt_building", senderId).text;
+                    var (roomsPrompt, quickRepliesForRooms) = _languageService.Translate("nodes_list", senderId); 
+                    await _messageService.SendTextAsync(senderId, buildingPrompt, quickRepliesForRooms);  
                     break;
-
             }
         }
+
+
+
 
         private async Task HandleMessageAsync(string senderId, string text)
         {
@@ -83,10 +89,9 @@ namespace Bakalauras.App.Services
                 return;
             }
 
-            if (lowerText.StartsWith("get nodes by base node"))
+            if (Regex.IsMatch(lowerText, @"^s\d+$"))
             {
-                await _navigationService.SendNodesByBaseAsync(senderId, text);
-                return;
+                await _navigationService.SendNodesByBaseAsync(senderId, text.Trim());
             }
 
             if (Regex.IsMatch(text, @"^\s*[\w\-]+(?:_[\w\-]+)?\s+to\s+[\w\-]+(?:_[\w\-]+)?\s*$", RegexOptions.IgnoreCase))

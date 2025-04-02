@@ -19,7 +19,7 @@ namespace Bakalauras.Persistence
 
             modelBuilder.Entity<NodeConnection>()
                 .Property(nc => nc.Name)
-                .HasMaxLength(100); // Example: limit the length of the Name
+                .HasMaxLength(100); 
 
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(AppDbContext).Assembly);
         }

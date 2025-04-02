@@ -8,7 +8,7 @@ namespace Bakalauras.App.Services
     {
         private readonly ILogger<LanguageService> _logger;
         private readonly string _pageAccessToken = "EAAM60zgkJVoBOxQgRZBe6qsdrsatspnVzAtC2qZATUJt4JHnoPtcErgixfSwHKHgTH2Mv0Gf0E7UmJTJTpO3TyZBoaClcgMeYq6omT4uYU8IX8ZCrUKrZB4kyT9qpZBA3OhRi8xOZCIJhHZCdHv44lo9Bp3J55ALOLHdgjDpqzmHdh6QK5trmvZB2aZCacAtbJvqd1owZDZD";
-        private readonly string _baseUrl = "https://98ec-78-57-195-217.ngrok-free.app";
+        private readonly string _baseUrl = "https://7bd8-78-57-195-217.ngrok-free.app";
         private static readonly Dictionary<string, string> _userLanguages = new();
 
         public LanguageService(ILogger<LanguageService> logger)
@@ -18,61 +18,83 @@ namespace Bakalauras.App.Services
 
         public void SetUserLanguage(string userId, string language) => _userLanguages[userId] = language;
 
-        public string Translate(string key, string userId)
+        public (string text, dynamic quickReplies) Translate(string key, string userId)
         {
             var lang = _userLanguages.ContainsKey(userId) ? _userLanguages[userId] : "en";
 
-            var translations = new Dictionary<string, (string en, string lt)>
+            var translations = new Dictionary<string, (string en, string lt, dynamic quickReplies)>
             {
-                ["welcome"] = (
-                    "👋 Welcome back! I'm your navigation assistant.\n\n" +
-                    "• Type: get rooms – list all auditoriums\n" +
-                    "• Type: shortest path from Building1 Room1 to Building2 Room2 – find a route\n" +
-                    "• Type: Building_Room – get a photo",
-                    "👋 Sveiki sugrįžę! Aš esu jūsų navigacijos asistentas.\n\n" +
-                    "• Įveskite: gauti auditorijas – rodyti visas auditorijas\n" +
-                    "• Įveskite: trumpiausias kelias nuo Pastatas1 Auditorija1 iki Pastatas2 Auditorija2 – rasti maršrutą\n" +
-                    "• Įveskite: Pastatas_Auditorija – gauti nuotrauką"
+                ["info"] = (
+                    "👋 Welcome! I'm your navigation assistant at Vilnius Tech University.\n\n" +
+                    "My main purpose is to:\n" +
+                    "• Help students find the shortest path to their desired auditorium\n" +
+                    "• View a photo of your desired auditorium\n" +
+                    "• List rooms by building\n\n" +
+                    "Feel free to use these features to make your campus navigation easier!",
+                    "👋 Sveiki! Aš esu jūsų navigacijos asistentas Vilnius Tech universitete.\n\n" +
+                    "Mano pagrindinė paskirtis:\n" +
+                    "• Padėti studentams rasti trumpiausią kelią iki norimos auditorijos\n" +
+                    "• Peržiūrėti norimos auditorijos nuotrauką\n" +
+                    "• Gauti auditorijų sąrašą pagal pastatą\n\n" +
+                    "Drąsiai naudokitės šiais įrankiais, kad lengviau orientuotumėtės universiteto teritorijoje!",
+                    null
                 ),
+                // Updated quick replies for 'Rooms by building'
                 ["prompt_building"] = (
                     "Please enter the building name to see its rooms (e.g., S1, S2).",
-                    "Įveskite pastato pavadinimą, kad pamatytumėte jo auditorijas (pvz., S1, S2)."
+                    "Įveskite pastato pavadinimą, kad pamatytumėte jo auditorijas (pvz., S1, S2).",
+                    null
                 ),
                 ["nodes_list"] = (
                     "Here are your rooms:",
-                    "Štai jūsų auditorijos:"
+                    "Štai jūsų auditorijos:",
+                    new[]
+                    {
+                new { content_type = "text", title = "S1", payload = "S1" },
+                new { content_type = "text", title = "S2", payload = "S2" },
+                new { content_type = "text", title = "S3", payload = "S3" }
+                    }
                 ),
                 ["no_nodes"] = (
                     "No rooms found.",
-                    "Auditorijų nerasta."
+                    "Auditorijų nerasta.",
+                    null
                 ),
                 ["nodes_not_found"] = (
                     "One or both rooms were not found.",
-                    "Viena arba abi auditorijos nerastos."
+                    "Viena arba abi auditorijos nerastos.",
+                    null
                 ),
                 ["no_path_found"] = (
                     "No path found between the specified rooms.",
-                    "Kelias tarp nurodytų auditorijų nerastas."
+                    "Kelias tarp nurodytų auditorijų nerastas.",
+                    null
                 ),
                 ["path_start"] = (
                     "{0} to {1}:",
-                    "{0} iki {1}:"
+                    "{0} iki {1}:",
+                    null
                 ),
                 ["prompt_path"] = (
-                    "Please type the path in format:\nshortest path from Building1 Room1 to Building2 Room2 (eg. S1_227 to S1_435)",
-                    "Prašome įvesti kelią tokiu formatu:\ntrumpiausias kelias nuo Pastatas1 Auditorija1 iki Pastatas2 Auditorija2 (pvz S1_227 iki S1_435)"
+                    "Please type the path in format:\nshortest path from Building1 Room1 to Building2 Room2 (e.g., S1_227 to S1_435)",
+                    "Prašome įvesti kelią tokiu formatu:\ntrumpiausias kelias nuo Pastatas1_Auditorija1 iki Pastatas2_Auditorija2 (pvz S1_227 iki S1_435)",
+                    null
                 ),
-
             };
 
             if (translations.TryGetValue(key, out var translation))
             {
-                return lang == "lt" ? translation.lt : translation.en;
+                if (lang == "lt")
+                    return (translation.lt, translation.quickReplies);
+                else
+                    return (translation.en, translation.quickReplies);
             }
 
-            // Fallback
-            return lang == "lt" ? "Nežinomas raktas vertimui." : "Unknown translation key.";
+            return lang == "lt" ? ("Nežinomas raktas vertimui.", null) : ("Unknown translation key.", null);
         }
+
+
+
 
 
         public async Task SetUserMenuAsync(string userId, string language)
@@ -80,17 +102,17 @@ namespace Bakalauras.App.Services
             var menuItems = language == "lt"
                 ? new[]
                 {
-            new { type = "postback", title = "Paleisti iš naujo 🔁", payload = "RESTART_BOT" },
+            new { type = "postback", title = "INFO", payload = "INFO" },
             new { type = "postback", title = "Rasti kelią 📍", payload = "FIND_PATH" },
-            new { type = "postback", title = "Pakeisti į EN", payload = "LANGUAGE_EN" },
-            new { type = "postback", title = "Gauti auditorijas 🏫", payload = "GET_ROOMS" }
+            new { type = "postback", title = "Gauti auditorijas 🏫", payload = "GET_ROOMS" },
+            new { type = "postback", title = "Pakeisti į EN", payload = "LANGUAGE_EN" }
                 }
                 : new[]
                 {
-            new { type = "postback", title = "Restart 🔁", payload = "RESTART_BOT" },
+            new { type = "postback", title = "INFO", payload = "INFO" },
             new { type = "postback", title = "Find Path 📍", payload = "FIND_PATH" },
-            new { type = "postback", title = "Switch to LT", payload = "LANGUAGE_LT" },
-            new { type = "postback", title = "Rooms by Building 🏫", payload = "GET_ROOMS" }
+            new { type = "postback", title = "Rooms by Building 🏫", payload = "GET_ROOMS" },
+            new { type = "postback", title = "Switch to LT", payload = "LANGUAGE_LT" }
                 };
 
             var payload = new

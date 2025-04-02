@@ -138,7 +138,6 @@ C:\Users\picom\Documents\BAKALAURAS\Bakalauras.API\Bakalauras.API\Bakalauras.API
 C:\Users\picom\Documents\BAKALAURAS\Bakalauras.API\Bakalauras.API\Bakalauras.API\Bakalauras\Bakalauras.API\obj\Debug\net8.0\Bakalauras.API.AssemblyInfoInputs.cache
 C:\Users\picom\Documents\BAKALAURAS\Bakalauras.API\Bakalauras.API\Bakalauras.API\Bakalauras\Bakalauras.API\obj\Debug\net8.0\Bakalauras.API.AssemblyInfo.cs
 C:\Users\picom\Documents\BAKALAURAS\Bakalauras.API\Bakalauras.API\Bakalauras.API\Bakalauras\Bakalauras.API\obj\Debug\net8.0\Bakalauras.API.csproj.CoreCompileInputs.cache
-C:\Users\picom\Documents\BAKALAURAS\Bakalauras.API\Bakalauras.API\Bakalauras.API\Bakalauras\Bakalauras.API\obj\Debug\net8.0\Bakalauras.API.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\picom\Documents\BAKALAURAS\Bakalauras.API\Bakalauras.API\Bakalauras.API\Bakalauras\Bakalauras.API\obj\Debug\net8.0\Bakalauras.API.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\picom\Documents\BAKALAURAS\Bakalauras.API\Bakalauras.API\Bakalauras.API\Bakalauras\Bakalauras.API\obj\Debug\net8.0\Bakalauras.API.sourcelink.json
 C:\Users\picom\Documents\BAKALAURAS\Bakalauras.API\Bakalauras.API\Bakalauras.API\Bakalauras\Bakalauras.API\obj\Debug\net8.0\scopedcss\bundle\Bakalauras.API.styles.css
