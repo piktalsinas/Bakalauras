@@ -1,20 +1,23 @@
 ﻿using Newtonsoft.Json;
 using System.Text;
 using Microsoft.Extensions.Logging;
+using Bakalauras.Domain.Models;
+using Microsoft.Extensions.Options;
 
 namespace Bakalauras.App.Services
 {
     public class LanguageService
     {
         private readonly ILogger<LanguageService> _logger;
-        private readonly string _pageAccessToken = "EAAM60zgkJVoBOxQgRZBe6qsdrsatspnVzAtC2qZATUJt4JHnoPtcErgixfSwHKHgTH2Mv0Gf0E7UmJTJTpO3TyZBoaClcgMeYq6omT4uYU8IX8ZCrUKrZB4kyT9qpZBA3OhRi8xOZCIJhHZCdHv44lo9Bp3J55ALOLHdgjDpqzmHdh6QK5trmvZB2aZCacAtbJvqd1owZDZD";
-        private readonly string _baseUrl = "https://7bd8-78-57-195-217.ngrok-free.app";
-        private static readonly Dictionary<string, string> _userLanguages = new();
-
-        public LanguageService(ILogger<LanguageService> logger)
+        private readonly string _pageAccessToken;
+        private readonly string _baseUrl;
+        public LanguageService(ILogger<LanguageService> logger,IOptions<AppSettings> appSettings)
         {
             _logger = logger;
+            _pageAccessToken = appSettings.Value.PageAccessToken;
+            _baseUrl = appSettings.Value.BaseUrl;
         }
+        private static readonly Dictionary<string, string> _userLanguages = new();
 
         public void SetUserLanguage(string userId, string language) => _userLanguages[userId] = language;
 
@@ -39,7 +42,6 @@ namespace Bakalauras.App.Services
                     "Drąsiai naudokitės šiais įrankiais, kad lengviau orientuotumėtės universiteto teritorijoje!",
                     null
                 ),
-                // Updated quick replies for 'Rooms by building'
                 ["prompt_building"] = (
                     "Please enter the building name to see its rooms (e.g., S1, S2).",
                     "Įveskite pastato pavadinimą, kad pamatytumėte jo auditorijas (pvz., S1, S2).",

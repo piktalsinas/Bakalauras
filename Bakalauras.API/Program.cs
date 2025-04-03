@@ -5,15 +5,16 @@ using Bakalauras.App.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Bakalauras.API.Controllers;
+using Bakalauras.Domain.Models;
 //using static BaseNodeService;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add logging
 builder.Services.AddLogging();
 builder.Services.AddControllers();
 
-// Database configuration
+builder.Services.Configure<AppSettings>(builder.Configuration.GetSection("AppSettings"));
+
 builder.Services.AddDbContext<AppDbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"), options =>
@@ -22,13 +23,13 @@ builder.Services.AddDbContext<AppDbContext>(options =>
     });
 });
 
-// Swagger for API documentation
+
 builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new() { Title = "Bakalauras.API", Version = "v1" });
 });
 
-// CORS policy
+
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("CorsPolicy", policy =>
@@ -40,7 +41,6 @@ builder.Services.AddCors(options =>
     });
 });
 
-// Register repositories and services
 builder.Services.AddScoped<INodeRepository, NodeRepository>();
 builder.Services.AddScoped<INodeConnectionRepository, NodeConnectionRepository>();
 builder.Services.AddScoped<IBaseNodeRepository, BaseNodeRepository>();
@@ -53,8 +53,9 @@ builder.Services.AddScoped<FacebookPayloadHandler>();
 builder.Services.AddScoped<FacebookMessageService>();
 builder.Services.AddScoped<LanguageService>();
 builder.Services.AddScoped<NavigationService>();
+builder.Services.AddScoped<WitAiService>();
 
-// Register WebhookController (not needed if using [ApiController])
+
 builder.Services.AddScoped<WebhookController>();
 
 var app = builder.Build();
@@ -69,7 +70,6 @@ app.UseSwaggerUI(c =>
     c.RoutePrefix = string.Empty;
 });
 
-// Map controllers, including WebhookController
 app.MapControllers();
 
 app.Run();

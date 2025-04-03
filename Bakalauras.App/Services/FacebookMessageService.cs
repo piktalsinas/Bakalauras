@@ -1,4 +1,6 @@
-﻿using Newtonsoft.Json;
+﻿using Bakalauras.Domain.Models;
+using Microsoft.Extensions.Options;
+using Newtonsoft.Json;
 using System.Text;
 
 
@@ -6,8 +8,13 @@ namespace Bakalauras.App.Services
 {
     public class FacebookMessageService
     {
-        private readonly string _pageAccessToken = "EAAM60zgkJVoBOxQgRZBe6qsdrsatspnVzAtC2qZATUJt4JHnoPtcErgixfSwHKHgTH2Mv0Gf0E7UmJTJTpO3TyZBoaClcgMeYq6omT4uYU8IX8ZCrUKrZB4kyT9qpZBA3OhRi8xOZCIJhHZCdHv44lo9Bp3J55ALOLHdgjDpqzmHdh6QK5trmvZB2aZCacAtbJvqd1owZDZD";
-        private readonly string _baseUrl = "https://7bd8-78-57-195-217.ngrok-free.app";
+        private readonly string _pageAccessToken;
+        private readonly string _baseUrl;
+        public FacebookMessageService(IOptions<AppSettings> appSettings)
+        {
+            _pageAccessToken = appSettings.Value.PageAccessToken;
+            _baseUrl = appSettings.Value.BaseUrl;
+        }
         private string ImageBaseUrl => $"{_baseUrl}/images";
 
         public async Task SendTextAsync(string recipientId, string text, dynamic quickReplies = null)

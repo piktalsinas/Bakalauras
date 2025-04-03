@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using Bakalauras.Domain.Models;
 using Bakalauras.Persistence.Repositories;
+using Microsoft.Extensions.Options;
 
 namespace Bakalauras.App.Services
 {
@@ -12,10 +13,13 @@ namespace Bakalauras.App.Services
         private readonly NodeConnectionService _nodeConnectionService;
         private readonly FacebookMessageService _messageService;
         private readonly LanguageService _languageService;
-        private readonly string _baseUrl = "https://7bd8-78-57-195-217.ngrok-free.app";
+        
+        private readonly string _baseUrl;
+      
         private string ImageBaseUrl => $"{_baseUrl}/images";
 
         public NavigationService(
+            IOptions<AppSettings> appSettings,
             INodeRepository nodeRepository,
             INodeNameSevice nodeNameService,
             DijkstraService dijkstraService,
@@ -23,6 +27,7 @@ namespace Bakalauras.App.Services
             FacebookMessageService messageService,
             LanguageService languageService)
         {
+            _baseUrl = appSettings.Value.BaseUrl;
             _nodeRepository = nodeRepository;
             _nodeNameService = nodeNameService;
             _dijkstraService = dijkstraService;

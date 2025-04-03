@@ -12,16 +12,19 @@ namespace Bakalauras.App.Services
         private readonly LanguageService _languageService;
         private readonly NavigationService _navigationService;
         private readonly ILogger<FacebookPayloadHandler> _logger;
+        private readonly WitAiService _witAiService;
 
         public FacebookPayloadHandler(
             FacebookMessageService messageService,
             LanguageService languageService,
             NavigationService navigationService,
+            WitAiService witAiService,
             ILogger<FacebookPayloadHandler> logger)
         {
             _messageService = messageService;
             _languageService = languageService;
             _navigationService = navigationService;
+            _witAiService = witAiService;
             _logger = logger;
         }
 
@@ -83,9 +86,13 @@ namespace Bakalauras.App.Services
         {
             var lowerText = text.ToLower();
 
-            if (lowerText == "get nodes")
+            var nlpResponse = await _witAiService.GetIntentAsync(text);
+
+            if (nlpResponse == "prompt_path")
             {
-                await _navigationService.SendAllNodesAsync(senderId);
+                Console.WriteLine("Prompt Path Detected! Sending response...");
+                var (promptText, quickReplies) = _languageService.Translate("prompt_path", senderId);
+                await _messageService.SendTextAsync(senderId, promptText, null);
                 return;
             }
 
