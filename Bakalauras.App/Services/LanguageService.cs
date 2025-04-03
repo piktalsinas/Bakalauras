@@ -78,8 +78,8 @@ namespace Bakalauras.App.Services
                     null
                 ),
                 ["prompt_path"] = (
-                    "Please type the path in format:\nshortest path from Building1 Room1 to Building2 Room2 (e.g., S1_227 to S1_435)",
-                    "Prašome įvesti kelią tokiu formatu:\ntrumpiausias kelias nuo Pastatas1_Auditorija1 iki Pastatas2_Auditorija2 (pvz S1_227 iki S1_435)",
+                    "Please type the path in format:\nBuilding1 Room1 to Building2 Room2 (e.g., S1_227 to S1_435)",
+                    "Prašome įvesti kelią tokiu formatu:\nPastatas1_Auditorija1 iki Pastatas2_Auditorija2 (pvz S1_227 iki S1_435)",
                     null
                 ),
             };

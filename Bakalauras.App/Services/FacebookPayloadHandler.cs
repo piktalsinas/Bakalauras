@@ -106,6 +106,11 @@ namespace Bakalauras.App.Services
                 await _navigationService.SendShortestPathAsync(senderId, text);
                 return;
             }
+            if (Regex.IsMatch(text, @"^\s*[\w\-]+(?:_[\w\-]+)?\s+iki\s+[\w\-]+(?:_[\w\-]+)?\s*$", RegexOptions.IgnoreCase))
+            {
+                await _navigationService.SendShortestPathAsync(senderId, text);
+                return;
+            }
 
             if (Regex.IsMatch(text.Trim(), @"^[\w\-]+_[\w\-]+$", RegexOptions.IgnoreCase))
             {

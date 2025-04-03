@@ -29,7 +29,6 @@ namespace Bakalauras.App.Services
 
                 var witResponse = JsonConvert.DeserializeObject<WitResponse>(response);
 
-                // Log the entire response for debugging purposes
                 Console.WriteLine("Wit.ai Response: " + JsonConvert.SerializeObject(witResponse, Formatting.Indented));
 
                 if (witResponse?.Entities is Dictionary<string, object> entities)

@@ -10,10 +10,12 @@ namespace Bakalauras.App.Services
     {
         private readonly string _pageAccessToken;
         private readonly string _baseUrl;
+        private readonly HttpClient _httpClient;
         public FacebookMessageService(IOptions<AppSettings> appSettings)
         {
             _pageAccessToken = appSettings.Value.PageAccessToken;
             _baseUrl = appSettings.Value.BaseUrl;
+            _httpClient = new HttpClient();
         }
         private string ImageBaseUrl => $"{_baseUrl}/images";
 
@@ -23,15 +25,10 @@ namespace Bakalauras.App.Services
             var payload = new
             {
                 recipient = new { id = recipientId },
-                message = new
-                {
-                    text,
-                    quick_replies = quickReplies // Include quick replies if provided
-                }
+                message = new { text, quick_replies = quickReplies }
             };
             var content = new StringContent(JsonConvert.SerializeObject(payload), Encoding.UTF8, "application/json");
-            using var httpClient = new HttpClient();
-            await httpClient.PostAsync(url, content);
+            await _httpClient.PostAsync(url, content); 
         }
 
 
@@ -51,8 +48,7 @@ namespace Bakalauras.App.Services
                 }
             };
             var content = new StringContent(JsonConvert.SerializeObject(payload), Encoding.UTF8, "application/json");
-            using var httpClient = new HttpClient();
-            await httpClient.PostAsync(url, content);
+            await _httpClient.PostAsync(url, content);  
         }
 
         public async Task SendImageByNameAsync(string recipientId, string name)
