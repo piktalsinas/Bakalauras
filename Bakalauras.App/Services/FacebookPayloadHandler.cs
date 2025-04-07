@@ -47,6 +47,7 @@ namespace Bakalauras.App.Services
             {
                 await HandleMessageAsync(senderId, text);
             }
+
         }
 
         private async Task HandlePostbackAsync(string senderId, string payload)
@@ -69,18 +70,15 @@ namespace Bakalauras.App.Services
                     break;
                 case "FIND_PATH":
                     var (promptText, quickReplies) = _languageService.Translate("prompt_path", senderId);
-                    await _messageService.SendTextAsync(senderId, promptText, null); 
+                    await _messageService.SendTextAsync(senderId, promptText, null);
                     break;
                 case "GET_ROOMS":
                     var buildingPrompt = _languageService.Translate("prompt_building", senderId).text;
-                    var (roomsPrompt, quickRepliesForRooms) = _languageService.Translate("nodes_list", senderId); 
-                    await _messageService.SendTextAsync(senderId, buildingPrompt, quickRepliesForRooms);  
+                    var (roomsPrompt, quickRepliesForRooms) = _languageService.Translate("nodes_list", senderId);
+                    await _messageService.SendTextAsync(senderId, buildingPrompt, quickRepliesForRooms);
                     break;
             }
         }
-
-
-
 
         private async Task HandleMessageAsync(string senderId, string text)
         {
@@ -93,6 +91,25 @@ namespace Bakalauras.App.Services
                 Console.WriteLine("Prompt Path Detected! Sending response...");
                 var (promptText, quickReplies) = _languageService.Translate("prompt_path", senderId);
                 await _messageService.SendTextAsync(senderId, promptText, null);
+                return;
+            }
+
+            if (nlpResponse == "questions")
+            {
+                Console.WriteLine("Questions Detected! Sending timetable...");
+
+                var userLanguage = _languageService.GetUserLanguage(senderId);
+
+                string timetable = string.Empty;
+                if (userLanguage == "en")
+                {
+                    timetable = _witAiService.GetTimetableInEnglish();
+                }
+                else if (userLanguage == "lt")
+                {
+                    timetable = _witAiService.GetTimetableInLithuanian();
+                }
+                await _messageService.SendTextAsync(senderId, timetable, null);
                 return;
             }
 
@@ -118,4 +135,5 @@ namespace Bakalauras.App.Services
             }
         }
     }
+
 }

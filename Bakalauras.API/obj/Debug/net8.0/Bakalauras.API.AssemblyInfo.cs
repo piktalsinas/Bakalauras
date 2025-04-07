@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Bakalauras.API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+66d2c9e9030d2f9cee3c8fa31f4b693c2ae16032")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e51b495b875dd1cf1494abd93f7246e1f3e6be72")]
 [assembly: System.Reflection.AssemblyProductAttribute("Bakalauras.API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Bakalauras.API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

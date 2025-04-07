@@ -37,10 +37,43 @@ namespace Bakalauras.App.Services
                     {
                         return "prompt_path";
                     }
+                    if (entities.ContainsKey("questions:questions"))
+                    {
+                        return "questions";
+                    }
                 }
+                
 
                 return witResponse?.Text ?? "Sorry, I couldn't understand that.";
             }
+        }
+
+        public string GetTimetableInEnglish()
+        {
+            return "Here is your lecture timetable:\n" +
+                   "1st Lecture: 8:30 - 10:05\n" +
+                   "2nd Lecture: 10:20 - 11:55\n" +
+                   "3rd Lecture: 12:10 - 13:45\n" +
+                   "Lunch break: 13:45 - 14:30\n" +
+                   "4th Lecture: 14:30 - 16:05\n" +
+                   "5th Lecture: 16:20 - 17:55\n" +
+                   "6th Lecture: 18:10 - 19:45\n" +
+                   "7th Lecture: 19:55 - 21:30";
+
+        }
+
+        
+        public string GetTimetableInLithuanian()
+        {
+            return "Štai jūsų paskaitų tvarkaraštis:\n" +
+                   "1 paskaita: 8:30 - 10:05\n" +
+                   "2 paskaita: 10:20 - 11:55\n" +
+                   "3 paskaita: 12:10 - 13:45\n" +
+                   "Pietų pertrauka: 13:45 - 14:30\n" +
+                   "4 paskaita: 14:30 - 16:05\n" +
+                   "5 paskaita: 16:20 - 17:55\n" +
+                   "6 paskaita: 18:10 - 19:45\n" +
+                   "7 paskaita: 19:55 - 21:30";
         }
 
 

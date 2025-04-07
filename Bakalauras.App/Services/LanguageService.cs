@@ -96,7 +96,10 @@ namespace Bakalauras.App.Services
         }
 
 
-
+        public string GetUserLanguage(string userId)
+        {
+            return _userLanguages.ContainsKey(userId) ? _userLanguages[userId] : "en";
+        }
 
 
         public async Task SetUserMenuAsync(string userId, string language)
