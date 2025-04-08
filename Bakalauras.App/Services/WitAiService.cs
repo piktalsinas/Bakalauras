@@ -41,6 +41,10 @@ namespace Bakalauras.App.Services
                     {
                         return "questions";
                     }
+                    if (entities.ContainsKey("welcome:welcome"))
+                    {
+                        return "welcome";
+                    }
                 }
                 
 

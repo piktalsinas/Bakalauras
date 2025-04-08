@@ -27,6 +27,32 @@
     "EndpointName": "PostBaseNode"
   },
   {
+    "ContainingType": "Bakalauras.API.Controllers.BaseNodeController",
+    "Method": "AddBaseNodesFromImages",
+    "RelativePath": "BaseNode/add-base-nodes-from-images",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Bakalauras.API.Controllers.BaseNodeController",
+    "Method": "CopyBaseNodeImageToPathFolderAsync",
+    "RelativePath": "BaseNode/CopyImage/{baseNodeName}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "baseNodeName",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "Bakalauras.API.Controllers.ImageController",
     "Method": "GetImage",
     "RelativePath": "images/{fileName}",

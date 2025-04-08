@@ -79,6 +79,8 @@ namespace Bakalauras.App.Services
                     break;
             }
         }
+      
+
 
         private async Task HandleMessageAsync(string senderId, string text)
         {
@@ -90,6 +92,13 @@ namespace Bakalauras.App.Services
             {
                 Console.WriteLine("Prompt Path Detected! Sending response...");
                 var (promptText, quickReplies) = _languageService.Translate("prompt_path", senderId);
+                await _messageService.SendTextAsync(senderId, promptText, null);
+                return;
+            }
+            if (nlpResponse == "welcome")
+            {
+                Console.WriteLine("Welcome Detected! Sending response...");
+                var (promptText, quickReplies) = _languageService.Translate("welcome", senderId);
                 await _messageService.SendTextAsync(senderId, promptText, null);
                 return;
             }
@@ -134,6 +143,8 @@ namespace Bakalauras.App.Services
                 await _messageService.SendImageByNameAsync(senderId, text.Trim());
             }
         }
+
+
     }
 
 }

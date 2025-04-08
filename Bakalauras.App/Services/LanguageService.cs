@@ -31,14 +31,16 @@ namespace Bakalauras.App.Services
                     "👋 Welcome! I'm your navigation assistant at Vilnius Tech University.\n\n" +
                     "My main purpose is to:\n" +
                     "• Help students find the shortest path to their desired auditorium\n" +
-                    "• View a photo of your desired auditorium\n" +
+                    "• View a photo of your desired building\n" +
                     "• List rooms by building\n\n" +
+                    "• Get all lectures timetable\n\n" +
                     "Feel free to use these features to make your campus navigation easier!",
                     "👋 Sveiki! Aš esu jūsų navigacijos asistentas Vilnius Tech universitete.\n\n" +
                     "Mano pagrindinė paskirtis:\n" +
                     "• Padėti studentams rasti trumpiausią kelią iki norimos auditorijos\n" +
-                    "• Peržiūrėti norimos auditorijos nuotrauką\n" +
+                    "• Peržiūrėti norimo pastato nuotrauką\n" +
                     "• Gauti auditorijų sąrašą pagal pastatą\n\n" +
+                    "• Gauti visų paskaitų tvarkaraštį\n\n" +
                     "Drąsiai naudokitės šiais įrankiais, kad lengviau orientuotumėtės universiteto teritorijoje!",
                     null
                 ),
@@ -48,8 +50,8 @@ namespace Bakalauras.App.Services
                     null
                 ),
                 ["nodes_list"] = (
-                    "Here are your rooms:",
-                    "Štai jūsų auditorijos:",
+                    "Here is a picture of building and it's rooms:",
+                    "Štai norimas pastatas ir jo auditorijos:",
                     new[]
                     {
                 new { content_type = "text", title = "S1", payload = "S1" },
@@ -109,14 +111,14 @@ namespace Bakalauras.App.Services
                 {
             new { type = "postback", title = "INFO", payload = "INFO" },
             new { type = "postback", title = "Rasti kelią 📍", payload = "FIND_PATH" },
-            new { type = "postback", title = "Gauti auditorijas 🏫", payload = "GET_ROOMS" },
+            new { type = "postback", title = "Pastatas ir Auditorijos 🏫", payload = "GET_ROOMS" },
             new { type = "postback", title = "Pakeisti į EN", payload = "LANGUAGE_EN" }
                 }
                 : new[]
                 {
             new { type = "postback", title = "INFO", payload = "INFO" },
             new { type = "postback", title = "Find Path 📍", payload = "FIND_PATH" },
-            new { type = "postback", title = "Rooms by Building 🏫", payload = "GET_ROOMS" },
+            new { type = "postback", title = "Building and Rooms 🏫", payload = "GET_ROOMS" },
             new { type = "postback", title = "Switch to LT", payload = "LANGUAGE_LT" }
                 };
 

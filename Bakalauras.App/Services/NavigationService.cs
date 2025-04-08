@@ -65,9 +65,12 @@ namespace Bakalauras.App.Services
                 await _messageService.SendTextAsync(recipientId, noNodesText, quickReplies);
                 return;
             }
+            var imageUrl = $"{ImageBaseUrl}/{baseNodeName}.jpg";
+
 
             var (nodesListText, quickRepliesForNodes) = _languageService.Translate("nodes_list", recipientId);
             var message = nodesListText + string.Join(", ", nodes.Select(n => n.Name));
+            await _messageService.SendImageAsync(recipientId, imageUrl);
             await _messageService.SendTextAsync(recipientId, message, quickRepliesForNodes);
         }
 

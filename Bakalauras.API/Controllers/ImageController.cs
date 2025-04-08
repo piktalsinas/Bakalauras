@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.IO;
+using System.Linq;
 
 namespace Bakalauras.API.Controllers
 {
@@ -9,6 +10,7 @@ namespace Bakalauras.API.Controllers
     {
         private readonly string _nodeImagesDirectory = @"C:\Users\picom\Documents\BAKALAURAS\Nodes";
         private readonly string _connectionImagesDirectory = @"C:\Users\picom\Documents\BAKALAURAS\ConnectionPhotos";
+        private readonly string _baseNodeImagesDirectory = @"C:\Users\picom\Documents\BAKALAURAS\BaseNodes";
 
         [HttpGet("{fileName}")]
         public IActionResult GetImage(string fileName)
@@ -16,10 +18,12 @@ namespace Bakalauras.API.Controllers
             if (string.IsNullOrWhiteSpace(fileName))
                 return BadRequest("Filename is required.");
 
-            // Logic: if image name contains 3 or more underscores, it's a connection image
+            
             string selectedDirectory = fileName.Count(c => c == '_') >= 3
                 ? _connectionImagesDirectory
-                : _nodeImagesDirectory;
+                : fileName.Length > 2 && fileName.All(char.IsLetterOrDigit) 
+                    ? _baseNodeImagesDirectory
+                    : _nodeImagesDirectory;
 
             var filePath = Path.Combine(selectedDirectory, fileName);
 

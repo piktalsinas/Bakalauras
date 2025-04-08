@@ -44,6 +44,40 @@
         }
       }
     },
+    "/BaseNode/add-base-nodes-from-images": {
+      "post": {
+        "tags": [
+          "BaseNode"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/BaseNode/CopyImage/{baseNodeName}": {
+      "post": {
+        "tags": [
+          "BaseNode"
+        ],
+        "parameters": [
+          {
+            "name": "baseNodeName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/images/{fileName}": {
       "get": {
         "tags": [

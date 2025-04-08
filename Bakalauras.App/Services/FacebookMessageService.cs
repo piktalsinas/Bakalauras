@@ -14,13 +14,15 @@ namespace Bakalauras.App.Services
         private readonly string _baseUrl;
         private readonly HttpClient _httpClient;
         private readonly ILogger<LanguageService> _logger;
+        private readonly WitAiService _witAiService;
 
-        public FacebookMessageService(IOptions<AppSettings> appSettings, ILogger<LanguageService> logger)
+        public FacebookMessageService(IOptions<AppSettings> appSettings, ILogger<LanguageService> logger, WitAiService witAiService)
         {
             _pageAccessToken = appSettings.Value.PageAccessToken;
             _baseUrl = appSettings.Value.BaseUrl;
             _httpClient = new HttpClient();
             _logger = logger;
+            _witAiService = witAiService;
         }
 
         private string ImageBaseUrl => $"{_baseUrl}/images";
@@ -101,6 +103,68 @@ namespace Bakalauras.App.Services
                 }
             }
         }
+
+        public async Task SendClarificationMessageAsync(string recipientId, string language)
+        {
+            string messageText = language == "lt"
+                ? "Ar galite perfrazuoti?"  
+                : "Could you repeat?";      
+
+            await SendTextAsync(recipientId, messageText);
+        }
+        public async Task HandleUserInputAsync(string recipientId, string userInput, string language)
+        {
+            var intent = await _witAiService.GetIntentAsync(userInput); // Get the intent from Wit.ai
+
+            if (intent == "welcome")
+            {
+                // Log the welcome intent detection
+                _logger.LogInformation("Welcome Intent Detected! Sending response...");
+
+                // Send a welcome message based on the user's language
+                var welcomeMessage = language == "en"
+                    ? "Hello! I am your navigation chatbot, I would like to help you. You can use the menu on the right side for more information."
+                    : "Sveiki! Aš esu jūsų navigacijos pokalbių robotas. Noriu jums padėti. Galite naudotis meniu dešinėje pusėje, kad gautumėte daugiau informacijos.";
+
+                await SendTextAsync(recipientId, welcomeMessage);
+            }
+            else
+            {
+                // If it's not a recognized intent, proceed with translation and normal handling
+                var response = ProcessUserInput(userInput);
+
+                if (response == null)
+                {
+                    await SendClarificationMessageAsync(recipientId, language);
+                }
+                else
+                {
+                    await SendTextAsync(recipientId, response, null);
+                }
+            }
+        }
+
+
+
+
+        private string ProcessUserInput(string input)
+        {
+            if (input.Equals("INFO", StringComparison.OrdinalIgnoreCase))
+            {
+                return "Here is some information about the university.";
+            }
+            else if (input.Equals("FIND_PATH", StringComparison.OrdinalIgnoreCase))
+            {
+                return "Please provide the starting and ending points to find a path.";
+            }
+            else if (input.Equals("GET_ROOMS", StringComparison.OrdinalIgnoreCase))
+            {
+                return "Please provide the building name to get a list of rooms.";
+            }
+
+            return null;
+        }
+
 
         public async Task SendImageByNameAsync(string recipientId, string name)
         {
