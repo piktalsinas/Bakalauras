@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bakalauras.Persistence", "B
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{238C4CFC-CA3E-4CC0-8FD0-050B4E255DF3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bakalauras.UnitTests", "Bakalauras.UnitTests\Bakalauras.UnitTests.csproj", "{6A0E5AA4-A8A1-4616-A898-F979AEEF2B5C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +37,10 @@ Global
 		{9E6322AF-8A16-4A05-BCEE-E524FDB38EDF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9E6322AF-8A16-4A05-BCEE-E524FDB38EDF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9E6322AF-8A16-4A05-BCEE-E524FDB38EDF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6A0E5AA4-A8A1-4616-A898-F979AEEF2B5C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A0E5AA4-A8A1-4616-A898-F979AEEF2B5C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A0E5AA4-A8A1-4616-A898-F979AEEF2B5C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A0E5AA4-A8A1-4616-A898-F979AEEF2B5C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
