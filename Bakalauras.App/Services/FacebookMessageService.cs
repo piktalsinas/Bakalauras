@@ -29,6 +29,11 @@ namespace Bakalauras.App.Services
 
         public async Task SendTextAsync(string recipientId, string text, dynamic quickReplies = null)
         {
+            if (string.IsNullOrEmpty(text))
+            {
+                text = "Sorry, I didn't understand that. Could you try again?";
+            }
+
             var url = $"https://graph.facebook.com/v10.0/me/messages?access_token={_pageAccessToken}";
             var payload = new
             {
@@ -37,7 +42,6 @@ namespace Bakalauras.App.Services
             };
             var content = new StringContent(JsonConvert.SerializeObject(payload), Encoding.UTF8, "application/json");
 
-            // Retry logic for better reliability
             int retries = 3;
             while (retries > 0)
             {
@@ -62,6 +66,7 @@ namespace Bakalauras.App.Services
             }
         }
 
+
         public async Task SendImageAsync(string recipientId, string imageUrl)
         {
             var url = $"https://graph.facebook.com/v10.0/me/messages?access_token={_pageAccessToken}";
@@ -77,18 +82,25 @@ namespace Bakalauras.App.Services
                     }
                 }
             };
+
             var content = new StringContent(JsonConvert.SerializeObject(payload), Encoding.UTF8, "application/json");
 
-            // Retry logic for better reliability
             int retries = 3;
             while (retries > 0)
             {
                 try
                 {
                     var response = await _httpClient.PostAsync(url, content);
+                    var responseBody = await response.Content.ReadAsStringAsync();
+                    _logger.LogInformation($"Response: {responseBody}");
+
                     if (response.IsSuccessStatusCode)
                     {
                         break;
+                    }
+                    else
+                    {
+                        _logger.LogError($"Failed to send image: {responseBody}");
                     }
                 }
                 catch (Exception ex)
@@ -96,6 +108,7 @@ namespace Bakalauras.App.Services
                     // Log the exception
                     _logger.LogError($"Error sending image: {ex.Message}");
                 }
+
                 retries--;
                 if (retries == 0)
                 {
@@ -103,6 +116,8 @@ namespace Bakalauras.App.Services
                 }
             }
         }
+
+
 
         public async Task SendClarificationMessageAsync(string recipientId, string language)
         {
@@ -112,16 +127,14 @@ namespace Bakalauras.App.Services
 
             await SendTextAsync(recipientId, messageText);
         }
-        public async Task HandleUserInputAsync(string recipientId, string userInput, string language)
+     /*   public async Task HandleUserInputAsync(string recipientId, string userInput, string language)
         {
-            var intent = await _witAiService.GetIntentAsync(userInput); // Get the intent from Wit.ai
+            var intent = await _witAiService.GetIntentAsync(userInput); 
 
             if (intent == "welcome")
             {
-                // Log the welcome intent detection
                 _logger.LogInformation("Welcome Intent Detected! Sending response...");
 
-                // Send a welcome message based on the user's language
                 var welcomeMessage = language == "en"
                     ? "Hello! I am your navigation chatbot, I would like to help you. You can use the menu on the right side for more information."
                     : "Sveiki! Aš esu jūsų navigacijos pokalbių robotas. Noriu jums padėti. Galite naudotis meniu dešinėje pusėje, kad gautumėte daugiau informacijos.";
@@ -142,12 +155,12 @@ namespace Bakalauras.App.Services
                     await SendTextAsync(recipientId, response, null);
                 }
             }
-        }
+        }*/
 
 
 
 
-        private string ProcessUserInput(string input)
+        /*private string ProcessUserInput(string input)
         {
             if (input.Equals("INFO", StringComparison.OrdinalIgnoreCase))
             {
@@ -163,7 +176,7 @@ namespace Bakalauras.App.Services
             }
 
             return null;
-        }
+        }*/
 
 
         public async Task SendImageByNameAsync(string recipientId, string name)

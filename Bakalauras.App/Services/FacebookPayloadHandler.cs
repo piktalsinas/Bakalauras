@@ -121,6 +121,23 @@ namespace Bakalauras.App.Services
                 await _messageService.SendTextAsync(senderId, timetable, null);
                 return;
             }
+            if (nlpResponse == "welcome")
+            {
+                Console.WriteLine("Welcome Detected! Sending response...");
+                var userLanguage = _languageService.GetUserLanguage(senderId);
+
+                var (welcomeText, quickReplies) = _languageService.Translate("welcome", senderId);
+
+                if (string.IsNullOrEmpty(welcomeText))
+                {
+                    welcomeText = userLanguage == "en"
+                        ? "Hello! I am your navigation chatbot, I would like to help you. You can use the menu on the right side for more information."
+                        : "Sveiki! Aš esu jūsų navigacijos pokalbių robotas. Noriu jums padėti. Galite naudotis meniu dešinėje pusėje, kad gautumėte daugiau informacijos.";
+                }
+
+                await _messageService.SendTextAsync(senderId, welcomeText);
+                return;
+            }
 
             if (Regex.IsMatch(lowerText, @"^s\d+$"))
             {

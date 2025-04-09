@@ -30,23 +30,23 @@ namespace Bakalauras.App.Services
                 ["info"] = (
                     "👋 Welcome! I'm your navigation assistant at Vilnius Tech University.\n\n" +
                     "My main purpose is to:\n" +
-                    "• Help students find the shortest path to their desired auditorium\n" +
-                    "• View a photo of your desired building\n" +
-                    "• List rooms by building\n\n" +
-                    "• Get all lectures timetable\n\n" +
+                    "• Help students find *the shortest path* to their desired auditorium\n" +
+                    "• View a photo of your *desired building*\n" +
+                    "• *List rooms by building*\n" +
+                    "• Get all lectures *timetable*\n\n" +
                     "Feel free to use these features to make your campus navigation easier!",
                     "👋 Sveiki! Aš esu jūsų navigacijos asistentas Vilnius Tech universitete.\n\n" +
                     "Mano pagrindinė paskirtis:\n" +
-                    "• Padėti studentams rasti trumpiausią kelią iki norimos auditorijos\n" +
-                    "• Peržiūrėti norimo pastato nuotrauką\n" +
-                    "• Gauti auditorijų sąrašą pagal pastatą\n\n" +
-                    "• Gauti visų paskaitų tvarkaraštį\n\n" +
+                    "• Padėti studentams rasti *trumpiausią kelią* iki norimos auditorijos\n" +
+                    "• Peržiūrėti norimo *pastato nuotrauką*\n" +
+                    "• Gauti *auditorijų sąrašą pagal pastatą*\n" +
+                    "• Gauti visų paskaitų *tvarkaraštį*\n\n" +
                     "Drąsiai naudokitės šiais įrankiais, kad lengviau orientuotumėtės universiteto teritorijoje!",
                     null
                 ),
                 ["prompt_building"] = (
-                    "Please enter the building name to see its rooms (e.g., S1, S2).",
-                    "Įveskite pastato pavadinimą, kad pamatytumėte jo auditorijas (pvz., S1, S2).",
+                    "Please enter the building name to see its rooms *(e.g., S1, S2)*.",
+                    "Įveskite pastato pavadinimą, kad pamatytumėte jo auditorijas *(pvz., S1, S2)*.",
                     null
                 ),
                 ["nodes_list"] = (
@@ -80,10 +80,15 @@ namespace Bakalauras.App.Services
                     null
                 ),
                 ["prompt_path"] = (
-                    "Please type the path in format:\nBuilding1 Room1 to Building2 Room2 (e.g., S1_227 to S1_435)",
-                    "Prašome įvesti kelią tokiu formatu:\nPastatas1_Auditorija1 iki Pastatas2_Auditorija2 (pvz S1_227 iki S1_435)",
+                    "Please type the path in format:\nBuilding1 Room1 to Building2 Room2 (e.g., *S1_227 to S1_435*)",
+                    "Prašome įvesti kelią tokiu formatu:\nPastatas1_Auditorija1 iki Pastatas2_Auditorija2 (pvz *S1_227 iki S1_435*)",
                     null
                 ),
+                ["welcome"] = (
+                    "Hello! I'd be happy to assist you :)\n For more information, feel free to use *the menu on the right side*.",
+                    "Sveiki! Džiaugčiausi galėdamas jums padėti :)\n Daugiau informacijos rasite naudodamiesi *meniu dešinėje pusėje*.",
+                    null
+                )
             };
 
             if (translations.TryGetValue(key, out var translation))
