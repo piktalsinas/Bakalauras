@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Bakalauras.App.Services
 {
-    public class DijkstraService
+    public class DijkstraService : IDijkstraService
     {
         private readonly INodeRepository _nodeRepository;
         private readonly INodeConnectionRepository _nodeConnectionRepository;

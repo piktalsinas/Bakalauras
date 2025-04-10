@@ -20,22 +20,18 @@ namespace Bakalauras.Persistence.Repositories.EF
                 return null;
             }
 
-            // Fetch the FromNode and ToNode to generate the Name
             var fromNode = await _context.Nodes.Include(n => n.Parent).FirstOrDefaultAsync(n => n.Id == nodeConnection.FromNodeId);
             var toNode = await _context.Nodes.Include(n => n.Parent).FirstOrDefaultAsync(n => n.Id == nodeConnection.ToNodeId);
 
             if (fromNode != null && toNode != null)
             {
-                // Ensure you handle the case where Parent is null
                 var fromParentName = fromNode.ParentName ?? "NoParent";
                 var toParentName = toNode.ParentName ?? "NoParent";
 
-                // Generate the Name using ParentName1_Name1_ParentName2_Name2
                 nodeConnection.Name = $"{fromParentName}_{fromNode.Name}_{toParentName}_{toNode.Name}";
             }
             else
             {
-                // Handle case where nodes are not found (you may throw an exception or handle it differently)
                 return null;
             }
 

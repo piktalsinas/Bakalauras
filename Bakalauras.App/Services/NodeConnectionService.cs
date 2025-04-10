@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Bakalauras.App.Services
 {
-    public class NodeConnectionService
+    public class NodeConnectionService : INodeConnectionService
     {
         private readonly INodeConnectionRepository _nodeConnectionRepository;
         private readonly INodeRepository _nodeRepository;
@@ -79,7 +79,7 @@ namespace Bakalauras.App.Services
             }
         }
 
-        public async Task<bool> CopyPathImagesAsync(List<Node> path)
+        public virtual async Task<bool> CopyPathImagesAsync(List<Node> path)
         {
             if (path == null || path.Count < 2)
             {

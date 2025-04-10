@@ -15,11 +15,13 @@ namespace Bakalauras.API.Controllers
     {
         private readonly ILogger<NodeConnectionController> _logger;
         private readonly INodeConnectionRepository _nodeConnectionRepository;
-        private readonly NodeConnectionService _nodeConnectionService;
-        private readonly DijkstraService _dijkstraService;
+        private readonly INodeConnectionService _nodeConnectionService;
+        //private readonly NodeConnectionService _nodeConnectionService;
+        //private readonly DijkstraService _dijkstraService;
+        private readonly IDijkstraService _dijkstraService;
         private readonly INodeNameSevice _nodeNameService;
 
-        public NodeConnectionController(ILogger<NodeConnectionController> logger, INodeConnectionRepository nodeConnectionRepository, NodeConnectionService nodeConnectionService, DijkstraService dijkstraService, INodeNameSevice nodeNameService)
+        public NodeConnectionController(ILogger<NodeConnectionController> logger, INodeConnectionRepository nodeConnectionRepository, INodeConnectionService nodeConnectionService, IDijkstraService dijkstraService, INodeNameSevice nodeNameService)
         {
             _logger = logger;
             _nodeConnectionRepository = nodeConnectionRepository;
@@ -44,7 +46,6 @@ namespace Bakalauras.API.Controllers
                 Weight = weight
             };
 
-            // The Name will be automatically generated in the repository
             NodeConnection? addedNodeConnection = await _nodeConnectionRepository.AddAsync(nodeConnection);
             if (addedNodeConnection is null)
             {
@@ -76,9 +77,8 @@ namespace Bakalauras.API.Controllers
 
         [HttpGet("shortest-path")]
         public async Task<ActionResult<List<Node>>> GetShortestPath(
-     [FromQuery] string fullName1, [FromQuery] string fullName2)
+        [FromQuery] string fullName1, [FromQuery] string fullName2)
         {
-            // Fetch node IDs using full names
             var startNodeId = await _nodeNameService.GetNodeIdByFullName(fullName1);
             var endNodeId = await _nodeNameService.GetNodeIdByFullName(fullName2);
 
@@ -87,7 +87,6 @@ namespace Bakalauras.API.Controllers
                 return NotFound("One or both nodes not found.");
             }
 
-            // Call existing DijkstraService with found node IDs
             var path = await _dijkstraService.FindShortestPathAsync(startNodeId.Value, endNodeId.Value);
 
             if (path == null || path.Count == 0)
@@ -95,7 +94,6 @@ namespace Bakalauras.API.Controllers
                 return NotFound("No path found between the specified nodes.");
             }
 
-            // Copy path images
             bool copied = await _nodeConnectionService.CopyPathImagesAsync(path);
             if (!copied)
             {
@@ -105,6 +103,7 @@ namespace Bakalauras.API.Controllers
             return Ok(path);
         }
 
-
     }
+
+
 }
