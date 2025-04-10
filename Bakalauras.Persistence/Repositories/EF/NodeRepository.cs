@@ -19,12 +19,11 @@ namespace Bakalauras.Persistence.Repositories
             return await _context.Nodes.FindAsync(id);
         }
 
-        // Modify this method to return all nodes with the same name
         public async Task<IEnumerable<Node>> GetByNameAsync(string name)
         {
             return await _context.Nodes
                 .Where(n => n.Name == name)
-                .ToListAsync(); // Now returns all nodes with that name
+                .ToListAsync(); 
         }
 
         public async Task<Node> AddAsync(Node node)
@@ -38,7 +37,6 @@ namespace Bakalauras.Persistence.Repositories
         {
             if (node.ParentId.HasValue)
             {
-                // Fetch the parent node by ParentId
                 var parentNode = await _context.BaseNodes.FirstOrDefaultAsync(bn => bn.Id == node.ParentId.Value);
                 if (parentNode != null)
                 {
@@ -70,7 +68,6 @@ namespace Bakalauras.Persistence.Repositories
     
          public async Task<BaseNode?> GetParentByIdAsync(Guid parentId)
         {
-            // Fetch the parent node from the BaseNode table by its Id
             return await _context.BaseNodes.FirstOrDefaultAsync(bn => bn.Id == parentId);
         }
 

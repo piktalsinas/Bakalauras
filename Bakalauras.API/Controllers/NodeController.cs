@@ -38,7 +38,6 @@ namespace Bakalauras.API.Controllers
                 return BadRequest("BaseNode name is required.");
             }
 
-            // Fetch all nodes that have this BaseNode as their parent
             var nodes = await _nodeRepository.GetNodesByBaseNodeAsync(baseNodeName);
 
             if (nodes == null || !nodes.Any())
@@ -128,7 +127,6 @@ namespace Bakalauras.API.Controllers
                     return NotFound("Node not found.");
                 }
 
-                // Ensure parent node name matches the provided parameter
                 if (node.ParentName == null || !node.ParentName.Equals(parentNodeName, StringComparison.OrdinalIgnoreCase))
                 {
                     _logger.LogError("Parent node name mismatch for node {NodeName}. Expected: {ExpectedParent}, Provided: {ProvidedParent}", nodeName, node.ParentName, parentNodeName);
@@ -138,7 +136,6 @@ namespace Bakalauras.API.Controllers
                 string sourceFolder = @"C:\\Users\\picom\\Documents\\BAKALAURAS\\Nodes";
                 string destinationFolder = @"C:\\Users\\picom\\Documents\\BAKALAURAS\\NodesPath";
 
-                // Construct the expected file name structure
                 string sourceFileName = $"{parentNodeName}_{node.Name}.jpg";
                 string sourceFilePath = Path.Combine(sourceFolder, sourceFileName);
                 string destinationFilePath = Path.Combine(destinationFolder, sourceFileName);
@@ -173,35 +170,29 @@ namespace Bakalauras.API.Controllers
         {
             try
             {
-                // Fetch the node by its ID
                 Node? node = await _nodeRepository.GetByIdAsync(id);
                 if (node == null)
                 {
                     return NotFound($"Node with ID {id} not found.");
                 }
 
-                // If ParentId is provided, fetch the Parent Node and assign ParentId and ParentName
                 if (parentId.HasValue)
                 {
-                    // Fetch the parent node by ParentId (which is referencing BaseNode.Id)
                     var parentNode = await _nodeRepository.GetParentByIdAsync(parentId.Value);
                     if (parentNode == null)
                     {
                         return NotFound($"Parent with ID {parentId.Value} not found.");
                     }
 
-                    // Now we set the ParentId and ParentName of the Node
-                    node.ParentId = parentNode.Id;  // ParentId references BaseNode's Id
-                    node.ParentName = parentNode.Name;  // ParentName is fetched from BaseNode
+                    node.ParentId = parentNode.Id; 
+                    node.ParentName = parentNode.Name;  
                 }
                 else
                 {
-                    // If no ParentId is provided, you can choose to clear the Parent relationship (optional)
                     node.ParentId = null;
                     node.ParentName = null;
                 }
 
-                // Update the node in the repository
                 Node? updatedNode = await _nodeRepository.UpdateAsync(node);
                 if (updatedNode == null)
                 {

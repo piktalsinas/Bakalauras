@@ -5,6 +5,11 @@ using Bakalauras.App.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Moq;
+using NUnit.Framework;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Bakalauras.UnitTests
 {
@@ -19,22 +24,17 @@ namespace Bakalauras.UnitTests
         [SetUp]
         public void Setup()
         {
-            // Mock the dependencies
             _loggerControllerMock = new Mock<ILogger<NodeController>>();
             _loggerServiceMock = new Mock<ILogger<NodeService>>();
             _nodeRepositoryMock = new Mock<INodeRepository>();
 
-            // Create real instance of NodeService with mocked dependencies
             _nodeService = new NodeService(_nodeRepositoryMock.Object, _loggerServiceMock.Object);
-
-            // Initialize NodeController with mocked dependencies
             _nodeController = new NodeController(_loggerControllerMock.Object, _nodeRepositoryMock.Object, _nodeService);
         }
 
         [Test]
-        public async Task GetAll_ReturnsOkResult_WithNodes()
+        public async Task GetAll_ReturnsOk()
         {
-            // Arrange
             var nodes = new List<Node>
             {
                 new Node { Id = Guid.NewGuid(), Name = "Node1" },
@@ -43,10 +43,8 @@ namespace Bakalauras.UnitTests
 
             _nodeRepositoryMock.Setup(repo => repo.GetAllAsync()).ReturnsAsync(nodes);
 
-            // Act
             var result = await _nodeController.GetAll();
 
-            // Assert
             Assert.IsInstanceOf<ActionResult<IEnumerable<Node>>>(result);
             var okResult = result.Result as OkObjectResult;
             Assert.IsNotNull(okResult);
@@ -58,12 +56,10 @@ namespace Bakalauras.UnitTests
         }
 
         [Test]
-        public async Task GetNodesByBaseNode_ReturnsBadRequest_WhenBaseNodeNameIsNullOrEmpty()
+        public async Task GetNodesByBaseNode_ReturnsBadRequest()
         {
-            // Act
             var result = await _nodeController.GetNodesByBaseNode(null);
 
-            // Assert
             Assert.IsInstanceOf<ActionResult<IEnumerable<Node>>>(result);
             var badRequestResult = result.Result as BadRequestObjectResult;
             Assert.IsNotNull(badRequestResult);
@@ -72,16 +68,13 @@ namespace Bakalauras.UnitTests
         }
 
         [Test]
-        public async Task GetNodesByBaseNode_ReturnsNotFound_WhenNoNodesFound()
+        public async Task GetNodesByBaseNode_ReturnsNotFound()
         {
-            // Arrange
             string baseNodeName = "S1";
             _nodeRepositoryMock.Setup(repo => repo.GetNodesByBaseNodeAsync(baseNodeName)).ReturnsAsync(new List<Node>());
 
-            // Act
             var result = await _nodeController.GetNodesByBaseNode(baseNodeName);
 
-            // Assert
             Assert.IsInstanceOf<ActionResult<IEnumerable<Node>>>(result);
             var notFoundResult = result.Result as NotFoundObjectResult;
             Assert.IsNotNull(notFoundResult);
@@ -90,22 +83,141 @@ namespace Bakalauras.UnitTests
         }
 
         [Test]
-        public async Task AddNodesFromImages_ReturnsBadRequest_WhenFolderDoesNotExist()
+        public async Task Post_ReturnsOk()
         {
-            // Arrange
-            var folderPath = @"C:\NonExistentFolder";  // Simulate a non-existent folder path
+            string nodeName = "NewNode";
+            var newNode = new Node { Id = Guid.NewGuid(), Name = nodeName };
 
-            // Act
+            _nodeRepositoryMock.Setup(repo => repo.AddAsync(It.IsAny<Node>())).ReturnsAsync(newNode);
+
+            var result = await _nodeController.Post(nodeName);
+
+            Assert.IsInstanceOf<ActionResult<Node>>(result);
+            var okResult = result.Result as OkObjectResult;
+            Assert.IsNotNull(okResult);
+            Assert.AreEqual(200, okResult.StatusCode);
+
+            var returnValue = okResult.Value as Node;
+            Assert.IsNotNull(returnValue);
+            Assert.AreEqual(nodeName, returnValue.Name);
+        }
+
+        [Test]
+        public async Task Put_ReturnsOk()
+        {
+            Guid nodeId = Guid.NewGuid();
+            string updatedName = "UpdatedNode";
+            var existingNode = new Node { Id = nodeId, Name = "OriginalNode" };
+            var updatedNode = new Node { Id = nodeId, Name = updatedName };
+
+            _nodeRepositoryMock.Setup(repo => repo.GetByIdAsync(nodeId)).ReturnsAsync(existingNode);
+            _nodeRepositoryMock.Setup(repo => repo.UpdateAsync(It.IsAny<Node>())).ReturnsAsync(updatedNode);
+
+            var result = await _nodeController.Put(nodeId, updatedName);
+
+            Assert.IsInstanceOf<ActionResult<Node>>(result);
+            var okResult = result.Result as OkObjectResult;
+            Assert.IsNotNull(okResult);
+            Assert.AreEqual(200, okResult.StatusCode);
+
+            var returnValue = okResult.Value as Node;
+            Assert.IsNotNull(returnValue);
+            Assert.AreEqual(updatedName, returnValue.Name);
+        }
+
+        [Test]
+        public async Task Delete_ReturnsNoContent()
+        {
+            Guid nodeId = Guid.NewGuid();
+            _nodeRepositoryMock.Setup(repo => repo.DeleteAsync(nodeId)).Returns(Task.CompletedTask);
+
+            var result = await _nodeController.Delete(nodeId);
+
+            Assert.IsInstanceOf<NoContentResult>(result);
+            var noContentResult = result as NoContentResult;
+            Assert.IsNotNull(noContentResult);
+            Assert.AreEqual(204, noContentResult.StatusCode);
+        }
+
+        [Test]
+        public async Task Get_ReturnsOk()
+        {
+            Guid nodeId = Guid.NewGuid();
+            var node = new Node { Id = nodeId, Name = "TestNode" };
+
+            _nodeRepositoryMock.Setup(repo => repo.GetByIdAsync(nodeId)).ReturnsAsync(node);
+
+            var result = await _nodeController.Get(nodeId);
+
+            Assert.IsInstanceOf<ActionResult<Node>>(result);
+            var okResult = result.Result as OkObjectResult;
+            Assert.IsNotNull(okResult);
+            Assert.AreEqual(200, okResult.StatusCode);
+
+            var returnValue = okResult.Value as Node;
+            Assert.IsNotNull(returnValue);
+            Assert.AreEqual(nodeId, returnValue.Id);
+        }
+
+        [Test]
+        public async Task AddNodesFromImages_ReturnsOk()
+        {
+            _nodeService = new NodeService(_nodeRepositoryMock.Object, _loggerServiceMock.Object);
+            _nodeController = new NodeController(_loggerControllerMock.Object, _nodeRepositoryMock.Object, _nodeService);
+
             var result = await _nodeController.AddNodesFromImages();
 
-            // Assert
-            Assert.IsInstanceOf<BadRequestObjectResult>(result); 
-            var badRequestResult = result as BadRequestObjectResult;
-            Assert.IsNotNull(badRequestResult);
-            Assert.AreEqual(400, badRequestResult.StatusCode); 
-            Assert.IsTrue(badRequestResult.Value.ToString().Contains("An error occurred"));
+            Assert.IsInstanceOf<OkObjectResult>(result);
+            var okResult = result as OkObjectResult;
+            Assert.IsNotNull(okResult);
+            Assert.AreEqual(200, okResult.StatusCode);
+            Assert.AreEqual("Nodes added successfully from images.", okResult.Value);
+        }
+
+        [Test]
+        public async Task CopyImageToPathFolder_ReturnsOk()
+        {
+            string parentNodeName = "S1";
+            string nodeName = "Exit";
+
+            var node = new Node { Name = nodeName, ParentName = parentNodeName };
+            _nodeRepositoryMock.Setup(repo => repo.GetByNameAsync(nodeName)).ReturnsAsync(new List<Node> { node });
+
+            var result = await _nodeController.CopyImageToPathFolderAsync(parentNodeName, nodeName);
+
+            Assert.IsInstanceOf<OkObjectResult>(result);
+            var okResult = result as OkObjectResult;
+            Assert.IsNotNull(okResult);
+            Assert.AreEqual(200, okResult.StatusCode);
+            Assert.AreEqual("Image successfully copied to Path folder.", okResult.Value);
         }
 
 
+        [Test]
+        public async Task UpdateNodeParent_ReturnsOk()
+        {
+            Guid nodeId = Guid.NewGuid();
+            Guid parentId = Guid.NewGuid();
+
+            var parentNode = new BaseNode { Id = parentId, Name = "ParentNode" };
+            var node = new Node { Id = nodeId, Name = "ChildNode", ParentId = null, ParentName = null };
+
+            _nodeRepositoryMock.Setup(repo => repo.GetByIdAsync(nodeId)).ReturnsAsync(node);
+            _nodeRepositoryMock.Setup(repo => repo.GetParentByIdAsync(parentId)).ReturnsAsync(parentNode);
+            _nodeRepositoryMock.Setup(repo => repo.UpdateAsync(It.IsAny<Node>())).ReturnsAsync(node);
+
+            var result = await _nodeController.UpdateNodeParent(nodeId, parentId);
+
+            Assert.IsInstanceOf<ActionResult<Node>>(result);
+
+            var okResult = result.Result as OkObjectResult;
+            Assert.IsNotNull(okResult);
+            Assert.AreEqual(200, okResult.StatusCode);
+
+            var returnValue = okResult.Value as Node;
+            Assert.IsNotNull(returnValue);
+            Assert.AreEqual(parentId, returnValue.ParentId);
+            Assert.AreEqual("ParentNode", returnValue.ParentName);
+        }
     }
 }
