@@ -17,18 +17,18 @@ namespace Bakalauras.App.Services
        
 
 
-        public async Task<BaseNode?> AddBaseNodeAsync(string name)
+        public virtual async Task<BaseNode?> AddBaseNodeAsync(string name)
         {
             var existingBaseNode = await _baseNodeRepository.GetByNameAsync(name);
             if (existingBaseNode != null)
             {
-                return null; // BaseNode with the same name already exists
+                return null; 
             }
 
             BaseNode baseNode = new() { Name = name };
             return await _baseNodeRepository.AddAsync(baseNode);
         }
-        public async Task AddBaseNodesFromImagesAsync(string folderPath)
+        public virtual async Task AddBaseNodesFromImagesAsync(string folderPath)
         {
             if (!Directory.Exists(folderPath))
             {

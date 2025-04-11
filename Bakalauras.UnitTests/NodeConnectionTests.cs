@@ -8,7 +8,7 @@ using Bakalauras.API.Controllers;
 
 namespace Bakalauras.UnitTests
 {
-    public class NodeConnectionControllerTests
+    public class NodeConnectionTests
     {
         private Mock<ILogger<NodeConnectionController>> _loggerMockForController;
         private Mock<ILogger<NodeConnectionService>> _loggerMockForService;
@@ -220,4 +220,5 @@ namespace Bakalauras.UnitTests
 
        
     }
+
 }
