@@ -1,6 +1,6 @@
 ﻿using Bakalauras.Domain.Models;
 
-namespace Bakalauras.App.Services;
+namespace Bakalauras.App.Services.IServices;
 
 public interface IDijkstraService
 {

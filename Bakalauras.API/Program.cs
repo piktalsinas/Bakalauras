@@ -6,6 +6,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Bakalauras.API.Controllers;
 using Bakalauras.Domain.Models;
+using Bakalauras.App.Services.IServices;
+//using Bakalauras.Persistence.Repositories.IServices;
 //using static BaseNodeService;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -41,19 +43,23 @@ builder.Services.AddCors(options =>
     });
 });
 
+builder.Services.AddScoped<INodeConnectionService, NodeConnectionService>();
+builder.Services.AddScoped<IDijkstraService, DijkstraService>();
 builder.Services.AddScoped<INodeRepository, NodeRepository>();
 builder.Services.AddScoped<INodeConnectionRepository, NodeConnectionRepository>();
 builder.Services.AddScoped<IBaseNodeRepository, BaseNodeRepository>();
 builder.Services.AddScoped<NodeService>();
 builder.Services.AddScoped<INodeNameSevice, NodeNameSevice>();
 builder.Services.AddScoped<NodeConnectionService>();
+//builder.Services.AddScoped<INodeConnectionService, NodeConnectionService>();
 builder.Services.AddScoped<BaseNodeService>();
 builder.Services.AddScoped<DijkstraService>();
+builder.Services.AddScoped<NavigationService>();
 builder.Services.AddScoped<FacebookPayloadHandler>();
 builder.Services.AddScoped<FacebookMessageService>();
 builder.Services.AddScoped<LanguageService>();
-builder.Services.AddScoped<NavigationService>();
 builder.Services.AddScoped<WitAiService>();
+
 
 
 builder.Services.AddScoped<WebhookController>();

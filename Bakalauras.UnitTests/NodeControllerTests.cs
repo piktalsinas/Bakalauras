@@ -178,7 +178,7 @@ namespace Bakalauras.UnitTests
         public async Task CopyImageToPathFolder_ReturnsOk()
         {
             string parentNodeName = "S1";
-            string nodeName = "Exit";
+            string nodeName = "Elevator4";
 
             var node = new Node { Name = nodeName, ParentName = parentNodeName };
             _nodeRepositoryMock.Setup(repo => repo.GetByNameAsync(nodeName)).ReturnsAsync(new List<Node> { node });

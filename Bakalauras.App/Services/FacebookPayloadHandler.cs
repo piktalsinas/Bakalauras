@@ -30,8 +30,18 @@ namespace Bakalauras.App.Services
 
         public async Task HandlePayloadAsync(FacebookWebhookPayload payload)
         {
-            var messaging = payload?.Entry?.FirstOrDefault()?.Messaging?.FirstOrDefault();
-            if (messaging == null) return;
+            if (payload?.Entry == null || payload.Entry.Count == 0)
+            {
+                _logger.LogWarning("Received empty payload or no entries.");
+                return;
+            }
+
+            var messaging = payload.Entry.FirstOrDefault()?.Messaging?.FirstOrDefault();
+            if (messaging == null)
+            {
+                _logger.LogWarning("No messaging found in the payload.");
+                return;
+            }
 
             var senderId = messaging.Sender?.Id;
             var text = messaging.Message?.Text;

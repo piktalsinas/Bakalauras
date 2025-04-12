@@ -5,6 +5,8 @@ using Microsoft.Extensions.Logging;
 using Moq;
 using Microsoft.AspNetCore.Mvc;
 using Bakalauras.API.Controllers;
+using Bakalauras.App.Services.IServices;
+//using Bakalauras.Persistence.Repositories.IServices;
 
 namespace Bakalauras.UnitTests
 {
@@ -104,8 +106,8 @@ namespace Bakalauras.UnitTests
         [Test]
         public async Task GetShortestPath_ReturnNotFound_NodesNotFound()
         {
-            var fullName1 = "S1_Exit";
-            var fullName2 = "S1_Room3";
+            var fullName1 = "S1_Elevator4";
+            var fullName2 = "S1_419";
 
             _nodeNameServiceMock.Setup(service => service.GetNodeIdByFullName(fullName1)).ReturnsAsync((Guid?)null);
             _nodeNameServiceMock.Setup(service => service.GetNodeIdByFullName(fullName2)).ReturnsAsync((Guid?)null);
@@ -159,8 +161,8 @@ namespace Bakalauras.UnitTests
         [Test]
         public async Task GetShortestPath_WhenPathFound()
         {
-            var fullName1 = "S1_Exit";
-            var fullName2 = "S1_Room3";
+            var fullName1 = "S1_Elevator4";
+            var fullName2 = "S1_419";
 
             var node1Id = Guid.NewGuid();
             var node2Id = Guid.NewGuid();
@@ -183,8 +185,8 @@ namespace Bakalauras.UnitTests
         [Test]
         public async Task GetShortestPath_NodesNotFound()
         {
-            var fullName1 = "S1_Exit";
-            var fullName2 = "S1_Room3";
+            var fullName1 = "S1_Elevator4";
+            var fullName2 = "S1_419";
 
             _nodeNameServiceMock.Setup(service => service.GetNodeIdByFullName(fullName1)).ReturnsAsync((Guid?)null);
             _nodeNameServiceMock.Setup(service => service.GetNodeIdByFullName(fullName2)).ReturnsAsync((Guid?)null);
@@ -200,8 +202,8 @@ namespace Bakalauras.UnitTests
         [Test]
         public async Task GetShortestPath_NoPathFound()
         {
-            var fullName1 = "S1_Exit";
-            var fullName2 = "S1_Room3";
+            var fullName1 = "S1_Elevator4";
+            var fullName2 = "S1_419";
 
             var node1Id = Guid.NewGuid();
             var node2Id = Guid.NewGuid();

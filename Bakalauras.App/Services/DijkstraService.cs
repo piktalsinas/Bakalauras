@@ -1,10 +1,7 @@
-﻿using Bakalauras.Domain.Models;
+﻿using Bakalauras.App.Services.IServices;
+using Bakalauras.Domain.Models;
 using Bakalauras.Persistence.Repositories;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Bakalauras.App.Services
 {
@@ -29,7 +26,6 @@ namespace Bakalauras.App.Services
             var nodeDict = nodes.ToDictionary(n => n.Id);
             var adjacencyList = new Dictionary<Guid, List<NodeConnection>>();
 
-            // Build adjacency list
             foreach (var conn in connections)
             {
                 if (!adjacencyList.ContainsKey(conn.FromNodeId))
@@ -38,7 +34,6 @@ namespace Bakalauras.App.Services
                 adjacencyList[conn.FromNodeId].Add(conn);
             }
 
-            // Initialize distances and predecessors
             var distances = nodes.ToDictionary(n => n.Id, _ => float.MaxValue);
             var previousNodes = new Dictionary<Guid, Guid?>();
             var priorityQueue = new SortedSet<(float, Guid)>(Comparer<(float, Guid)>.Create((a, b) =>
@@ -67,7 +62,7 @@ namespace Bakalauras.App.Services
 
                     if (newDistance < distances[neighborId])
                     {
-                        priorityQueue.Remove((distances[neighborId], neighborId)); // Remove outdated entry
+                        priorityQueue.Remove((distances[neighborId], neighborId)); 
                         distances[neighborId] = newDistance;
                         previousNodes[neighborId] = currentNodeId;
                         priorityQueue.Add((newDistance, neighborId));
@@ -75,7 +70,6 @@ namespace Bakalauras.App.Services
                 }
             }
 
-            // Backtrack to find path
             var path = new List<Node>();
             Guid? at = endNodeId;
             while (at.HasValue && previousNodes.ContainsKey(at.Value))
@@ -84,7 +78,6 @@ namespace Bakalauras.App.Services
                 at = previousNodes[at.Value];
             }
 
-            // **Fix: Ensure the start node is included in the path**
             if (at == startNodeId)
             {
                 path.Add(nodeDict[startNodeId]);
@@ -93,6 +86,5 @@ namespace Bakalauras.App.Services
             path.Reverse();
             return path;
         }
-
     }
 }

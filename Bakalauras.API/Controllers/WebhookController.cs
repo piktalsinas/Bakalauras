@@ -36,6 +36,7 @@ namespace Bakalauras.API.Controllers
         {
             try
             {
+
                 var jsonPayload = JsonConvert.DeserializeObject<FacebookWebhookPayload>(payload.ToString());
                 await _payloadHandler.HandlePayloadAsync(jsonPayload);
                 return Ok("EVENT_RECEIVED");

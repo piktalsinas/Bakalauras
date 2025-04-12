@@ -48,14 +48,20 @@ namespace Bakalauras.App.Services
                 try
                 {
                     var response = await _httpClient.PostAsync(url, content);
+                    var responseBody = await response.Content.ReadAsStringAsync();
+                    _logger.LogInformation($"Response: {responseBody}");
+
                     if (response.IsSuccessStatusCode)
                     {
                         break;
                     }
+                    else
+                    {
+                        _logger.LogError($"Failed to send message. Status: {response.StatusCode}, Response: {responseBody}");
+                    }
                 }
                 catch (Exception ex)
                 {
-                    // Log the exception
                     _logger.LogError($"Error sending message: {ex.Message}");
                 }
                 retries--;
@@ -65,6 +71,7 @@ namespace Bakalauras.App.Services
                 }
             }
         }
+
 
 
         public async Task SendImageAsync(string recipientId, string imageUrl)
@@ -105,7 +112,6 @@ namespace Bakalauras.App.Services
                 }
                 catch (Exception ex)
                 {
-                    // Log the exception
                     _logger.LogError($"Error sending image: {ex.Message}");
                 }
 
@@ -117,8 +123,6 @@ namespace Bakalauras.App.Services
             }
         }
 
-
-
         public async Task SendClarificationMessageAsync(string recipientId, string language)
         {
             string messageText = language == "lt"
@@ -127,58 +131,7 @@ namespace Bakalauras.App.Services
 
             await SendTextAsync(recipientId, messageText);
         }
-     /*   public async Task HandleUserInputAsync(string recipientId, string userInput, string language)
-        {
-            var intent = await _witAiService.GetIntentAsync(userInput); 
-
-            if (intent == "welcome")
-            {
-                _logger.LogInformation("Welcome Intent Detected! Sending response...");
-
-                var welcomeMessage = language == "en"
-                    ? "Hello! I am your navigation chatbot, I would like to help you. You can use the menu on the right side for more information."
-                    : "Sveiki! Aš esu jūsų navigacijos pokalbių robotas. Noriu jums padėti. Galite naudotis meniu dešinėje pusėje, kad gautumėte daugiau informacijos.";
-
-                await SendTextAsync(recipientId, welcomeMessage);
-            }
-            else
-            {
-                // If it's not a recognized intent, proceed with translation and normal handling
-                var response = ProcessUserInput(userInput);
-
-                if (response == null)
-                {
-                    await SendClarificationMessageAsync(recipientId, language);
-                }
-                else
-                {
-                    await SendTextAsync(recipientId, response, null);
-                }
-            }
-        }*/
-
-
-
-
-        /*private string ProcessUserInput(string input)
-        {
-            if (input.Equals("INFO", StringComparison.OrdinalIgnoreCase))
-            {
-                return "Here is some information about the university.";
-            }
-            else if (input.Equals("FIND_PATH", StringComparison.OrdinalIgnoreCase))
-            {
-                return "Please provide the starting and ending points to find a path.";
-            }
-            else if (input.Equals("GET_ROOMS", StringComparison.OrdinalIgnoreCase))
-            {
-                return "Please provide the building name to get a list of rooms.";
-            }
-
-            return null;
-        }*/
-
-
+   
         public async Task SendImageByNameAsync(string recipientId, string name)
         {
             var imageUrl = $"{ImageBaseUrl}/{name}.jpg";
