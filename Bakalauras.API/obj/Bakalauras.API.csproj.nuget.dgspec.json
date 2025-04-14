@@ -64,6 +64,12 @@
               "target": "Package",
               "version": "[1.27.5, )"
             },
+            "Coverlet.Collector": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[6.0.4, )"
+            },
             "Microsoft.AspNetCore.Http.Abstractions": {
               "target": "Package",
               "version": "[2.3.0, )"
@@ -96,6 +102,22 @@
               "target": "Package",
               "version": "[8.0.14, )"
             },
+            "Microsoft.Extensions.Configuration": {
+              "target": "Package",
+              "version": "[9.0.4, )"
+            },
+            "Microsoft.Extensions.Configuration.Binder": {
+              "target": "Package",
+              "version": "[9.0.4, )"
+            },
+            "Microsoft.Extensions.Configuration.Json": {
+              "target": "Package",
+              "version": "[9.0.4, )"
+            },
+            "Microsoft.NET.Test.Sdk": {
+              "target": "Package",
+              "version": "[17.13.0, )"
+            },
             "Moq": {
               "target": "Package",
               "version": "[4.20.72, )"
@@ -108,6 +130,10 @@
               "target": "Package",
               "version": "[1.0.3, )"
             },
+            "ReportGenerator": {
+              "target": "Package",
+              "version": "[5.4.5, )"
+            },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[8.0.0, )"
@@ -115,6 +141,26 @@
             "Swashbuckle.AspNetCore.Swagger": {
               "target": "Package",
               "version": "[8.0.0, )"
+            },
+            "System.IO.Abstractions": {
+              "target": "Package",
+              "version": "[22.0.13, )"
+            },
+            "coverlet.msbuild": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[3.0.3, )"
+            },
+            "xUnit": {
+              "target": "Package",
+              "version": "[2.9.3, )"
+            },
+            "xUnit.runner.visualstudio": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[3.0.2, )"
             }
           },
           "imports": [

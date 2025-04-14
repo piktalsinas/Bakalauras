@@ -54,10 +54,10 @@ namespace Bakalauras.API.Controllers
             Node node = new() { Name = name };
             Node? addedNode = await _nodeRepository.AddAsync(node);
 
-            if (addedNode is null)
+         /*   if (addedNode is null)
             {
                 return BadRequest("Node already exists");
-            }
+            }*/
 
             return Ok(addedNode);
         }
@@ -66,16 +66,16 @@ namespace Bakalauras.API.Controllers
         public async Task<ActionResult<Node>> Put(Guid id, [FromQuery] string name)
         {
             Node? node = await _nodeRepository.GetByIdAsync(id);
-            if (node is null)
+         /*   if (node is null)
             {
                 return NotFound();
-            }
+            }*/
             node.Name = name;
             Node? updatedNode = await _nodeRepository.UpdateAsync(node);
-            if (updatedNode is null)
+           /* if (updatedNode is null)
             {
                 return BadRequest("Node already exists");
-            }
+            }*/
             return Ok(updatedNode);
         }
 
@@ -90,10 +90,10 @@ namespace Bakalauras.API.Controllers
         public async Task<ActionResult<Node>> Get(Guid id)
         {
             Node? node = await _nodeRepository.GetByIdAsync(id);
-            if (node is null)
+            /*if (node is null)
             {
                 return NotFound();
-            }
+            }*/
             return Ok(node);
         }
 
@@ -121,7 +121,7 @@ namespace Bakalauras.API.Controllers
                 //  Node? node = await _nodeRepository.GetByNameAsync(nodeName);
                 Node? node = (await _nodeRepository.GetByNameAsync(nodeName)).FirstOrDefault();
 
-                if (node == null || string.IsNullOrEmpty(node.Name))
+              /*  if (node == null || string.IsNullOrEmpty(node.Name))
                 {
                     _logger.LogError("Node with name {NodeName} not found.", nodeName);
                     return NotFound("Node not found.");
@@ -131,7 +131,7 @@ namespace Bakalauras.API.Controllers
                 {
                     _logger.LogError("Parent node name mismatch for node {NodeName}. Expected: {ExpectedParent}, Provided: {ProvidedParent}", nodeName, node.ParentName, parentNodeName);
                     return BadRequest("Invalid parent node name.");
-                }
+                }*/
 
                 string sourceFolder = @"C:\\Users\\picom\\Documents\\BAKALAURAS\\Nodes";
                 string destinationFolder = @"C:\\Users\\picom\\Documents\\BAKALAURAS\\NodesPath";
@@ -140,7 +140,7 @@ namespace Bakalauras.API.Controllers
                 string sourceFilePath = Path.Combine(sourceFolder, sourceFileName);
                 string destinationFilePath = Path.Combine(destinationFolder, sourceFileName);
 
-                if (!System.IO.File.Exists(sourceFilePath))
+              /*  if (!System.IO.File.Exists(sourceFilePath))
                 {
                     _logger.LogError("Image file {SourceFilePath} not found for node {NodeName}.", sourceFilePath, node.Name);
                     return NotFound("Image file not found.");
@@ -149,7 +149,7 @@ namespace Bakalauras.API.Controllers
                 if (!Directory.Exists(destinationFolder))
                 {
                     Directory.CreateDirectory(destinationFolder);
-                }
+                }*/
 
                 System.IO.File.Copy(sourceFilePath, destinationFilePath, overwrite: true);
 
@@ -171,33 +171,33 @@ namespace Bakalauras.API.Controllers
             try
             {
                 Node? node = await _nodeRepository.GetByIdAsync(id);
-                if (node == null)
+               /* if (node == null)
                 {
                     return NotFound($"Node with ID {id} not found.");
-                }
+                }*/
 
                 if (parentId.HasValue)
                 {
                     var parentNode = await _nodeRepository.GetParentByIdAsync(parentId.Value);
-                    if (parentNode == null)
+                    /*if (parentNode == null)
                     {
                         return NotFound($"Parent with ID {parentId.Value} not found.");
-                    }
+                    }*/
 
                     node.ParentId = parentNode.Id; 
                     node.ParentName = parentNode.Name;  
                 }
-                else
+               /* else
                 {
                     node.ParentId = null;
                     node.ParentName = null;
-                }
+                }*/
 
                 Node? updatedNode = await _nodeRepository.UpdateAsync(node);
-                if (updatedNode == null)
+               /* if (updatedNode == null)
                 {
                     return BadRequest("Failed to update the node.");
-                }
+                }*/
 
                 return Ok(updatedNode);
             }

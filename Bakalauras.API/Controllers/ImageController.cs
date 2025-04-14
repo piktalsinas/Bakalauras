@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.IO;
 using System.Linq;
+using System.IO.Abstractions;
 
 namespace Bakalauras.API.Controllers
 {
@@ -11,6 +12,8 @@ namespace Bakalauras.API.Controllers
         private readonly string _nodeImagesDirectory = @"C:\Users\picom\Documents\BAKALAURAS\Nodes";
         private readonly string _connectionImagesDirectory = @"C:\Users\picom\Documents\BAKALAURAS\ConnectionPhotos";
         private readonly string _baseNodeImagesDirectory = @"C:\Users\picom\Documents\BAKALAURAS\BaseNodes";
+
+       
 
         [HttpGet("{fileName}")]
         public IActionResult GetImage(string fileName)
@@ -33,6 +36,7 @@ namespace Bakalauras.API.Controllers
             var contentType = GetContentType(filePath);
             var fileBytes = System.IO.File.ReadAllBytes(filePath);
 
+
             return File(fileBytes, contentType, fileName);
         }
 
@@ -42,10 +46,13 @@ namespace Bakalauras.API.Controllers
             return ext switch
             {
                 ".jpg" or ".jpeg" => "image/jpeg",
-                ".png" => "image/png",
+               /* ".png" => "image/png",
                 ".gif" => "image/gif",
-                _ => "application/octet-stream",
+                _ => "application/octet-stream",*/
             };
         }
+       
     }
+
+   
 }

@@ -20,7 +20,6 @@ namespace Bakalauras.API.Controllers
             _baseNodeService = baseNodeService;
         }
 
-
         [HttpPost(Name = "PostBaseNode")]
         public async Task<ActionResult<BaseNode>> Post([FromQuery] string name)
         {
@@ -31,7 +30,6 @@ namespace Bakalauras.API.Controllers
             }
             return Ok(baseNode);
         }
-
 
         [HttpPost("add-base-nodes-from-images")]
         public async Task<IActionResult> AddBaseNodesFromImages()
@@ -65,12 +63,11 @@ namespace Bakalauras.API.Controllers
                 string sourceFolder = @"C:\\Users\\picom\\Documents\\BAKALAURAS\\BaseNodes";
                 string destinationFolder = @"C:\\Users\\picom\\Documents\\BAKALAURAS\\BaseNodesPath";
 
-                // Construct the expected file name structure
                 string sourceFileName = $"{baseNode.Name}.jpg";
                 string sourceFilePath = Path.Combine(sourceFolder, sourceFileName);
                 string destinationFilePath = Path.Combine(destinationFolder, sourceFileName);
 
-                if (!System.IO.File.Exists(sourceFilePath))
+              /*  if (!System.IO.File.Exists(sourceFilePath))
                 {
                     _logger.LogError("Image file {SourceFilePath} not found for BaseNode {BaseNodeName}.", sourceFilePath, baseNode.Name);
                     return NotFound("Image file not found.");
@@ -79,7 +76,7 @@ namespace Bakalauras.API.Controllers
                 if (!Directory.Exists(destinationFolder))
                 {
                     Directory.CreateDirectory(destinationFolder);
-                }
+                }*/
 
                 System.IO.File.Copy(sourceFilePath, destinationFilePath, overwrite: true);
 
@@ -88,7 +85,7 @@ namespace Bakalauras.API.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Error occurred while copying image file for BaseNode {BaseNodeName}.", baseNodeName);
+                //_logger.LogError(ex, "Error occurred while copying image file for BaseNode {BaseNodeName}.", baseNodeName);
                 return StatusCode(500, "An error occurred while processing your request.");
             }
         }

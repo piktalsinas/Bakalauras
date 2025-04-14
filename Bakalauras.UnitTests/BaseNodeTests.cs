@@ -18,6 +18,7 @@ namespace Bakalauras.UnitTests
         private Mock<IBaseNodeRepository> _mockBaseNodeRepository;
         private Mock<BaseNodeService> _mockBaseNodeService; 
         private BaseNodeController _controller;
+        private Mock<ILogger<BaseNodeService>> _mockLoggerForService;
 
         [SetUp]
         public void SetUp()
@@ -44,7 +45,7 @@ namespace Bakalauras.UnitTests
             Assert.IsNotNull(badRequestResult);
             Assert.AreEqual("BaseNode with this name already exists.", badRequestResult.Value);
         }
-
+       
         [Test]
         public async Task Post_BaseNodeCreatedSuccessfully()
         {
@@ -92,6 +93,55 @@ namespace Bakalauras.UnitTests
             Assert.IsNotNull(notFoundResult);
             Assert.AreEqual("BaseNode not found.", notFoundResult.Value);
         }
+
+        [Test]
+        public async Task AddBaseNodesFromImages_FileExistsAndBaseNodeAlreadyExists()
+        {
+            var folderPath = @"C:\Users\picom\Documents\BAKALAURAS\BaseNodes";
+            var file = @"C:\Users\picom\Documents\BAKALAURAS\BaseNodes\S1.jpg";
+            var baseNodeName = "S1";
+
+            _mockBaseNodeRepository
+                .Setup(repo => repo.GetByNameAsync(baseNodeName))
+                .ReturnsAsync(new BaseNode { Name = baseNodeName });
+
+            var result = await _controller.AddBaseNodesFromImages();
+            var okResult = result as OkObjectResult;
+            Assert.IsNotNull(okResult);
+            Assert.AreEqual("BaseNodes added successfully from images.", okResult.Value);
+        }
+
+     
+
+        [Test]
+        public void AddBaseNodesFromImagesAsync_DirectoryDoesNotExist_ThrowsDirectoryNotFoundException()
+        {
+            string folderPath = @"C:\\InvalidPath";
+
+            var mockLogger = new Mock<ILogger<BaseNodeService>>();
+            var mockBaseNodeRepository = new Mock<IBaseNodeRepository>();
+
+            var service = new BaseNodeService(mockBaseNodeRepository.Object, mockLogger.Object);
+
+            Assert.ThrowsAsync<DirectoryNotFoundException>(async () => await service.AddBaseNodesFromImagesAsync(folderPath));
+        }
+
+
+        [Test]
+        public async Task AddBaseNodeAlreadyExists()
+        {
+            var name = "S1";
+            _mockBaseNodeRepository
+                .Setup(repo => repo.GetByNameAsync(name))
+                .ReturnsAsync(new BaseNode { Name = name });  
+
+            var result = await _controller.Post(name);
+
+            var badRequestResult = result.Result as BadRequestObjectResult;
+            Assert.IsNotNull(badRequestResult);
+            Assert.AreEqual("BaseNode with this name already exists.", badRequestResult.Value);
+        }
+
 
         [Test]
         public async Task CopyBaseNodeImageToPathFolder_Success()
