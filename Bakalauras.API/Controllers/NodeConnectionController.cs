@@ -97,10 +97,10 @@ namespace Bakalauras.API.Controllers
             }
 
             bool copied = await _nodeConnectionService.CopyPathImagesAsync(path);
-          /*  if (!copied)
+            if (!copied)
             {
                 return StatusCode(500, "Path images could not be copied.");
-            }*/
+            }
 
             return Ok(path);
         }

@@ -6,7 +6,7 @@ using Bakalauras.Domain.Models.Facebook;
 
 namespace Bakalauras.App.Services
 {
-    public class FacebookPayloadHandler
+    public class FacebookPayloadHandler : IFacebookPayloadHandler
     {
         private readonly FacebookMessageService _messageService;
         private readonly LanguageService _languageService;
@@ -173,5 +173,11 @@ namespace Bakalauras.App.Services
 
 
     }
+
+    public interface IFacebookPayloadHandler
+    {
+        Task HandlePayloadAsync(FacebookWebhookPayload payload);
+    }
+
 
 }

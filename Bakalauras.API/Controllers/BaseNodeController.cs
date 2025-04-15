@@ -67,7 +67,7 @@ namespace Bakalauras.API.Controllers
                 string sourceFilePath = Path.Combine(sourceFolder, sourceFileName);
                 string destinationFilePath = Path.Combine(destinationFolder, sourceFileName);
 
-              /*  if (!System.IO.File.Exists(sourceFilePath))
+                if (!System.IO.File.Exists(sourceFilePath))
                 {
                     _logger.LogError("Image file {SourceFilePath} not found for BaseNode {BaseNodeName}.", sourceFilePath, baseNode.Name);
                     return NotFound("Image file not found.");
@@ -76,7 +76,7 @@ namespace Bakalauras.API.Controllers
                 if (!Directory.Exists(destinationFolder))
                 {
                     Directory.CreateDirectory(destinationFolder);
-                }*/
+                }
 
                 System.IO.File.Copy(sourceFilePath, destinationFilePath, overwrite: true);
 
@@ -85,7 +85,7 @@ namespace Bakalauras.API.Controllers
             }
             catch (Exception ex)
             {
-                //_logger.LogError(ex, "Error occurred while copying image file for BaseNode {BaseNodeName}.", baseNodeName);
+                _logger.LogError(ex, "Error occurred while copying image file for BaseNode {BaseNodeName}.", baseNodeName);
                 return StatusCode(500, "An error occurred while processing your request.");
             }
         }

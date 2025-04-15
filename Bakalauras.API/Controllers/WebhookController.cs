@@ -11,11 +11,11 @@ namespace Bakalauras.API.Controllers
     public class WebhookController : ControllerBase
     {
         private readonly ILogger<WebhookController> _logger;
-        private readonly FacebookPayloadHandler _payloadHandler;
+        private readonly IFacebookPayloadHandler _payloadHandler;
 
         public WebhookController(
             ILogger<WebhookController> logger,
-            FacebookPayloadHandler payloadHandler)
+            IFacebookPayloadHandler payloadHandler)
         {
             _logger = logger;
             _payloadHandler = payloadHandler;

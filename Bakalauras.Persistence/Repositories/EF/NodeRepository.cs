@@ -71,13 +71,6 @@ namespace Bakalauras.Persistence.Repositories
             return await _context.BaseNodes.FirstOrDefaultAsync(bn => bn.Id == parentId);
         }
 
-        public async Task<Node?> GetByNameAndParentAsync(string name, string parentName)
-        {
-            return await _context.Nodes
-                .Where(n => n.Name == name && n.ParentName == parentName)
-                .FirstOrDefaultAsync();
-        }
-
         public async Task<IEnumerable<Node>> GetNodesByBaseNodeAsync(string baseNodeName)
         {
             return await _context.Nodes

@@ -55,11 +55,12 @@ builder.Services.AddScoped<NodeConnectionService>();
 builder.Services.AddScoped<BaseNodeService>();
 builder.Services.AddScoped<DijkstraService>();
 builder.Services.AddScoped<NavigationService>();
-builder.Services.AddScoped<FacebookPayloadHandler>();
+//builder.Services.AddScoped<FacebookPayloadHandler>();
 builder.Services.AddScoped<FacebookMessageService>();
 builder.Services.AddScoped<LanguageService>();
 builder.Services.AddScoped<WitAiService>();
 
+builder.Services.AddScoped<IFacebookPayloadHandler, FacebookPayloadHandler>();
 
 
 builder.Services.AddScoped<WebhookController>();

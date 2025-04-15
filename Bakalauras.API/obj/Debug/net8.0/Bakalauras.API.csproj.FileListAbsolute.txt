@@ -262,3 +262,4 @@ C:\Users\picom\Documents\BAKALAURAS\Bakalauras.API\Bakalauras.API\Bakalauras.API
 C:\Users\picom\Documents\BAKALAURAS\Bakalauras.API\Bakalauras.API\Bakalauras.API\Bakalauras\Bakalauras.API\bin\Debug\net8.0\zh-Hant\Microsoft.TestPlatform.CrossPlatEngine.resources.dll
 C:\Users\picom\Documents\BAKALAURAS\Bakalauras.API\Bakalauras.API\Bakalauras.API\Bakalauras\Bakalauras.API\bin\Debug\net8.0\zh-Hant\Microsoft.VisualStudio.TestPlatform.Common.resources.dll
 C:\Users\picom\Documents\BAKALAURAS\Bakalauras.API\Bakalauras.API\Bakalauras.API\Bakalauras\Bakalauras.API\bin\Debug\net8.0\runtimes\browser\lib\net8.0\System.Text.Encodings.Web.dll
+C:\Users\picom\Documents\BAKALAURAS\Bakalauras.API\Bakalauras.API\Bakalauras.API\Bakalauras\Bakalauras.API\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt

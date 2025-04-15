@@ -101,22 +101,22 @@ namespace Bakalauras.API.Controllers
         public async Task<IActionResult> AddNodesFromImages()
         {
             string folderPath = @"C:\\Users\\picom\\Documents\\BAKALAURAS\\Nodes";
-            try
-            {
+          /*  try
+            {*/
                 await _nodeService.AddNodesFromImagesAsync(folderPath);
                 return Ok("Nodes added successfully from images.");
-            }
+           /* }
             catch (Exception ex)
             {
                 return BadRequest($"An error occurred: {ex.Message}");
-            }
+            }*/
         }
 
         [HttpPost("CopyImage/{parentNodeName}_{nodeName}")]
         public async Task<IActionResult> CopyImageToPathFolderAsync(string parentNodeName, string nodeName)
         {
-            try
-            {
+            /*try
+            {*/
                 // Fetch the node by name
                 //  Node? node = await _nodeRepository.GetByNameAsync(nodeName);
                 Node? node = (await _nodeRepository.GetByNameAsync(nodeName)).FirstOrDefault();
@@ -155,12 +155,12 @@ namespace Bakalauras.API.Controllers
 
                 _logger.LogInformation("Image file copied successfully from {Source} to {Destination}.", sourceFilePath, destinationFilePath);
                 return Ok("Image successfully copied to Path folder.");
-            }
+            /*}
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Error occurred while copying image file for node {NodeName}.", nodeName);
                 return StatusCode(500, "An error occurred while processing your request.");
-            }
+            }*/
         }
 
 
@@ -171,33 +171,33 @@ namespace Bakalauras.API.Controllers
             try
             {
                 Node? node = await _nodeRepository.GetByIdAsync(id);
-               /* if (node == null)
+                if (node == null)
                 {
                     return NotFound($"Node with ID {id} not found.");
-                }*/
+                }
 
                 if (parentId.HasValue)
                 {
                     var parentNode = await _nodeRepository.GetParentByIdAsync(parentId.Value);
-                    /*if (parentNode == null)
+                    if (parentNode == null)
                     {
                         return NotFound($"Parent with ID {parentId.Value} not found.");
-                    }*/
+                    }
 
                     node.ParentId = parentNode.Id; 
                     node.ParentName = parentNode.Name;  
                 }
-               /* else
+                else
                 {
                     node.ParentId = null;
                     node.ParentName = null;
-                }*/
+                }
 
                 Node? updatedNode = await _nodeRepository.UpdateAsync(node);
-               /* if (updatedNode == null)
+                if (updatedNode == null)
                 {
                     return BadRequest("Failed to update the node.");
-                }*/
+                }
 
                 return Ok(updatedNode);
             }
