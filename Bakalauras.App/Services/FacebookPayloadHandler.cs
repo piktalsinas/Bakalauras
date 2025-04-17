@@ -87,6 +87,13 @@ namespace Bakalauras.App.Services
                     var (roomsPrompt, quickRepliesForRooms) = _languageService.Translate("nodes_list", senderId);
                     await _messageService.SendTextAsync(senderId, buildingPrompt, quickRepliesForRooms);
                     break;
+                case "GET_TIMETABLE": 
+                    var userLanguage = _languageService.GetUserLanguage(senderId);
+                    string timetable = userLanguage == "en"
+                        ? _witAiService.GetTimetableInEnglish()
+                        : _witAiService.GetTimetableInLithuanian();
+                    await _messageService.SendTextAsync(senderId, timetable, null);
+                    break;
             }
         }
       

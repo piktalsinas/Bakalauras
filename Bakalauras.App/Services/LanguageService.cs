@@ -117,6 +117,7 @@ namespace Bakalauras.App.Services
             new { type = "postback", title = "INFO", payload = "INFO" },
             new { type = "postback", title = "Rasti kelią 📍", payload = "FIND_PATH" },
             new { type = "postback", title = "Pastatas ir Auditorijos 🏫", payload = "GET_ROOMS" },
+            new { type = "postback", title = "Tvarkaraštis 🕒", payload = "GET_TIMETABLE" },
             new { type = "postback", title = "Pakeisti į EN", payload = "LANGUAGE_EN" }
                 }
                 : new[]
@@ -124,6 +125,7 @@ namespace Bakalauras.App.Services
             new { type = "postback", title = "INFO", payload = "INFO" },
             new { type = "postback", title = "Find Path 📍", payload = "FIND_PATH" },
             new { type = "postback", title = "Building and Rooms 🏫", payload = "GET_ROOMS" },
+            new { type = "postback", title = "Timetable 🕒", payload = "GET_TIMETABLE" },
             new { type = "postback", title = "Switch to LT", payload = "LANGUAGE_LT" }
                 };
 
