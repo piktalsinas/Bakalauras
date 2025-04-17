@@ -2,7 +2,7 @@
 
 namespace Bakalauras.Domain.Models;
 
-public class Node : TrackingEntity
+public class Node 
 {
 	public Guid Id { get; set; }
 	public string Name { get; set; } = default!;

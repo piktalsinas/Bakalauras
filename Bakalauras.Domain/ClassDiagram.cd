@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Bakalauras.Domain.Models.Node" Collapsed="true">
+    <Position X="4.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABgCAAAAAAAAAAAAAAAAQARAAAAAAAAAAgAAAAAAAAA=</HashCode>
+      <FileName>Models\Node.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Bakalauras.Domain.Models.BaseNode" Collapsed="true">
+    <Position X="3.25" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\BaseNode.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Bakalauras.Domain.Models.NodeConnection" Collapsed="true">
+    <Position X="5.5" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACEAAAAAAAAAAAAAAAAAQEACQAAgAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\NodeConnection.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Bakalauras.Domain.Models.AppSettings" Collapsed="true">
+    <Position X="6.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAEAAAAAAAAAAAEAAAAAAAAgAAAAAAAAAAA=</HashCode>
+      <FileName>Models\AppSettings.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

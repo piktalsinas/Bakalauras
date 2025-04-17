@@ -2,7 +2,7 @@
 
 namespace Bakalauras.Domain.Models;
 
-public class NodeConnection : TrackingEntity
+public class NodeConnection : Node
 {
 	public Guid Id { get; set; }
 
