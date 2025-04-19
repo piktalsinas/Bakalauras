@@ -3,6 +3,8 @@ using System.Text;
 using Microsoft.Extensions.Logging;
 using Bakalauras.Domain.Models;
 using Microsoft.Extensions.Options;
+using Bakalauras.Persistence;
+using Microsoft.EntityFrameworkCore;
 
 namespace Bakalauras.App.Services
 {
@@ -11,19 +13,24 @@ namespace Bakalauras.App.Services
         private readonly ILogger<LanguageService> _logger;
         private readonly string _pageAccessToken;
         private readonly string _baseUrl;
-        public LanguageService(ILogger<LanguageService> logger,IOptions<AppSettings> appSettings)
+        private readonly AppDbContext _dbContext;
+        public LanguageService(ILogger<LanguageService> logger,IOptions<AppSettings> appSettings, AppDbContext dbContext)
         {
             _logger = logger;
             _pageAccessToken = appSettings.Value.PageAccessToken;
             _baseUrl = appSettings.Value.BaseUrl;
+            _dbContext = dbContext;
         }
         private static readonly Dictionary<string, string> _userLanguages = new();
 
         public void SetUserLanguage(string userId, string language) => _userLanguages[userId] = language;
 
-        public (string text, dynamic quickReplies) Translate(string key, string userId)
+
+
+        public async Task<(string text, dynamic quickReplies)> TranslateAsync(string key, string userId)
         {
             var lang = _userLanguages.ContainsKey(userId) ? _userLanguages[userId] : "en";
+
 
             var translations = new Dictionary<string, (string en, string lt, dynamic quickReplies)>
             {
@@ -48,16 +55,6 @@ namespace Bakalauras.App.Services
                     "Please enter the building name to see its rooms *(e.g., S1, S2)*.",
                     "Įveskite pastato pavadinimą, kad pamatytumėte jo auditorijas *(pvz., S1, S2)*.",
                     null
-                ),
-                ["nodes_list"] = (
-                    "Here is a picture of building and it's rooms:",
-                    "Štai norimas pastatas ir jo auditorijos:",
-                    new[]
-                    {
-                new { content_type = "text", title = "S1", payload = "S1" },
-                new { content_type = "text", title = "S2", payload = "S2" },
-                new { content_type = "text", title = "S3", payload = "S3" }
-                    }
                 ),
                 ["no_nodes"] = (
                     "No rooms found.",
@@ -86,10 +83,28 @@ namespace Bakalauras.App.Services
                 ),
                 ["welcome"] = (
                     "Hello! I'd be happy to assist you :)\n For more information, feel free to use *the menu on the right side*.",
-                    "Sveiki! Džiaugčiausi galėdamas jums padėti :)\n Daugiau informacijos rasite naudodamiesi *meniu dešinėje pusėje*.",
+                    "Sveiki! Norėčiau jums padėti :)\n Daugiau informacijos rasite naudodamiesi *meniu dešinėje pusėje*.",
                     null
                 )
             };
+
+            if (key == "nodes_list")
+            {
+                var baseNodes = await _dbContext.BaseNodes.Select(b => b.Name).Distinct().ToListAsync();
+
+                var quickReplies = baseNodes.Select(name => new
+                {
+                    content_type = "text",
+                    title = name,
+                    payload = name
+                }).ToArray();
+
+                var text = lang == "lt"
+                    ? "Štai norimas pastatas ir jo auditorijos:"
+                    : "Here is a picture of building and it's rooms:";
+
+                return (text, quickReplies);
+            }
 
             if (translations.TryGetValue(key, out var translation))
             {

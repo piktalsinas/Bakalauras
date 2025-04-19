@@ -69,25 +69,30 @@ namespace Bakalauras.App.Services
                     await _languageService.SetUserMenuAsync(senderId, "en");
                     await _messageService.SendTextAsync(senderId, "Language set to English ✅", null);
                     break;
+
                 case "LANGUAGE_LT":
                     _languageService.SetUserLanguage(senderId, "lt");
                     await _languageService.SetUserMenuAsync(senderId, "lt");
                     await _messageService.SendTextAsync(senderId, "Kalba nustatyta į Lietuvių ✅", null);
                     break;
+
                 case "INFO":
-                    var infoText = _languageService.Translate("info", senderId).text;
+                    var (infoText, _) = await _languageService.TranslateAsync("info", senderId);
                     await _messageService.SendTextAsync(senderId, infoText, null);
                     break;
+
                 case "FIND_PATH":
-                    var (promptText, quickReplies) = _languageService.Translate("prompt_path", senderId);
+                    var (promptText, quickReplies) = await _languageService.TranslateAsync("prompt_path", senderId);
                     await _messageService.SendTextAsync(senderId, promptText, null);
                     break;
+
                 case "GET_ROOMS":
-                    var buildingPrompt = _languageService.Translate("prompt_building", senderId).text;
-                    var (roomsPrompt, quickRepliesForRooms) = _languageService.Translate("nodes_list", senderId);
+                    var (buildingPrompt, _) = await _languageService.TranslateAsync("prompt_building", senderId);
+                    (string roomsPrompt, dynamic quickRepliesForRooms) = await _languageService.TranslateAsync("nodes_list", senderId);
                     await _messageService.SendTextAsync(senderId, buildingPrompt, quickRepliesForRooms);
                     break;
-                case "GET_TIMETABLE": 
+
+                case "GET_TIMETABLE":
                     var userLanguage = _languageService.GetUserLanguage(senderId);
                     string timetable = userLanguage == "en"
                         ? _witAiService.GetTimetableInEnglish()
@@ -108,14 +113,14 @@ namespace Bakalauras.App.Services
             if (nlpResponse == "prompt_path")
             {
                 Console.WriteLine("Prompt Path Detected! Sending response...");
-                var (promptText, quickReplies) = _languageService.Translate("prompt_path", senderId);
+                var (promptText, quickReplies) = await _languageService.TranslateAsync("prompt_path", senderId);
                 await _messageService.SendTextAsync(senderId, promptText, null);
                 return;
             }
             if (nlpResponse == "welcome")
             {
                 Console.WriteLine("Welcome Detected! Sending response...");
-                var (promptText, quickReplies) = _languageService.Translate("welcome", senderId);
+                var (promptText, quickReplies) = await _languageService.TranslateAsync("welcome", senderId);
                 await _messageService.SendTextAsync(senderId, promptText, null);
                 return;
             }
@@ -143,7 +148,7 @@ namespace Bakalauras.App.Services
                 Console.WriteLine("Welcome Detected! Sending response...");
                 var userLanguage = _languageService.GetUserLanguage(senderId);
 
-                var (welcomeText, quickReplies) = _languageService.Translate("welcome", senderId);
+                var (welcomeText, quickReplies) = await _languageService.TranslateAsync("welcome", senderId);
 
                 if (string.IsNullOrEmpty(welcomeText))
                 {

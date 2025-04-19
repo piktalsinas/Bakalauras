@@ -45,7 +45,7 @@ namespace Bakalauras.App.Services
         public async Task SendAllNodesAsync(string recipientId)
         {
             var nodes = await GetAllNodesFromApi();
-            var message = _languageService.Translate("nodes_list", recipientId) + string.Join(", ", nodes.Select(n => n.Name));
+            var message = await _languageService.TranslateAsync("nodes_list", recipientId) + string.Join(", ", nodes.Select(n => n.Name));
             await _messageService.SendTextAsync(recipientId, message);
         }
 
@@ -62,14 +62,14 @@ namespace Bakalauras.App.Services
             var nodes = await _nodeRepository.GetNodesByBaseNodeAsync(baseNodeName);
             if (!nodes.Any())
             {
-                var (noNodesText, quickReplies) = _languageService.Translate("no_nodes", recipientId);
+                var (noNodesText, quickReplies) = await _languageService.TranslateAsync("no_nodes", recipientId);
                 await _messageService.SendTextAsync(recipientId, noNodesText, quickReplies);
                 return;
             }
             var imageUrl = $"{ImageBaseUrl}/{baseNodeName}.jpg";
 
 
-            var (nodesListText, quickRepliesForNodes) = _languageService.Translate("nodes_list", recipientId);
+            var (nodesListText, quickRepliesForNodes) = await _languageService.TranslateAsync("nodes_list", recipientId);
             var message = nodesListText + string.Join(", ", nodes.Select(n => n.Name));
             await _messageService.SendImageAsync(recipientId, imageUrl);
             await _messageService.SendTextAsync(recipientId, message, quickRepliesForNodes);
@@ -80,7 +80,7 @@ namespace Bakalauras.App.Services
             var parts = messageText.Split(new[] { "to", "iki" }, StringSplitOptions.RemoveEmptyEntries);
             if (parts.Length != 2)
             {
-                var (text, quickReplies) = _languageService.Translate("nodes_not_found", recipientId);
+                var (text, quickReplies) = await _languageService.TranslateAsync("nodes_not_found", recipientId);
                 await _messageService.SendTextAsync(recipientId, text, quickReplies);
                 return;
             }
@@ -93,7 +93,7 @@ namespace Bakalauras.App.Services
 
             if (startNodeId == null || endNodeId == null)
             {
-                var (text, quickReplies) = _languageService.Translate("nodes_not_found", recipientId);
+                var (text, quickReplies) = await _languageService.TranslateAsync("nodes_not_found", recipientId);
                 await _messageService.SendTextAsync(recipientId, text, quickReplies);
                 return;
             }
@@ -101,15 +101,17 @@ namespace Bakalauras.App.Services
             var path = await _dijkstraService.FindShortestPathAsync(startNodeId.Value, endNodeId.Value);
             if (path == null || path.Count < 2)
             {
-                var (text, quickReplies) = _languageService.Translate("no_path_found", recipientId);
+                var (text, quickReplies) = await _languageService.TranslateAsync("no_path_found", recipientId);
                 await _messageService.SendTextAsync(recipientId, text, quickReplies);
                 return;
             }
 
             await _nodeConnectionService.CopyPathImagesAsync(path);
 
-            var intro = string.Format(_languageService.Translate("path_start", recipientId).text, from, to);
+            var (pathStartText, _) = await _languageService.TranslateAsync("path_start", recipientId);
+            var intro = string.Format(pathStartText, from, to);
             await _messageService.SendTextAsync(recipientId, intro, null);
+
 
             var imageTasks = new List<Task>();
 
