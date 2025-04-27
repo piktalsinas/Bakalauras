@@ -8,6 +8,7 @@ using System.Net.Http;
 using System.Linq;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 
 namespace Bakalauras.App.Services
 {
@@ -68,7 +69,6 @@ namespace Bakalauras.App.Services
             }
             var imageUrl = $"{ImageBaseUrl}/{baseNodeName}.jpg";
 
-
             var (nodesListText, quickRepliesForNodes) = await _languageService.TranslateAsync("nodes_list", recipientId);
             var message = nodesListText + string.Join(", ", nodes.Select(n => n.Name));
             await _messageService.SendImageAsync(recipientId, imageUrl);
@@ -77,13 +77,14 @@ namespace Bakalauras.App.Services
 
         public async Task SendShortestPathAsync(string recipientId, string messageText)
         {
-            var parts = messageText.Split(new[] { "to", "iki" }, StringSplitOptions.RemoveEmptyEntries);
+            var parts = Regex.Split(messageText, @"\s+(?:to|iki)\s+", RegexOptions.IgnoreCase);
             if (parts.Length != 2)
             {
                 var (text, quickReplies) = await _languageService.TranslateAsync("nodes_not_found", recipientId);
                 await _messageService.SendTextAsync(recipientId, text, quickReplies);
                 return;
             }
+
 
             var from = parts[0].Trim();
             var to = parts[1].Trim();
@@ -112,21 +113,16 @@ namespace Bakalauras.App.Services
             var intro = string.Format(pathStartText, from, to);
             await _messageService.SendTextAsync(recipientId, intro, null);
 
-
-            var imageTasks = new List<Task>();
-
-            for (int i = 0; i < path.Count - 1; i++) 
+            for (int i = 0; i < path.Count - 1; i++)
             {
                 var fromNode = path[i];
-                var toNode = path[i + 1]; 
+                var toNode = path[i + 1];
                 var connectionName = $"{fromNode.ParentName ?? "NoParent"}_{fromNode.Name}_{toNode.ParentName ?? "NoParent"}_{toNode.Name}";
                 var imageUrl = $"{ImageBaseUrl}/{connectionName}.jpg";
 
-                imageTasks.Add(_messageService.SendImageAsync(recipientId, imageUrl));
+                await _messageService.SendImageAsync(recipientId, imageUrl);
             }
-
         }
-
 
         private async Task<IEnumerable<Node>> GetAllNodesFromApi()
         {

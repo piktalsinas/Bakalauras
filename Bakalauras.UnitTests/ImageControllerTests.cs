@@ -26,7 +26,7 @@ namespace Bakalauras.UnitTests
 
             var contentResult = result as FileContentResult;
             Assert.IsNotNull(contentResult);
-            Assert.AreEqual("image/jpeg", contentResult.ContentType); // Assert correct MIME type for JPG
+            Assert.AreEqual("image/jpeg", contentResult.ContentType);
         }
 
         [Test]

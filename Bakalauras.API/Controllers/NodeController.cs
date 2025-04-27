@@ -54,7 +54,7 @@ namespace Bakalauras.API.Controllers
             Node node = new() { Name = name };
             Node? addedNode = await _nodeRepository.AddAsync(node);
 
-         /*   if (addedNode is null)
+           /* if (addedNode is null)
             {
                 return BadRequest("Node already exists");
             }*/
@@ -66,16 +66,16 @@ namespace Bakalauras.API.Controllers
         public async Task<ActionResult<Node>> Put(Guid id, [FromQuery] string name)
         {
             Node? node = await _nodeRepository.GetByIdAsync(id);
-         /*   if (node is null)
+            if (node is null)
             {
                 return NotFound();
-            }*/
+            }
             node.Name = name;
             Node? updatedNode = await _nodeRepository.UpdateAsync(node);
-           /* if (updatedNode is null)
+            if (updatedNode is null)
             {
                 return BadRequest("Node already exists");
-            }*/
+            }
             return Ok(updatedNode);
         }
 
@@ -90,10 +90,10 @@ namespace Bakalauras.API.Controllers
         public async Task<ActionResult<Node>> Get(Guid id)
         {
             Node? node = await _nodeRepository.GetByIdAsync(id);
-            /*if (node is null)
+            if (node is null)
             {
                 return NotFound();
-            }*/
+            }
             return Ok(node);
         }
 
@@ -101,46 +101,46 @@ namespace Bakalauras.API.Controllers
         public async Task<IActionResult> AddNodesFromImages()
         {
             string folderPath = @"C:\\Users\\picom\\Documents\\BAKALAURAS\\Nodes";
-          /*  try
-            {*/
+            try
+            {
                 await _nodeService.AddNodesFromImagesAsync(folderPath);
                 return Ok("Nodes added successfully from images.");
-           /* }
+            }
             catch (Exception ex)
             {
                 return BadRequest($"An error occurred: {ex.Message}");
-            }*/
+            }
         }
 
         [HttpPost("CopyImage/{parentNodeName}_{nodeName}")]
         public async Task<IActionResult> CopyImageToPathFolderAsync(string parentNodeName, string nodeName)
         {
-            /*try
-            {*/
+            try
+            {
                 // Fetch the node by name
                 //  Node? node = await _nodeRepository.GetByNameAsync(nodeName);
                 Node? node = (await _nodeRepository.GetByNameAsync(nodeName)).FirstOrDefault();
 
-              /*  if (node == null || string.IsNullOrEmpty(node.Name))
-                {
-                    _logger.LogError("Node with name {NodeName} not found.", nodeName);
-                    return NotFound("Node not found.");
-                }
+            if (node == null || string.IsNullOrEmpty(node.Name))
+            {
+                _logger.LogError("Node with name {NodeName} not found.", nodeName);
+                return NotFound("Node not found.");
+            }
 
-                if (node.ParentName == null || !node.ParentName.Equals(parentNodeName, StringComparison.OrdinalIgnoreCase))
-                {
-                    _logger.LogError("Parent node name mismatch for node {NodeName}. Expected: {ExpectedParent}, Provided: {ProvidedParent}", nodeName, node.ParentName, parentNodeName);
-                    return BadRequest("Invalid parent node name.");
-                }*/
+            if (node.ParentName == null || !node.ParentName.Equals(parentNodeName, StringComparison.OrdinalIgnoreCase))
+            {
+                _logger.LogError("Parent node name mismatch for node {NodeName}. Expected: {ExpectedParent}, Provided: {ProvidedParent}", nodeName, node.ParentName, parentNodeName);
+                return BadRequest("Invalid parent node name.");
+            }
 
-                string sourceFolder = @"C:\\Users\\picom\\Documents\\BAKALAURAS\\Nodes";
+            string sourceFolder = @"C:\\Users\\picom\\Documents\\BAKALAURAS\\Nodes";
                 string destinationFolder = @"C:\\Users\\picom\\Documents\\BAKALAURAS\\NodesPath";
 
                 string sourceFileName = $"{parentNodeName}_{node.Name}.jpg";
                 string sourceFilePath = Path.Combine(sourceFolder, sourceFileName);
                 string destinationFilePath = Path.Combine(destinationFolder, sourceFileName);
 
-              /*  if (!System.IO.File.Exists(sourceFilePath))
+                if (!System.IO.File.Exists(sourceFilePath))
                 {
                     _logger.LogError("Image file {SourceFilePath} not found for node {NodeName}.", sourceFilePath, node.Name);
                     return NotFound("Image file not found.");
@@ -149,18 +149,18 @@ namespace Bakalauras.API.Controllers
                 if (!Directory.Exists(destinationFolder))
                 {
                     Directory.CreateDirectory(destinationFolder);
-                }*/
+                }
 
                 System.IO.File.Copy(sourceFilePath, destinationFilePath, overwrite: true);
 
                 _logger.LogInformation("Image file copied successfully from {Source} to {Destination}.", sourceFilePath, destinationFilePath);
                 return Ok("Image successfully copied to Path folder.");
-            /*}
+            }
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Error occurred while copying image file for node {NodeName}.", nodeName);
                 return StatusCode(500, "An error occurred while processing your request.");
-            }*/
+            }
         }
 
 
