@@ -61,23 +61,31 @@ namespace Bakalauras.App.Services
             }
 
             var nodes = await _nodeRepository.GetNodesByBaseNodeAsync(baseNodeName);
-            if (!nodes.Any())
+
+            // NEW: Filter nodes to only those that contain at least one digit
+            var filteredNodes = nodes.Where(n => Regex.IsMatch(n.Name, @"\d")).ToList();
+
+            if (!filteredNodes.Any())
             {
                 var (noNodesText, quickReplies) = await _languageService.TranslateAsync("no_nodes", recipientId);
                 await _messageService.SendTextAsync(recipientId, noNodesText, quickReplies);
                 return;
             }
+
             var imageUrl = $"{ImageBaseUrl}/{baseNodeName}.jpg";
 
             var (nodesListText, quickRepliesForNodes) = await _languageService.TranslateAsync("nodes_list", recipientId);
-            var message = nodesListText + string.Join(", ", nodes.Select(n => n.Name));
+            var message = nodesListText + string.Join(", ", filteredNodes.Select(n => n.Name));
             await _messageService.SendImageAsync(recipientId, imageUrl);
             await _messageService.SendTextAsync(recipientId, message, quickRepliesForNodes);
         }
 
+
         public async Task SendShortestPathAsync(string recipientId, string messageText)
         {
-            var parts = Regex.Split(messageText, @"\s+(?:to|iki)\s+", RegexOptions.IgnoreCase);
+            //var parts = Regex.Split(messageText, @"\s*(?:to|iki)\s*", RegexOptions.IgnoreCase);
+            var parts = messageText.Split(new[] { "to", "iki" }, StringSplitOptions.RemoveEmptyEntries);
+
             if (parts.Length != 2)
             {
                 var (text, quickReplies) = await _languageService.TranslateAsync("nodes_not_found", recipientId);
