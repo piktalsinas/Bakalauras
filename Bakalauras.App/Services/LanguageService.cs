@@ -77,8 +77,8 @@ namespace Bakalauras.App.Services
                     null
                 ),
                 ["prompt_path"] = (
-                    "Please type the path in format:\nBuilding1 Room1 to Building2 Room2 (e.g., *S1_227 to S1_435*)",
-                    "Prašome įvesti kelią tokiu formatu:\nPastatas1_Auditorija1 iki Pastatas2_Auditorija2 (pvz *S1_227 iki S1_435*)",
+                    "Please type the path in format:\n\nBuilding1_Room1 to Building2_Room2 (e.g., *S5_227 to S5_435*)\n *or*\nBuilding1_Entrance to Building2_Room2 (e.g. *S2_Start to S6_427*)",
+                    "Prašome įvesti kelią tokiu formatu:\n\nPastatas1_Auditorija1 iki Pastatas2_Auditorija2 (pvz *S5_227 iki S5_435*)\n *arba*\nPastatas1_Įėjimas iki Pastatas2_Auditorija2  (e.g. *S2_Start iki S6_427*)",
                     null
                 ),
                 ["welcome"] = (

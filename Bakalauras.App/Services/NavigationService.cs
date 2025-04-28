@@ -62,7 +62,6 @@ namespace Bakalauras.App.Services
 
             var nodes = await _nodeRepository.GetNodesByBaseNodeAsync(baseNodeName);
 
-            // NEW: Filter nodes to only those that contain at least one digit
             var filteredNodes = nodes.Where(n => Regex.IsMatch(n.Name, @"\d")).ToList();
 
             if (!filteredNodes.Any())
@@ -83,7 +82,6 @@ namespace Bakalauras.App.Services
 
         public async Task SendShortestPathAsync(string recipientId, string messageText)
         {
-            //var parts = Regex.Split(messageText, @"\s*(?:to|iki)\s*", RegexOptions.IgnoreCase);
             var parts = messageText.Split(new[] { "to", "iki" }, StringSplitOptions.RemoveEmptyEntries);
 
             if (parts.Length != 2)

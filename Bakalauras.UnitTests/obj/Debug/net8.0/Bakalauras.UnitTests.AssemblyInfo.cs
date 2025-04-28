@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Bakalauras.UnitTests")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+528caa19637c7a5d5241b8c7e3bfaa8e23184dd2")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6f649c6156f108180fb0d4806bb1d869e38368b3")]
 [assembly: System.Reflection.AssemblyProductAttribute("Bakalauras.UnitTests")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Bakalauras.UnitTests")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
