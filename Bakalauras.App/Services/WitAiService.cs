@@ -54,7 +54,7 @@ namespace Bakalauras.App.Services
 
         public string GetTimetableInEnglish()
         {
-            return "Here is your lecture timetable:\n" +
+            return "Here is the timetable for lecture times:\n" +
                    "*1st Lecture*: 8:30 - 10:05\n" +
                    "*2nd Lecture*: 10:20 - 11:55\n" +
                    "*3rd Lecture*: 12:10 - 13:45\n" +
@@ -69,7 +69,7 @@ namespace Bakalauras.App.Services
         
         public string GetTimetableInLithuanian()
         {
-            return "Štai jūsų paskaitų tvarkaraštis:\n" +
+            return "Štai paskaitų laikų tvarkaraštis:\n" +
                    "*1 paskaita*: 8:30 - 10:05\n" +
                    "*2 paskaita*: 10:20 - 11:55\n" +
                    "*3 paskaita*: 12:10 - 13:45\n" +
